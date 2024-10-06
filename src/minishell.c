@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 int	main(int argc, char **argv)
 {
 	t_dll *new_node = t_dll_new(ft_strdup("hola\n"));
 	printf("list size: %d\n", (int)t_dll_size(new_node));
-	printf("Args count: %d\n", argc);
+	printf("Args counter: %d\n", argc);
 	printf("ARG 2: %s", argv[1]);
+	ft_reader_test();
 	return (0);
 }

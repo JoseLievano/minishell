@@ -25,28 +25,28 @@ BONUS			=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 
 BONUS_OBJS		=	$(BONUS:.c=.o)
 
-CC			=	gcc
+CC				=	gcc
 
-RM			=	rm -f
+RM				=	rm -f
 
 CFLAGS			=	-Wall -Wextra -Werror
 
 NAME			=	libft.a
 
-all:			$(NAME)
+all				:	$(NAME)
 
-$(NAME):		$(OBJS)
-				 ar rcs $(NAME) $(OBJS)
+$(NAME)			:	$(OBJS)
+					ar rcs $(NAME) $(OBJS)
 
-clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+clean			:
+					$(RM) $(OBJS) $(BONUS_OBJS)
 
-fclean:			clean
-				$(RM) $(NAME) 
+fclean			:	clean
+					$(RM) $(NAME)
 
-re:			fclean $(NAME)
+re				:	fclean $(NAME)
 
-bonus:			$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus			:	$(OBJS) $(BONUS_OBJS)
+					ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
-.PHONY:			all clean fclean re bonus
+.PHONY			:	all clean fclean re bonus
