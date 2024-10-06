@@ -14,5 +14,5 @@
 
 void	ft_reader_test(void)
 {
-	printf("\nHello there from ft reader\n");
+	printf("\nHello there from ft_reader\n");
 }
