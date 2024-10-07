@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   ft_reader.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:17:09 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/06 14:17:09 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:50:16 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void test_clear(t_dll *node)
 
 void	ft_reader_test(void)
 {
-	printf("\nHello there from ft_reader\n");
+	printf("\nHello there ft_reader\n");
 
 	char *str1 = ft_strdup("demo 1");
 	char *str2 = ft_strdup("demo 2");
