@@ -28,7 +28,7 @@ void test_clear(t_dll *node)
 
 void	ft_reader_test(void)
 {
-	printf("\nHello there ft_reader\n");
+	printf("\nHello there modification ft_reader\n");
 
 	char *str1 = ft_strdup("demo 1");
 	char *str2 = ft_strdup("demo 2");
