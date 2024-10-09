@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef T_DLL_H
+# define T_DLL_H
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -46,3 +48,4 @@ void	t_dll_clear(t_dll *node, void (*n_clear)(t_dll*));
 void	t_dll_insert_a(t_dll **head, t_dll *new_node, size_t index);
 int		t_dll_is_valid(t_dll *node, int (*validator)(t_dll *node));
 void	t_dll_for_each(t_dll *node, void (*iterator)(t_dll *node));
+#endif

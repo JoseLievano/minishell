@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 16:52:43 by jlievano          #+#    #+#             */
-/*   Updated: 2024/09/25 16:52:44 by jlievano         ###   ########.fr       */
+/*   Created: 2024/10/09 22:56:40 by jlievano          #+#    #+#             */
+/*   Updated: 2024/10/09 22:56:41 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "ft_lexer.h"
 
-int	main(int argc, char **argv)
+void lexer_test(void)
 {
-	t_dll *new_node = t_dll_new(ft_strdup("hola\n"));
-	printf("list size: %d\n", (int)t_dll_size(new_node));
-	printf("Args counter: %d\n", argc);
-	printf("ARG 2: %s", argv[1]);
-	printf("\n0000000\nFrom lexer\n");
-	lexer_test();
-	return (0);
+	printf("\n=================\n");
+	printf("Lexer function\n");
+
+	t_dll *lexer_list = t_dll_new(ft_strdup("hello"));
+	t_dll_add_front(&lexer_list, t_dll_new(ft_strdup("Another hello")));
+	printf("Lexer list size %d\n", (int)t_dll_size(lexer_list));
+	ft_reader_test();
 }
+

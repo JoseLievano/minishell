@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef READER_H
-# define READER_H
+#ifndef FT_READER_H
+# define FT_READER_H
 # include "../../inc/minishell.h"
 
 typedef struct test

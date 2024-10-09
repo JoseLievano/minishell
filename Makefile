@@ -17,13 +17,14 @@ CFLAGS		=	-Wall -Wextra -Werror
 T_DLL		=	libs/t_dll/t_dll.a
 LIBFT		=	libs/libft/libft.a
 FT_READER	=	libs/reader/ft_reader.a
+FT_LEXER	=	libs/lexer/ft_lexer.a
 OBJS		=	$(SRC:.c=.o)
 SRC			=	src/minishell.c
 
 all			:	$(NAME)
 
-$(NAME)		:	$(OBJS) $(T_DLL) $(LIBFT) $(FT_READER)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(T_DLL) $(LIBFT) $(FT_READER)
+$(NAME)		:	$(OBJS) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
 
 $(T_DLL)	:
 				$(MAKE) -C libs/t_dll/
@@ -34,17 +35,22 @@ $(LIBFT)	:
 $(FT_READER):
 				$(MAKE) -C libs/reader/
 
+$(FT_LEXER)	:
+				$(MAKE) -C libs/lexer/
+
 clean		:
 				$(RM) $(OBJS)
 				@make -C libs/t_dll clean
 				@make -C libs/libft clean
 				@make -C libs/reader clean
+				@make -C libs/lexer clean
 
 fclean		:	clean
 				$(RM) $(NAME)
 				@make -C libs/t_dll fclean
 				@make -C libs/libft fclean
 				@make -C libs/reader fclean
+				@make -C libs/lexer fclean
 
 re			:	fclean $(NAME)
 

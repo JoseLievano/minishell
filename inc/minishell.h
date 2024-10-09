@@ -15,10 +15,10 @@
 # include "../libs/libft/libft.h"
 # include "../libs/t_dll/t_dll.h"
 # include "../libs/reader/ft_reader.h"
+# include "../libs/lexer/ft_lexer.h"
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
-# include <readline/history.h>
 
 //Example
 typedef struct command_table
