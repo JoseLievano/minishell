@@ -14,11 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_dll *new_node = t_dll_new(ft_strdup("hola\n"));
-	printf("list size: %d\n", (int)t_dll_size(new_node));
 	printf("Args counter: %d\n", argc);
 	printf("ARG 2: %s", argv[1]);
-	printf("\n0000000\nFrom lexer\n");
-	lexer_test();
+
+	printf("\nCalling ft_reader to get user input\n");
+	ft_reader();
 	return (0);
 }

@@ -14,11 +14,5 @@
 # define FT_READER_H
 # include "../../inc/minishell.h"
 
-typedef struct test
-{
-    char    *token_type;
-    int     value;
-} t_test;
-
-void	ft_reader_test(void);
+void	ft_reader(void);
 #endif

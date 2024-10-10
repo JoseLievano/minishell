@@ -14,5 +14,6 @@
 # define FT_LEXER_H
 # include "../../inc/minishell.h"
 
-void	lexer_test(void);
+void	ft_lexer(void);
+
 # endif

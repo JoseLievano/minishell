@@ -12,38 +12,7 @@
 
 #include "ft_reader.h"
 
-static t_test *get_test_struct(char *str)
+void	ft_reader()
 {
-	t_test *test;
-
-	test = (t_test *)malloc(sizeof(t_test));
-	test->token_type = str;
-	test->value = 1;
-	return test;
-}
-
-static void test_clear(t_dll *node)
-{
-	free(node->content);
-}
-
-void	ft_reader_test(void)
-{
-	printf("\nHello there modification ft_reader\n");
-
-	char *str1 = ft_strdup("demo 1");
-	char *str2 = ft_strdup("demo 2");
-	char *str3 = ft_strdup("demo 3");
-	char *str4 = ft_strdup("demo 4");
-
-	t_dll *list;
-
-	list = NULL;
-	list = t_dll_new(get_test_struct(str1));
-	t_dll_add_back(&list, t_dll_new(get_test_struct(str2)));
-	t_dll_add_front(&list, t_dll_new(get_test_struct(str3)));
-	t_dll_add_back(&list, t_dll_new(get_test_struct(str4)));
-	list = t_dll_get_head(list);
-	printf("Reader list size: %d\n", (int) t_dll_size(list));
-	t_dll_clear(list, &test_clear);
+	printf("Starting ft_reader");
 }
