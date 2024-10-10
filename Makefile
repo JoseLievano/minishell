@@ -14,6 +14,7 @@ NAME		=	minishell
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
+LDFLAGS		=	-lreadline
 T_DLL		=	libs/t_dll/t_dll.a
 LIBFT		=	libs/libft/libft.a
 FT_READER	=	libs/reader/ft_reader.a
@@ -24,7 +25,7 @@ SRC			=	src/minishell.c
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT) $(LDFLAGS)
 
 $(T_DLL)	:
 				$(MAKE) -C libs/t_dll/

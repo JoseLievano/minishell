@@ -15,4 +15,9 @@
 void	ft_reader()
 {
 	printf("Starting ft_reader");
+	char *y_input = readline("minishell> ");
+	add_history(y_input);
+	printf("Your input was: \n%s\n", y_input);
+	y_input = readline("minishell > ");
+	printf("Your input was: \n%s\n", y_input);
 }
