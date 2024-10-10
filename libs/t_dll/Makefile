@@ -38,7 +38,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 NAME		=	t_dll.a
 

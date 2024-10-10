@@ -13,7 +13,7 @@
 NAME		=	minishell
 CC			=	gcc
 RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 T_DLL		=	libs/t_dll/t_dll.a
 LIBFT		=	libs/libft/libft.a
 FT_READER	=	libs/reader/ft_reader.a
