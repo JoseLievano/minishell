@@ -3,21 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_reader.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 14:17:09 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/07 14:50:16 by glicciar         ###   ########.fr       */
+/*   Created: 2024/10/11 01:28:59 by jlievano          #+#    #+#             */
+/*   Updated: 2024/10/13 20:11:34 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_reader.h"
 
-void	ft_reader()
+char	*ft_reader(void)
 {
+	char	*str;
+
 	printf("Starting ft_reader");
-	char *y_input = readline("minishell> ");
-	add_history(y_input);
-	printf("Your input was: \n%s\n", y_input);
-	y_input = readline("minishell > ");
-	printf("Your input was: \n%s\n", y_input);
+	str = readline("minishell> ");
+	add_history(str);
+	printf("Your input was: \n%s\n", str);
+	str = readline("minishell > ");
+	printf("Your input was: \n%s\n", str);
+	return (str);
 }

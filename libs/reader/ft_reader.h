@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.h                                           :+:      :+:    :+:   */
+/*   ft_reader.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 14:17:04 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/06 14:17:05 by jlievano         ###   ########.fr       */
+/*   Created: 2024/10/11 01:28:59 by jlievano          #+#    #+#             */
+/*   Updated: 2024/10/13 20:09:24 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define FT_READER_H
 # include "../../inc/minishell.h"
 
-void	ft_reader(void);
+char    *ft_reader(void);
+
 #endif
