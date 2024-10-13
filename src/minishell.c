@@ -14,10 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	printf("Args counter: %d\n", argc);
-	printf("ARG 2: %s", argv[1]);
-
-	printf("\nCalling ft_reader to get user input\n");
-	ft_reader();
+	if (argc > 1 && *argv[1] == '1')
+		ft_reader();
+	if (argc > 1 && *argv[1] == '2')
+		ft_lexer();
 	return (0);
 }

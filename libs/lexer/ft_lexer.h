@@ -14,6 +14,13 @@
 # define FT_LEXER_H
 # include "../../inc/minishell.h"
 
+typedef struct s_token
+{
+    char           *type;
+    char           *value;
+} t_token;
+
+
 void	ft_lexer(void);
 
 # endif

@@ -19,6 +19,7 @@
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
+#include <stdbool.h>
 
 //Example
 typedef struct command_table
