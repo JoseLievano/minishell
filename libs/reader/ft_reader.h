@@ -14,6 +14,6 @@
 # define FT_READER_H
 # include "../../inc/minishell.h"
 
-char    *ft_reader(void);
+char	*ft_reader(void);
 
 #endif
