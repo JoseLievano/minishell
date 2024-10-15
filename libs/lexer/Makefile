@@ -15,7 +15,7 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
-SRC			=	ft_lexer.c
+SRC			=	ft_lexer.c ft_lexer_utils.c token_management.c
 
 all			: 	$(NAME)
 

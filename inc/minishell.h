@@ -12,6 +12,7 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <stdbool.h>
 # include "../libs/libft/libft.h"
 # include "../libs/t_dll/t_dll.h"
 # include "../libs/reader/ft_reader.h"
@@ -19,6 +20,6 @@
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
-# include <stdbool.h>
+
 
 #endif
