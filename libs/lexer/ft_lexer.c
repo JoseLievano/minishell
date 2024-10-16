@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:56:40 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/09 22:56:41 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:55:37 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
+
+
+
+void check_variable(char *string, int *i)
+{
+	int counter;
+	counter = 0;
+	int counter2;
+	counter2 = 0;
+	while (token_smr(string + counter) != 7 && token_smr(string + counter) != 8 && is_whitespace(string[counter]) == false)
+	{
+		counter++;
+	}
+	if (token_smr(string + counter) == 7 || token_smr(string + counter) == 8)
+	{
+		counter2 = counter;
+		is_quote(string + counter,  &counter2);
+		*i = counter + counter2 + 1;
+	}
+}
 
 
 t_dll	**read_through_input(char *input)
@@ -34,6 +54,7 @@ t_dll	**read_through_input(char *input)
 		token_type(is_valid_operator(string) + token_smr(string), current_token,
 			list);
 		token_check_n_assignment(string, &word_counter);
+		check_variable(string, &word_counter);
 		current_token->value = ft_substr(string, 0, word_counter);
 		string += word_counter;
 	}
@@ -44,5 +65,5 @@ t_dll	**read_through_input(char *input)
 void	ft_lexer(void)
 {
 	printf("Lexer function:\n\n");
-	read_through_list(read_through_input("grep \"error\" < log.txt | echo >> errors.txt"));
+	read_through_list(read_through_input("export a=\"echo hi\""));
 }
