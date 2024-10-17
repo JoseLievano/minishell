@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:41:04 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/17 13:18:58 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:34:31 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	quotes_closed(char *prompt)
 	i = 0;
 	open_quotes = 0;
 	inside_single_quotes = 0;
-	printf("\nChecking prompt \n[%s]\n", prompt);
+	//printf("\nChecking prompt \n[%s]\n", prompt);
 	while (i < (int) ft_strlen(prompt))
 	{
 		ac_char = prompt[i];
@@ -43,7 +43,7 @@ static int	quotes_closed(char *prompt)
 			inside_single_quotes = 0;
 		i++;
 	}
-	printf("==>%d-%d\n", open_quotes, inside_single_quotes);
+	//printf("==>%d-%d\n", open_quotes, inside_single_quotes);
 	return (open_quotes + inside_single_quotes);
 }
 
@@ -71,7 +71,7 @@ char	*ft_reader(void)
 		free(temp_str2);
 		temp_str1 = NULL;
 		temp_str2 = NULL;
-		printf("\nNew prompt is: %s\n", prompt);
+		//printf("\nNew prompt is: %s\n", prompt);
 	}
 	printf("\n we have a valid prompt : %s\n", prompt);
 	add_history(prompt);
