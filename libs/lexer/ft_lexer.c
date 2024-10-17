@@ -12,26 +12,27 @@
 
 #include "ft_lexer.h"
 
-
-
-void check_variable(char *string, int *i)
+void	check_variable(char *string, int *i, t_token *current_token)
 {
-	int counter;
+	int	counter;
+	int	counter2;
+
 	counter = 0;
-	int counter2;
 	counter2 = 0;
-	while (token_smr(string + counter) != 7 && token_smr(string + counter) != 8 && is_whitespace(string[counter]) == false)
+	if (ft_strlen(current_token->type) == 19)
+		return ;
+	while (token_smr(string + counter) != 7 && token_smr(string + counter) != 8
+		&& is_whitespace(string[counter]) == false)
 	{
 		counter++;
 	}
 	if (token_smr(string + counter) == 7 || token_smr(string + counter) == 8)
 	{
 		counter2 = counter;
-		is_quote(string + counter,  &counter2);
+		is_quote(string + counter, &counter2);
 		*i = counter + counter2 + 1;
 	}
 }
-
 
 t_dll	**read_through_input(char *input)
 {
@@ -54,7 +55,7 @@ t_dll	**read_through_input(char *input)
 		token_type(is_valid_operator(string) + token_smr(string), current_token,
 			list);
 		token_check_n_assignment(string, &word_counter);
-		check_variable(string, &word_counter);
+		check_variable(string, &word_counter, current_token);
 		current_token->value = ft_substr(string, 0, word_counter);
 		string += word_counter;
 	}
@@ -65,5 +66,5 @@ t_dll	**read_through_input(char *input)
 void	ft_lexer(void)
 {
 	printf("Lexer function:\n\n");
-	read_through_list(read_through_input("export a=\"echo hi\""));
+	read_through_list(read_through_input("export \'echo hi\'"));
 }
