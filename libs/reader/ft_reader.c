@@ -5,28 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 01:28:59 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/15 11:10:17 by jlievano         ###   ########.fr       */
+/*   Created: 2024/10/17 12:41:04 by jlievano          #+#    #+#             */
+/*   Updated: 2024/10/17 13:18:58 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_reader.h"
-
-static bool	single_quotes_closed(char *prompt)
+/*
+static int	single_quotes_closed(char *prompt)
 {
 	printf("checking prompt %s", prompt);
 	return false;
 }
+*/
 
-static bool	double_quotes_closed(char *prompt)
+static int	quotes_closed(char *prompt)
 {
-	printf("checking prompt %s", prompt);
-	return false;
+	int		i;
+	int		open_quotes;
+	int		inside_single_quotes;
+	char	ac_char;
+
+	i = 0;
+	open_quotes = 0;
+	inside_single_quotes = 0;
+	printf("\nChecking prompt \n[%s]\n", prompt);
+	while (i < (int) ft_strlen(prompt))
+	{
+		ac_char = prompt[i];
+		if (inside_single_quotes == 0 && ac_char == '"' && open_quotes == 0)
+			open_quotes = 1;
+		else if (ac_char == '"' && open_quotes == 1)
+			open_quotes = 0;
+		if (open_quotes == 0 && ac_char == '\'' && inside_single_quotes == 0)
+			inside_single_quotes = 1;
+		else if (ac_char == '\'' && inside_single_quotes == 1)
+			inside_single_quotes = 0;
+		i++;
+	}
+	printf("==>%d-%d\n", open_quotes, inside_single_quotes);
+	return (open_quotes + inside_single_quotes);
 }
 
-static bool	valid_prompt(char *prompt)
+static bool	invalid_prompt(char *prompt)
 {
-	return (double_quotes_closed(prompt) && single_quotes_closed(prompt));
+	return (quotes_closed(prompt));
 }
 
 char	*ft_reader(void)
@@ -39,7 +62,7 @@ char	*ft_reader(void)
 	temp_str1 = NULL;
 	temp_str2 = NULL;
 	prompt = readline("minishell>$ ");
-	while (!valid_prompt(prompt))
+	while (invalid_prompt(prompt))
 	{
 		temp_str1 = readline("minishell>$ ");
 		temp_str2 = prompt;
@@ -50,6 +73,7 @@ char	*ft_reader(void)
 		temp_str2 = NULL;
 		printf("\nNew prompt is: %s\n", prompt);
 	}
+	printf("\n we have a valid prompt : %s\n", prompt);
 	add_history(prompt);
 	return (prompt);
 }
