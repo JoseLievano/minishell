@@ -22,7 +22,7 @@ typedef struct s_token
 
 
 void	ft_lexer(void);
-void read_through_list(t_dll **list);
+void read_through_list(t_dll *list);
 t_token *allocate_token(void);
 void list_tokens(t_dll **list, t_token *token);
 int is_valid_operator(char *string);
@@ -31,6 +31,5 @@ int token_smr(char *string);
 void token_type(int token_kind, t_token *token, t_dll **list);
 void is_quote(char *string, int *i);
 void token_check_n_assignment(char *string, int *word_counter);
-t_dll **allocate_dll(void);
-t_dll **read_through_input(char *input);
+t_dll *read_through_input(char *input);
 # endif

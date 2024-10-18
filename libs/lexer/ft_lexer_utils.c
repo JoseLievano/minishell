@@ -1,10 +1,10 @@
 #include "ft_lexer.h"
 
-void	read_through_list(t_dll **list)
+void	read_through_list(t_dll *list)
 {
 	t_dll	*tmp;
 
-	tmp = *list;
+	tmp = list;
 	while (tmp)
 	{
 		printf("Token type: %s\n", ((t_token *)tmp->content)->type);

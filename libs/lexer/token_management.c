@@ -10,12 +10,14 @@ t_token	*allocate_token(void)
 		printf("Error: Token allocation failed\n");
 		exit(1);
 	}
+	token->type = NULL;
+	token->value = NULL;
 	return (token);
 }
 
 void	list_tokens(t_dll **list, t_token *token)
 {
-	t_dll_new(token);
+	//t_dll_new(token);
 	t_dll_add_back(list, t_dll_new(token));
 };
 
@@ -73,5 +75,6 @@ t_dll	**allocate_dll(void)
 		printf("Error: List allocation failed\n");
 		exit(1);
 	}
+	*list = NULL;
 	return (list);
 }

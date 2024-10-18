@@ -34,16 +34,16 @@ void	check_variable(char *string, int *i, t_token *current_token)
 	}
 }
 
-t_dll	**read_through_input(char *input)
+t_dll	*read_through_input(char *input)
 {
 	char	*string;
 	int		word_counter;
 	t_token	*current_token;
-	t_dll	**list;
+	t_dll	*list;
 
 	string = input;
 	word_counter = 0;
-	list = allocate_dll();
+	list = NULL;
 	while (*string != '\0') // not accounting for structs and nodes yet
 	{
 		if (is_whitespace(*string))
@@ -53,18 +53,21 @@ t_dll	**read_through_input(char *input)
 		}
 		current_token = allocate_token();
 		token_type(is_valid_operator(string) + token_smr(string), current_token,
-			list);
+			&list);
 		token_check_n_assignment(string, &word_counter);
 		check_variable(string, &word_counter, current_token);
 		current_token->value = ft_substr(string, 0, word_counter);
 		string += word_counter;
 	}
-	token_type(0, allocate_token(), list);
+	token_type(0, allocate_token(), &list);
 	return (list);
 }
 
 void	ft_lexer(void)
 {
+	//char *input;
+	//input = ft_strdup("echo");
+	//input = ft_reader();
 	printf("Lexer function:\n\n");
-	read_through_list(read_through_input("export \'echo hi\'"));
+	read_through_list(read_through_input(ft_reader()));
 }
