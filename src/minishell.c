@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 19:07:15 by jlievano          #+#    #+#             */
+/*   Updated: 2024/10/22 12:20:15 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:52:43 by jlievano          #+#    #+#             */
@@ -16,7 +28,9 @@ int	main(int argc, char **argv)
 {
 	if (argc > 1 && *argv[1] == '1')
 		ft_reader();
-	if (argc > 1 && *argv[1] == '2')
+	else if (argc > 1 && *argv[1] == '2')
 		ft_lexer();
+	else if (argc > 1 && *argv[1] == '3')
+		ft_parser();
 	return (0);
 }
