@@ -32,4 +32,6 @@ void token_type(int token_kind, t_token *token, t_dll **list);
 void is_quote(char *string, int *i);
 void token_check_n_assignment(char *string, int *word_counter);
 t_dll *read_through_input(char *input);
+void free_nodes(t_dll *list);
+void	free_token(t_dll *list);
 # endif

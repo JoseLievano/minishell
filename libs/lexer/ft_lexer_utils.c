@@ -38,7 +38,7 @@ int	token_smr(char *string)
 	else if (string[0] == 39)
 		return (8); // single quote TOKEN
 	else if (string[0] > 32 && string[0] < 127
-		&& is_whitespace(string[1]) == false && is_valid_operator(string) == 0)
+		&& is_valid_operator(string) == 0)
 	{
 		return (9); // command or argument TOKEN
 	}

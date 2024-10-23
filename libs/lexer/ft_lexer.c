@@ -65,9 +65,12 @@ t_dll	*read_through_input(char *input)
 
 void	ft_lexer(void)
 {
-	//char *input;
-	//input = ft_strdup("echo");
-	//input = ft_reader();
+	t_dll	*list;
+	char *input;
 	printf("Lexer function:\n\n");
-	read_through_list(read_through_input(ft_reader()));
+	input = ft_reader();
+	list = read_through_input(input);
+	free(input);
+	read_through_list(list);
+	//free_nodes(list);
 }
