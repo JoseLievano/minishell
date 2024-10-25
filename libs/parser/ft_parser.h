@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/24 07:44:32 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:50:21 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ typedef enum cmd_tab_type
 {
 	PIPE_SEQ,
 	COMMAND
-};
+} t_cmdtype;
 
 typedef struct command_table
 {
-	char	*type;
-	void	*content;
+	t_cmdtype	type;
+	void		*content;
 } t_cmdt;
 
 typedef struct pipe_sequence
