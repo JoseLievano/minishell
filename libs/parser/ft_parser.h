@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 18:30:38 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:20:59 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ typedef struct redirection_obj
 	int				fd;
 } t_redir;
 
+typedef struct argument_obj
+{
+	t_arg_type	type;
+	void		*value;
+} t_arg;
+
 typedef struct command_obj
 {
 	char	*name;
@@ -67,6 +73,7 @@ typedef struct command_obj
 
 //TEST AND DEBUGGER
 t_cmdt	*get_test(int test_num);
+void	print_cmd_table(t_cmdt *cmd_table);
 
 void	ft_parser(void);
 
