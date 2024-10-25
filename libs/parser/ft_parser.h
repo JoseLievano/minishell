@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 13:07:36 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:41:37 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct redirection_obj
 	char			*delimiter;
 	char			*file_path;
 	int				fd;
-};
+} t_redir;
 
 typedef struct command_obj
 {

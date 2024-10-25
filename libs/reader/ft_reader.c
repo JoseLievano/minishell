@@ -6,18 +6,23 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:41:04 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/17 17:34:31 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:01:22 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_reader.h"
-/*
-static int	single_quotes_closed(char *prompt)
+
+static int	not_pipe_ending(char *promt)
 {
-	printf("checking prompt %s", prompt);
-	return false;
+	int		i;
+
+	i = ft_strlen(promt) - 1;
+	while (is_whitespace(promt[i]))
+		i--;
+	if (promt[i] == '|')
+		return (1);
+	return (0);
 }
-*/
 
 static int	quotes_closed(char *prompt)
 {
@@ -29,7 +34,6 @@ static int	quotes_closed(char *prompt)
 	i = 0;
 	open_quotes = 0;
 	inside_single_quotes = 0;
-	//printf("\nChecking prompt \n[%s]\n", prompt);
 	while (i < (int) ft_strlen(prompt))
 	{
 		ac_char = prompt[i];
@@ -43,13 +47,17 @@ static int	quotes_closed(char *prompt)
 			inside_single_quotes = 0;
 		i++;
 	}
-	//printf("==>%d-%d\n", open_quotes, inside_single_quotes);
 	return (open_quotes + inside_single_quotes);
 }
 
-static bool	invalid_prompt(char *prompt)
+static int invalid_prompt(char *prompt)
 {
-	return (quotes_closed(prompt));
+	int	qoutes_status;
+	int	pipe_status;
+
+	qoutes_status = quotes_closed(prompt);
+	pipe_status = not_pipe_ending(prompt);
+	return (qoutes_status + pipe_status);
 }
 
 char	*ft_reader(void)
@@ -71,9 +79,8 @@ char	*ft_reader(void)
 		free(temp_str2);
 		temp_str1 = NULL;
 		temp_str2 = NULL;
-		//printf("\nNew prompt is: %s\n", prompt);
 	}
-	printf("\n we have a valid prompt : %s\n", prompt);
+	printf("\n> We have a valid prompt : \n[%s]\n\n", prompt);
 	add_history(prompt);
 	return (prompt);
 }
