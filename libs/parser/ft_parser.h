@@ -14,6 +14,12 @@
 # define FT_PARSER_H
 # include "../../inc/minishell.h"
 
+typedef enum cmd_tab_type
+{
+	PIPE_SEQ,
+	COMMAND
+};
+
 typedef struct command_table
 {
 	char	*type;
