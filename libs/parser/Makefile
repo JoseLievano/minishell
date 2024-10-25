@@ -15,7 +15,8 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
-SRC			=	ft_parser.c
+SRC			=	ft_parser.c \
+				TEST.c
 
 all			:	$(NAME)
 

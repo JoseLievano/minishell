@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:41:04 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 14:01:22 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 17:23:29 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_reader(void)
 		temp_str1 = NULL;
 		temp_str2 = NULL;
 	}
-	printf("\n> We have a valid prompt : \n[%s]\n\n", prompt);
+	//printf("\n> We have a valid prompt : \n[%s]\n\n", prompt);
 	add_history(prompt);
 	return (prompt);
 }

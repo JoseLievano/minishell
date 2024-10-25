@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 13:41:37 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:30:38 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ typedef struct command_obj
 	t_dll	*redirections;
 } t_cmd;
 
+//TEST AND DEBUGGER
+t_cmdt	*get_test(int test_num);
+
 void	ft_parser(void);
+
 #endif
 
