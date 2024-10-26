@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 19:21:46 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:44:39 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 void	ft_parser(void)
 {
 	printf("Hello there from parser");
-	print_cmd_table(get_test(1));
+	print_cmd_table(get_test(3));
 }
 

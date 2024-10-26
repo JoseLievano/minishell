@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/25 19:20:59 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:38:38 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct command_table
 
 typedef struct pipe_sequence
 {
-	char	*name;
 	int		cmd_count;
 	t_dll	*cmds;
 } t_pipes;
@@ -60,7 +59,7 @@ typedef struct redirection_obj
 typedef struct argument_obj
 {
 	t_arg_type	type;
-	void		*value;
+	char		*value;
 } t_arg;
 
 typedef struct command_obj
