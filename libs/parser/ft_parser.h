@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/26 15:38:38 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/27 18:12:53 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_cmdt	*get_test(int test_num);
 void	print_cmd_table(t_cmdt *cmd_table);
 
 void	ft_parser(void);
+bool	valid_syntax(t_dll *token_list);
 
 #endif
 
