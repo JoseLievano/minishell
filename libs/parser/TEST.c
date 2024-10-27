@@ -2,6 +2,8 @@
 
 static t_cmdt *test1(void)
 {
+	// t_cmdt for command: echo "Hello $USER"
+
 	t_cmdt	*command_table = (t_cmdt *)malloc(sizeof(t_cmdt));
 
 	command_table->type = COMMAND;
