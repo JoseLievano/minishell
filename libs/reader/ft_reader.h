@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 01:28:59 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/27 20:21:30 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/28 00:32:38 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum  token_type
 	TOKEN_STRING_SINGLE,
 	TOKEN_COMMAND,
 	TOKEN_ARGUMENT
-};
+}	t_token_type;
 
 char	*ft_reader(void);
 

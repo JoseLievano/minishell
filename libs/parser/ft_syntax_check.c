@@ -6,23 +6,11 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:07:17 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/27 19:57:20 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/28 00:25:44 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
-
-static bool	is_token_pipe(t_dll *token)
-{
-	char	*token_pipe;
-	int		len;
-
-	token_pipe = "TOKEN_PIPE";
-	len = (int) ft_strlen(token_pipe);
-	if (!ft_strncmp(((t_token *)token->content)->type, token_pipe, len))
-		return (true);
-	return (false);
-}
 
 static bool	valid_pipes_tokens(t_dll *token_list)
 {
