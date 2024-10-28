@@ -55,14 +55,14 @@ void	token_check_n_assignment(char *string, int *word_counter)
 		return ;
 	}
 	else
-		*word_counter = 1;
+		*word_counter = 0;
 	if (token_smr(string) == 7 || token_smr(string) == 8)
 		is_quote(string, word_counter);
 	while (is_valid_operator(string + *word_counter) == 0
 		&& is_whitespace(string[*word_counter]) == false)
-	{
 		(*word_counter)++;
-	}
+	if (*word_counter == 0)
+		*word_counter = 1;
 }
 
 t_dll	**allocate_dll(void)

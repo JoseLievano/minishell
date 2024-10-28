@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:56:40 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/16 21:55:37 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:14:33 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_dll	*read_through_input(char *input)
 	string = input;
 	word_counter = 0;
 	list = NULL;
-	while (*string != '\0') // not accounting for structs and nodes yet
+	while (*string != '\0') 
 	{
 		if (is_whitespace(*string))
 		{

@@ -49,15 +49,15 @@ int	token_smr(char *string)
 int	is_valid_operator(char *string)
 {
 	// return a number that represents the type of token
-	if (string[0] == 124 && is_whitespace(string[1]))
+	if (string[0] == 124)
 		return (1); // pipe TOKEN
-	else if (string[0] == 62 && string[1] == 62 && is_whitespace(string[2]))
+	else if (string[0] == 62 && string[1] == 62)
 		return (2); // output redirection append TOKEN
 	else if (string[0] == 60 && string[1] == 60)
 		return (3); // input HEREDOC TOKEN
-	else if (string[0] == 60 && is_whitespace(string[1]))
+	else if (string[0] == 60)
 		return (4); // input redirection TOKEN
-	else if (string[0] == 62 && is_whitespace(string[1]))
+	else if (string[0] == 62)
 		return (5); // output redirection TOKEN
 	else
 		return (0);
