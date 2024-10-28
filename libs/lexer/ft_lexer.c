@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:56:40 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 14:14:33 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:38:07 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_variable(char *string, int *i, t_token *current_token)
 
 	counter = 0;
 	counter2 = 0;
-	if (ft_strlen(current_token->type) == 19)
+	if (current_token->type != 9 && current_token->type != 8)
 		return ;
 	while (token_smr(string + counter) != 7 && token_smr(string + counter) != 8
 		&& is_whitespace(string[counter]) == false)

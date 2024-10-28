@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token_type_check.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
+/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:04:13 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 00:34:56 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:56:16 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
+
 bool	is_token_pipe(t_dll *token)
 {
+/*
 	char	*token_pipe;
 	int		len;
 
@@ -22,5 +24,9 @@ bool	is_token_pipe(t_dll *token)
 	if (!ft_strncmp(((t_token *)token->content)->type, token_pipe, len))
 		return (true);
 	return (false);
+*/
+(void)token;
+	
+return (false);
 }
 

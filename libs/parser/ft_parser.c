@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
+/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/27 18:34:56 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:25:49 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	ft_parser(void)
 		printf("Invalid syntax");
 	printf("Hello there from parser");
 	print_cmd_table(get_test(3));
-
 }
 

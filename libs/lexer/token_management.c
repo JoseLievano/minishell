@@ -10,7 +10,6 @@ t_token	*allocate_token(void)
 		printf("Error: Token allocation failed\n");
 		exit(1);
 	}
-	token->type = NULL;
 	token->value = NULL;
 	return (token);
 }
@@ -25,15 +24,12 @@ void	list_tokens(t_dll **list, t_token *token)
 void	token_type(int token_kind, t_token *token, t_dll **list)
 {
 	static int	flag = 0;
-	char		*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
-				"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC",
-				"TOKEN_REDIRECTION_IN", "TOKEN_REDIRECTION_OUT", "TOKEN_FLAG",
-				"TOKEN_STRING_DOUBLE", "TOKEN_STRING_SINGLE", "TOKEN_COMMAND",
-				"TOKEN_ARGUMENT"};
+
+
 
 	if (token_kind == 9)
 	{
-		token->type = tokens[token_kind + flag];
+		token->type = token_kind + flag;
 		// printf("Token type: %s\n", tokens[token_kind
 		//	+ flag]);//to be removed and changed with token assignment
 		flag = 1;
@@ -43,7 +39,7 @@ void	token_type(int token_kind, t_token *token, t_dll **list)
 	else if (token_kind == 1)
 		flag = 0;
 	// printf("Token type: %s\n", tokens[token_kind]);
-	token->type = tokens[token_kind];
+	token->type = token_kind;
 	list_tokens(list, token);
 }
 

@@ -5,14 +5,18 @@ void	read_through_list(t_dll *list)
 	t_dll	*tmp;
 
 	tmp = list;
-	while (tmp)
+	char		*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
+				"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC",
+				"TOKEN_REDIRECTION_IN", "TOKEN_REDIRECTION_OUT", "TOKEN_FLAG",
+				"TOKEN_STRING_DOUBLE", "TOKEN_STRING_SINGLE", "TOKEN_COMMAND",
+				"TOKEN_ARGUMENT"};
+while (tmp)
 	{
-		printf("Token type: %s\n", ((t_token *)tmp->content)->type);
+		printf("Token type: %s\n", tokens[((t_token *)tmp->content)->type]);
 		printf("Token value: %s\n-\n", ((t_token *)tmp->content)->value);
 		tmp = tmp->next;
 	}
 }
-
 bool	is_whitespace(char c)
 {
 	if (c == 32 || c == 9 || c == 10 || c == 11 || c == 12 || c == 13
@@ -29,7 +33,7 @@ void	is_quote(char *string, int *i)
 	}
 }
 
-int	token_smr(char *string)
+t_token_type	token_smr(char *string)
 {
 	if (string[0] == 45)
 		return (6); // flag TOKEN
@@ -46,7 +50,7 @@ int	token_smr(char *string)
 		return (0);
 }
 
-int	is_valid_operator(char *string)
+t_token_type	is_valid_operator(char *string)
 {
 	// return a number that represents the type of token
 	if (string[0] == 124)
