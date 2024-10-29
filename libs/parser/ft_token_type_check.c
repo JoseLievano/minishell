@@ -6,27 +6,20 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:04:13 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 16:56:16 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:43:49 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
 
-bool	is_token_pipe(t_dll *token)
+bool	is_token_pipe(t_dll *node)
 {
-/*
-	char	*token_pipe;
-	int		len;
+	t_token	*token;
 
-	token_pipe = "TOKEN_PIPE";
-	len = (int) ft_strlen(token_pipe);
-	if (!ft_strncmp(((t_token *)token->content)->type, token_pipe, len))
+	token = (t_token *)node;
+	if (token->type == TOKEN_PIPE)
 		return (true);
 	return (false);
-*/
-(void)token;
-	
-return (false);
 }
 
