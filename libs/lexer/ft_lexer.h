@@ -26,8 +26,8 @@ typedef enum  token_type
 	TOKEN_FLAG,
 	TOKEN_STRING_DOUBLE,
 	TOKEN_STRING_SINGLE,
-	TOKEN_COMMAND,
-	TOKEN_ARGUMENT
+	TOKEN_ARGUMENT,
+    TOKEN_COMMAND
 }	t_token_type;
 
 
@@ -52,4 +52,5 @@ void token_check_n_assignment(char *string, int *word_counter);
 t_dll *read_through_input(char *input);
 void free_nodes(t_dll *list);
 void	free_token(t_dll *list);
+void is_quote_allocation(char **string, t_token *current_token);
 # endif

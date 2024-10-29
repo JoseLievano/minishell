@@ -8,8 +8,8 @@ void	read_through_list(t_dll *list)
 	char		*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
 				"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC",
 				"TOKEN_REDIRECTION_IN", "TOKEN_REDIRECTION_OUT", "TOKEN_FLAG",
-				"TOKEN_STRING_DOUBLE", "TOKEN_STRING_SINGLE", "TOKEN_COMMAND",
-				"TOKEN_ARGUMENT"};
+				"TOKEN_STRING_DOUBLE", "TOKEN_STRING_SINGLE", "TOKEN_ARGUMENT",
+				"TOKEN_COMMAND"};
 while (tmp)
 	{
 		printf("Token type: %s\n", tokens[((t_token *)tmp->content)->type]);

@@ -20,25 +20,19 @@ void	list_tokens(t_dll **list, t_token *token)
 	t_dll_add_back(list, t_dll_new(token));
 };
 
-
 void	token_type(int token_kind, t_token *token, t_dll **list)
 {
 	static int	flag = 0;
 
-
-
-	if (token_kind == 9)
+	if ((token_kind == 9 || token_kind == 8 || token_kind == 7) && flag == 0)
 	{
-		token->type = token_kind + flag;
-		// printf("Token type: %s\n", tokens[token_kind
-		//	+ flag]);//to be removed and changed with token assignment
 		flag = 1;
+		token->type = 10;
 		list_tokens(list, token);
 		return ;
 	}
 	else if (token_kind == 1)
 		flag = 0;
-	// printf("Token type: %s\n", tokens[token_kind]);
 	token->type = token_kind;
 	list_tokens(list, token);
 }
@@ -52,8 +46,6 @@ void	token_check_n_assignment(char *string, int *word_counter)
 	}
 	else
 		*word_counter = 0;
-	if (token_smr(string) == 7 || token_smr(string) == 8)
-		is_quote(string, word_counter);
 	while (is_valid_operator(string + *word_counter) == 0
 		&& is_whitespace(string[*word_counter]) == false)
 		(*word_counter)++;
