@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:07:17 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/03 01:08:24 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/03 01:51:03 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,44 @@
 static bool	valid_pipes_tokens(t_dll *token_list)
 {
 	t_dll	*head;
-	t_token	*ac_token;
-	t_token *next_token;
+	t_token	*tk;
+	t_token *ntk;
 
 	head = t_dll_get_head(token_list);
 	if (((t_token *)head->content)->type == TOKEN_PIPE)
 		return (false);
 	while (head)
 	{
-		ac_token = (t_token *)head->content;
-		next_token = (t_token *)head->next->content;
+		tk = (t_token *)head->content;
+		ntk = (t_token *)head->next->content;
 		if (head->next)
 		{
-			if (ac_token->type == TOKEN_PIPE && next_token->type == TOKEN_PIPE)
+			if (tk->type == TOKEN_PIPE && ntk->type == TOKEN_PIPE)
+				return (false);
+		}
+		head = head->next;
+	}
+	return (true);
+}
+
+static bool	valid_redirections(t_dll *token_list)
+{
+	t_dll	*head;
+	t_token	*tk;
+	t_token	*ntk;
+
+	head = t_dll_get_head(token_list);
+	while (head)
+	{
+		tk = (t_token *)head->content;
+		ntk = (t_token *)head->next->content;
+		if (ntk)
+		{
+			if ((tk->type == TOKEN_REDIRECTION_IN ||
+				tk->type == TOKEN_REDIRECTION_OUT ||
+				tk->type == TOKEN_REDIRECTION_APPEND ||
+				tk->type == TOKEN_TOKEN_HEREDOC) &&
+				ntk->type != TOKEN_ARGUMENT)
 				return (false);
 		}
 		head = head->next;
@@ -38,9 +63,8 @@ static bool	valid_pipes_tokens(t_dll *token_list)
 bool	valid_syntax(t_dll *token_list)
 {
 	if (!valid_pipes_tokens(token_list))
-	{
-		printf("Invalid syntax error token |");
 		return (false);
-	}
+	if (!valid_redirections(token_list))
+		return (false);
 	return (true);
 }
