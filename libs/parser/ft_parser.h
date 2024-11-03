@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 00:33:12 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/03 01:08:36 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct command_obj
 t_cmdt	*get_test(int test_num);
 void	print_cmd_table(t_cmdt *cmd_table);
 
-bool	is_token_pipe(t_dll *token);
 void	ft_parser(void);
 bool	valid_syntax(t_dll *token_list);
 

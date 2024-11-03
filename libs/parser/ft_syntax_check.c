@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:07:17 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 00:25:45 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/03 01:08:24 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 static bool	valid_pipes_tokens(t_dll *token_list)
 {
 	t_dll	*head;
+	t_token	*ac_token;
+	t_token *next_token;
 
 	head = t_dll_get_head(token_list);
-	if (is_token_pipe(head))
+	if (((t_token *)head->content)->type == TOKEN_PIPE)
 		return (false);
 	while (head)
 	{
+		ac_token = (t_token *)head->content;
+		next_token = (t_token *)head->next->content;
 		if (head->next)
 		{
-			if (is_token_pipe(head) && is_token_pipe(head->next))
+			if (ac_token->type == TOKEN_PIPE && next_token->type == TOKEN_PIPE)
 				return (false);
 		}
 		head = head->next;

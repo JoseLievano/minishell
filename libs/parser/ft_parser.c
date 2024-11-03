@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 15:25:49 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/11/03 01:09:41 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	ft_parser(void)
 	else
 		printf("Invalid syntax");
 	printf("Hello there from parser");
-	print_cmd_table(get_test(3));
+	//print_cmd_table(get_test(3));
 }
 
