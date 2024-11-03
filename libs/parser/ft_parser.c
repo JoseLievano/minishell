@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/03 02:14:52 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/03 17:33:46 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_parser(void)
 
 	token_list = read_through_input(ft_reader());
 	read_through_list(token_list);
-	printf("\n\n");
 	if (valid_syntax(token_list))
 		printf("Pipes clear");
 	else

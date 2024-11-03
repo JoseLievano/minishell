@@ -51,7 +51,7 @@ static bool	valid_redirections(t_dll *token_list)
 			if ((tk->type == TOKEN_REDIRECTION_IN ||
 				tk->type == TOKEN_REDIRECTION_OUT ||
 				tk->type == TOKEN_REDIRECTION_APPEND ||
-				tk->type == TOKEN_TOKEN_HEREDOC) &&
+				tk->type == 4) &&
 				ntk->type != TOKEN_ARGUMENT)
 				return (false);
 		}
