@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:07:17 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/03 01:51:03 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/03 02:14:36 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static bool	valid_pipes_tokens(t_dll *token_list)
 	while (head)
 	{
 		tk = (t_token *)head->content;
-		ntk = (t_token *)head->next->content;
 		if (head->next)
 		{
+			ntk = (t_token *)head->next->content;
 			if (tk->type == TOKEN_PIPE && ntk->type == TOKEN_PIPE)
 				return (false);
 		}
@@ -45,9 +45,9 @@ static bool	valid_redirections(t_dll *token_list)
 	while (head)
 	{
 		tk = (t_token *)head->content;
-		ntk = (t_token *)head->next->content;
-		if (ntk)
+		if (head->next)
 		{
+			ntk = (t_token *)head->next->content;
 			if ((tk->type == TOKEN_REDIRECTION_IN ||
 				tk->type == TOKEN_REDIRECTION_OUT ||
 				tk->type == TOKEN_REDIRECTION_APPEND ||
