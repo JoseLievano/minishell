@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:56:31 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 17:39:56 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:47:57 by glicciar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ typedef enum  token_type
 	TOKEN_REDIRECTION_IN,
 	TOKEN_REDIRECTION_OUT,
 	TOKEN_FLAG,
-	TOKEN_STRING_DOUBLE,
-	TOKEN_STRING_SINGLE,
 	TOKEN_ARGUMENT,
     TOKEN_COMMAND
 }	t_token_type;
@@ -53,4 +51,5 @@ t_dll *read_through_input(char *input);
 void free_nodes(t_dll *list);
 void	free_token(t_dll *list);
 void is_quote_allocation(char **string, t_token *current_token);
+int is_closed_quote(char *string);
 # endif

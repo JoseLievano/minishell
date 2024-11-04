@@ -16,7 +16,6 @@ t_token	*allocate_token(void)
 
 void	list_tokens(t_dll **list, t_token *token)
 {
-	//t_dll_new(token);
 	t_dll_add_back(list, t_dll_new(token));
 };
 
@@ -24,10 +23,13 @@ void	token_type(int token_kind, t_token *token, t_dll **list)
 {
 	static int	flag = 0;
 
-	if ((token_kind == 9 || token_kind == 8 || token_kind == 7) && flag == 0)
+	if (token_kind >= 2 && token_kind <= 5)
+		flag += 1;
+
+	if ((token_kind == 7) && flag == 0)
 	{
 		flag = 1;
-		token->type = 10;
+		token->type = 8;
 		list_tokens(list, token);
 		return ;
 	}
@@ -48,7 +50,12 @@ void	token_check_n_assignment(char *string, int *word_counter)
 		*word_counter = 0;
 	while (is_valid_operator(string + *word_counter) == 0
 		&& is_whitespace(string[*word_counter]) == false)
-		(*word_counter)++;
+		{
+		if (*(string + *word_counter) == 34 || *(string + *word_counter) == 39)
+			*word_counter += is_closed_quote(string);
+		else
+			(*word_counter)++;
+		}
 	if (*word_counter == 0)
 		*word_counter = 1;
 }

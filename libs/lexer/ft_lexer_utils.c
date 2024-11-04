@@ -8,7 +8,7 @@ void	read_through_list(t_dll *list)
 	char		*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
 				"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC",
 				"TOKEN_REDIRECTION_IN", "TOKEN_REDIRECTION_OUT", "TOKEN_FLAG",
-				"TOKEN_STRING_DOUBLE", "TOKEN_STRING_SINGLE", "TOKEN_ARGUMENT",
+				"TOKEN_ARGUMENT",
 				"TOKEN_COMMAND"};
 while (tmp)
 	{
@@ -37,14 +37,10 @@ t_token_type	token_smr(char *string)
 {
 	if (string[0] == 45)
 		return (6); // flag TOKEN
-	else if (string[0] == 34)
-		return (7); // double quote TOKEN
-	else if (string[0] == 39)
-		return (8); // single quote TOKEN
 	else if (string[0] > 32 && string[0] < 127
 		&& is_valid_operator(string) == 0)
 	{
-		return (9); // command or argument TOKEN
+		return (7); // command or argument TOKEN
 	}
 	else
 		return (0);
