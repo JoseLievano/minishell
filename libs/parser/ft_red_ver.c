@@ -14,9 +14,29 @@
 
 static bool	valid_heredoc(t_dll *token_list)
 {
-  	if (token_list->next)
-          return (true);
-	return (false);
+	t_dll	*head;
+	t_token	*token;
+
+	head = t_dll_get_head(token_list);
+	while (head)
+	{
+		token = (t_token *)head->content;
+		if (token->type == TOKEN_HEREDOC)
+		{
+			if (head->prev)
+				if (((t_token *)head->prev->content)->type != TOKEN_COMMAND &&
+					((t_token *)head->prev->content)->type != TOKEN_PIPE)
+					return (false);
+			if (head->next)
+			{
+				if (((t_token *)head->next->content)->type != TOKEN_ARGUMENT)
+					return (false);
+			}
+			else
+				return (false);
+		}
+		head = head->next;
+	}
 }
 
 static bool	argument_aft_redirection(t_dll *token_list)
@@ -37,6 +57,38 @@ static bool	argument_aft_redirection(t_dll *token_list)
 				tk->type == TOKEN_REDIRECTION_APPEND ||
 				tk->type == TOKEN_HEREDOC) &&
 				ntk->type != TOKEN_ARGUMENT)
+				return (false);
+		}
+		head = head->next;
+	}
+	return (true);
+}
+
+static bool	valid_prev_token(t_dll *token)
+{
+	t_token	*prev_tk;
+	t_token	*crr_tk;
+
+	if (token->prev)
+		prev_tk = (t_token *)token->prev->content;
+	else
+		return (false);
+}
+
+static bool argument_bfr_redirection(t_dll *token_list)
+{
+	t_dll	*head;
+	t_token	*tk;
+
+	head = t_dll_get_head(token_list);
+	while (head)
+	{
+		tk = (t_token *)head->content;
+		if (tk->type == TOKEN_REDIRECTION_IN ||
+			tk->type == TOKEN_REDIRECTION_APPEND ||
+			tk->type == TOKEN_REDIRECTION_OUT)
+		{
+			if (!valid_prev_token(head))
 				return (false);
 		}
 		head = head->next;
