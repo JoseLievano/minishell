@@ -76,5 +76,6 @@ void	print_cmd_table(t_cmdt *cmd_table);
 
 void	ft_parser(void);
 bool	valid_syntax(t_dll *token_list);
+bool	valid_redirections(t_dll *token_list);
 
 #endif
