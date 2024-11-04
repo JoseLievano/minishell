@@ -37,6 +37,7 @@ static bool	valid_heredoc(t_dll *token_list)
 		}
 		head = head->next;
 	}
+	return (true);
 }
 
 static bool	argument_aft_redirection(t_dll *token_list)
@@ -73,6 +74,10 @@ static bool	valid_prev_token(t_dll *token)
 		prev_tk = (t_token *)token->prev->content;
 	else
 		return (false);
+	crr_tk = (t_token *)token->content;
+	if (crr_tk->type == TOKEN_HEREDOC && prev_tk->type == TOKEN_HEREDOC)
+		return (true);
+	return (true);
 }
 
 static bool argument_bfr_redirection(t_dll *token_list)
@@ -99,5 +104,5 @@ static bool argument_bfr_redirection(t_dll *token_list)
 bool	valid_redirections(t_dll *token_list)
 {
 	return (argument_aft_redirection(token_list) &&
-          valid_heredoc(token_list));
+          valid_heredoc(token_list) && argument_bfr_redirection(token_list));
 }
