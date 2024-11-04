@@ -24,5 +24,8 @@ void	ft_parser(void)
 	else
 		printf("Invalid syntax");
 	//print_cmd_table(get_test(3));
+	cmdt = ft_get_cmdt(token_list);
+	if (cmdt)
+		printf("\nCmdt setted");
 }
 
