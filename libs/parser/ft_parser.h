@@ -78,4 +78,7 @@ void	ft_parser(void);
 bool	valid_syntax(t_dll *token_list);
 bool	valid_redirections(t_dll *token_list);
 
+t_cmdt	*ft_get_cmdt(t_dll *token_list);
+void	ft_set_cmdt_type(t_cmdt *cmdt, t_dll *token_list);
+
 #endif

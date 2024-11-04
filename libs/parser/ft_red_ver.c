@@ -68,16 +68,14 @@ static bool	argument_aft_redirection(t_dll *token_list)
 static bool	valid_prev_token(t_dll *token)
 {
 	t_token	*prev_tk;
-	t_token	*crr_tk;
 
 	if (token->prev)
 		prev_tk = (t_token *)token->prev->content;
 	else
 		return (false);
-	crr_tk = (t_token *)token->content;
-	if (crr_tk->type == TOKEN_HEREDOC && prev_tk->type == TOKEN_HEREDOC)
+	if (prev_tk->type == TOKEN_COMMAND || prev_tk->type == TOKEN_PIPE)
 		return (true);
-	return (true);
+	return (false);
 }
 
 static bool argument_bfr_redirection(t_dll *token_list)
@@ -104,5 +102,6 @@ static bool argument_bfr_redirection(t_dll *token_list)
 bool	valid_redirections(t_dll *token_list)
 {
 	return (argument_aft_redirection(token_list) &&
-          valid_heredoc(token_list) && argument_bfr_redirection(token_list));
+          valid_heredoc(token_list) &&
+          argument_bfr_redirection(token_list));
 }
