@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 00:13:41 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/05 14:24:11 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:41:34 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void	t_dll_insert_a(t_dll **head, t_dll *new_node, size_t index);
 int		t_dll_is_valid(t_dll *node, int (*validator)(t_dll *node));
 void	t_dll_for_each(t_dll *node, void (*iterator)(t_dll *node));
 t_dll	*t_dll_clone_range(t_dll *n, size_t s, size_t e, t_dll *(*c)(t_dll *n));
+t_dll	*t_dll_clone(t_dll *n, t_dll *(*clone)(t_dll *n));
 #endif
