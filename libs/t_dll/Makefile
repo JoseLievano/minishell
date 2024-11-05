@@ -30,7 +30,8 @@ SRC		=	t_dll_new.c \
 			t_dll_clear.c \
 			t_dll_insert_a.c \
 			t_dll_is_valid.c \
-			t_dll_for_each.c
+			t_dll_for_each.c \
+			t_dll_clone_range.c
 
 OBJS		=	$(SRC:.c=.o)
 
