@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+         #
+#    By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 16:36:40 by jlievano          #+#    #+#              #
-#    Updated: 2024/09/25 16:36:41 by jlievano         ###   ########.fr        #
+#    Updated: 2024/11/06 22:11:39 by glicciar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIBFT		=	libs/libft/libft.a
 FT_READER	=	libs/reader/ft_reader.a
 FT_LEXER	=	libs/lexer/ft_lexer.a
 FT_PARSER	=	libs/parser/ft_parser.a
+FT_EXPANDER =	libs/expander/ft_expander.a
 OBJS		=	$(SRC:.c=.o)
 SRC			=	src/minishell.c
 
@@ -42,6 +43,9 @@ $(FT_LEXER)	:
 
 $(FT_PARSER) :
 				$(MAKE) -C libs/parser/
+
+$(FT_EXPANDER) :
+				$(MAKE) -C libs/expander/
 
 clean		:
 				$(RM) $(OBJS)
