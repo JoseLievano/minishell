@@ -6,7 +6,7 @@
 /*   By: jlievano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:55:25 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/05 00:28:27 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:59:09 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,20 @@ static void set_pipe_seq(t_cmdt *cmdt, t_dll *token_list)
         head = head->next;
     }
     cmdt->content = pipe_sequence;
+	cmdt->type = PIPE_SEQ;
 }
 
 void    ft_set_cmdt_type(t_cmdt *cmdt, t_dll *token_list)
 {
-    if (has_pipes(token_list))
-        set_pipe_seq(cmdt, token_list);
+	printf("\nSetting cmdt type\n");
+	if (has_pipes(token_list))
+	{
+		printf("\nhas pipes\n");
+		set_pipe_seq(cmdt, token_list);
+	}
+	else
+	{
+		cmdt->type = COMMAND;
+		cmdt->content = ft_get_cmd(token_list);
+	}
 }

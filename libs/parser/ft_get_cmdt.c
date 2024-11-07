@@ -6,7 +6,7 @@
 /*   By: jlievano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:57:00 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/04 15:57:01 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:54:45 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 t_cmdt  *ft_get_cmdt(t_dll *token_list)
 {
-   t_cmdt   *cmdt;
+	t_cmdt   *cmdt;
 
-   cmdt = (t_cmdt *)malloc(sizeof(cmdt));
-   ft_set_cmdt_type(cmdt, token_list);
-   if (!cmdt->content && t_dll_size(token_list) == 0)
-      return NULL;
-   return (cmdt);
+	cmdt = (t_cmdt *)malloc(sizeof(cmdt));
+	if (!cmdt)
+		return (NULL);
+	ft_set_cmdt_type(cmdt, token_list);
+	if (!cmdt->content && t_dll_size(token_list) == 0)
+		return (NULL);
+	return (cmdt);
 }

@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/03 17:33:46 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:51:10 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	ft_parser(void)
 	//print_cmd_table(get_test(3));
 	cmdt = ft_get_cmdt(token_list);
 	if (cmdt)
+	{
 		printf("\nCmdt setted");
+		print_cmd_table(cmdt);
+	}
 }
 

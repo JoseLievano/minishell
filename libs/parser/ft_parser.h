@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/05 00:13:41 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:47:40 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	print_cmd_table(t_cmdt *cmd_table);
 void	ft_parser(void);
 bool	valid_syntax(t_dll *token_list);
 bool	valid_redirections(t_dll *token_list);
-
 t_cmdt	*ft_get_cmdt(t_dll *token_list);
 void	ft_set_cmdt_type(t_cmdt *cmdt, t_dll *token_list);
+t_cmd	*ft_get_cmd(t_dll *token_list);
 
 #endif
