@@ -6,7 +6,7 @@
 /*   By: jlievano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:55:25 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 16:54:50 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:01:56 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ static bool has_pipes(t_dll *token_list)
         head = head->next;
     }
     return (false);
+}
+
+static void	clean_temp_list(t_dll *temp_token_list)
+{
+	if (!temp_token_list)
+		return ;
+	free_nodes(temp_token_list);
+	temp_token_list = NULL;
 }
 
 static t_dll	*get_cmd_list(t_dll *token_list)
@@ -44,6 +52,7 @@ static t_dll	*get_cmd_list(t_dll *token_list)
 		{
 			temp_list = t_dll_clone_range(token_list, i, j, &clone_tk_node);
 			t_dll_add_back(&cmd_list, t_dll_new(ft_get_cmd(temp_list)));
+			clean_temp_list(temp_list);
 			i = j + 1;
 		}
 		j++;
