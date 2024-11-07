@@ -16,7 +16,8 @@ RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
 SRC			=	TEST.c parser_to_str.c ft_parser.c ft_syntax_check.c \
-				ft_red_ver.c ft_cmdt_type.c ft_get_cmdt.c ft_get_cmd.c
+				ft_red_ver.c ft_cmdt_type.c ft_get_cmdt.c ft_get_cmd.c \
+				ft_parser_utils.c
 
 all			:	$(NAME)
 

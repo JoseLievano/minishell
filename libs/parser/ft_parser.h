@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:29 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 11:47:40 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:54:44 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ bool	valid_redirections(t_dll *token_list);
 t_cmdt	*ft_get_cmdt(t_dll *token_list);
 void	ft_set_cmdt_type(t_cmdt *cmdt, t_dll *token_list);
 t_cmd	*ft_get_cmd(t_dll *token_list);
+t_dll	*clone_tk_node(t_dll *node);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jlievano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:55:25 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 14:11:37 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:54:50 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ static bool has_pipes(t_dll *token_list)
         head = head->next;
     }
     return (false);
-}
-
-static t_dll	*clone_tk_node(t_dll *node)
-{
-	t_token	*token_content;
-
-	token_content = (t_token *)malloc(sizeof(t_token));
-	token_content->type = ((t_token *)node->content)->type;
-	if (token_content->type == TOKEN_END_INPUT)
-		token_content->value = NULL;
-	else
-		token_content->value = ft_strdup(((t_token *)node->content)->value);
-	return (t_dll_new(token_content));
 }
 
 static t_dll	*get_cmd_list(t_dll *token_list)
