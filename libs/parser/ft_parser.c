@@ -6,7 +6,7 @@
 /*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:59:23 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 11:51:10 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:39:24 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,13 @@ void	ft_parser(void)
 	t_cmdt	*cmdt;
 
 	token_list = read_through_input(ft_reader());
-	read_through_list(token_list);
+	//read_through_list(token_list);
 	if (valid_syntax(token_list))
-		printf("Pipes clear");
-	else
-		printf("Invalid syntax");
-	//print_cmd_table(get_test(3));
-	cmdt = ft_get_cmdt(token_list);
-	if (cmdt)
 	{
-		printf("\nCmdt setted");
+		cmdt = ft_get_cmdt(token_list);
 		print_cmd_table(cmdt);
 	}
+	else
+		printf("Invalid syntax");
 }
 
