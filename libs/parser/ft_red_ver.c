@@ -6,7 +6,7 @@
 /*   By: jlievano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:59 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/04 13:37:00 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:50:25 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ static bool	valid_prev_token(t_dll *token)
 		prev_tk = (t_token *)token->prev->content;
 	else
 		return (false);
-	if (prev_tk->type == TOKEN_COMMAND || prev_tk->type == TOKEN_PIPE)
+	if (prev_tk->type == TOKEN_COMMAND ||
+		prev_tk->type == TOKEN_PIPE ||
+		prev_tk->type == TOKEN_ARGUMENT ||
+		prev_tk->type == TOKEN_FLAG)
 		return (true);
 	return (false);
 }
