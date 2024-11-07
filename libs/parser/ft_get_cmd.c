@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:24:10 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 12:33:01 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:24:46 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ t_cmd	*ft_get_cmd(t_dll *token_list)
 	else
 		cmd->name = NULL;
 	cmd->arguments = get_arguments(head);
+	cmd->redirections = get_redirections(head);
 	return (cmd);
 }
