@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expander.h                                      :+:      :+:    :+:   */
+/*   ft_executor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 22:13:23 by glicciar          #+#    #+#             */
-/*   Updated: 2024/11/06 22:14:34 by glicciar         ###   ########.fr       */
+/*   Created: 2024/11/08 19:43:59 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/08 19:46:27 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_EXPANDER_H
-# define FT_EXPANDER_H
-# include "../../inc/minishell.h"
+#include "ft_executor.h"
 
-void	ft_expander(void);
-
-#endif
+void ft_executor(void)
+{
+	printf("\nHello from executor");
+}

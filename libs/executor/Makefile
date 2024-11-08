@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+         #
+#    By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/06 20:53:10 by glicciar          #+#    #+#              #
-#    Updated: 2024/11/06 22:07:39 by glicciar         ###   ########.fr        #
+#    Created: 2024/11/08 19:40:47 by jlievano          #+#    #+#              #
+#    Updated: 2024/11/08 19:40:48 by jlievano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME		=	ft_expander.a
+
+NAME		=	ft_executor.a
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
-SRC			=	ft_expander.c
+SRC			=	ft_executor.c
 
 all			:	$(NAME)
 

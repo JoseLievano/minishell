@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 06:02:49 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/22 12:20:41 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:48:21 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include "../libs/reader/ft_reader.h"
 # include "../libs/lexer/ft_lexer.h"
 # include "../libs/parser/ft_parser.h"
+# include "../libs/expander/ft_expander.h"
+# include "../libs/executor/ft_executor.h"
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
-
 
 #endif
