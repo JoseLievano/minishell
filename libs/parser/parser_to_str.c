@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 19:12:38 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/26 15:53:42 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/08 07:52:51 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void print_cmd(t_cmd *cmd, int indc)
 	printf("\n%s\targuments:\n%s\t[", tab, tab);
 	print_args((t_dll *)cmd->arguments, tab);
 	printf("\n%s\t],",tab);
-	printf("\n%s\tflags:\n%s\t[", tab, tab);
-	print_flags((t_dll *)cmd->flags, tab);
-	printf("\n%s\t],",tab);
+	//printf("\n%s\tflags:\n%s\t[", tab, tab);
+	//print_flags((t_dll *)cmd->flags, tab);
+	//printf("\n%s\t],",tab);
 	printf("\n%s\tredirections:\n%s\t[", tab, tab);
 	print_redirections((t_dll *)cmd->redirections, tab);
 	printf("\n%s\t],\n",tab);

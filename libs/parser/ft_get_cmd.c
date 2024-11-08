@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:24:10 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/07 19:24:46 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:28:35 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_dll	*get_arguments(t_dll *token_list)
 				t_dll_add_back(&args, t_dll_new(create_arg(token_c)));
 		}
 		if (token_c->type == TOKEN_FLAG)
-				t_dll_add_back(&args, t_dll_new(create_arg(token_c)));
+			t_dll_add_back(&args, t_dll_new(create_arg(token_c)));
 		head = head->next;
 	}
 	return (args);
