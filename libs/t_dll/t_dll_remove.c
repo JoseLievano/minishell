@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   t_dll_remove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/07 12:44:42 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/10 13:53:24 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_dll_remove.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 15:05:17 by jlievano          #+#    #+#             */
@@ -67,6 +79,7 @@ static t_dll	*rm_node(t_dll *node)
 t_dll	*t_dll_remove(t_dll **head, size_t index)
 {
 	t_dll	*first_element;
+	t_dll	*removed_node;
 	size_t	lst_size;
 
 	first_element = t_dll_get_head(*head);
@@ -76,8 +89,11 @@ t_dll	*t_dll_remove(t_dll **head, size_t index)
 	if (lst_size == 1 && index == 0)
 		return (first_element);
 	if (lst_size > 1 && index == 0)
-		return (t_dll_shift(head));
-	if (lst_size > 1 && index == (lst_size - 1))
-		return (t_dll_pop(first_element));
-	return (rm_node(t_dll_get_node_index(*head, index)));
+		removed_node = t_dll_shift(head);
+	else if (lst_size > 1 && index == (lst_size - 1))
+		removed_node = t_dll_pop(first_element);
+	else
+		removed_node = rm_node(t_dll_get_node_index(*head, index));
+	t_dll_update_index(*head);
+	return (removed_node);
 }
