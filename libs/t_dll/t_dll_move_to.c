@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:49:00 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/10 13:58:07 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:21:36 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ static void	move_backward(t_dll **list, long from_i, long to_i)
 
 void	t_dll_move_to(t_dll **list, long from_i, long to_i)
 {
-	t_dll	*head;
 	t_dll	*tail;
 
 	if (from_i == to_i)
 		return ;
-	head = t_dll_get_head(*list);
 	tail = t_dll_get_tail(*list);
 	if ((from_i < 0 || to_i < 0) ||
 		(from_i > tail->index || to_i > tail->index))
@@ -75,5 +73,6 @@ void	t_dll_move_to(t_dll **list, long from_i, long to_i)
 		else if(from_i < to_i)
 			move_forward(list, from_i, to_i);
 	}
+	*list = t_dll_get_head(*list);
 	return ;
 }
