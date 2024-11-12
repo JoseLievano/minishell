@@ -80,7 +80,6 @@ char	*ft_reader(void)
 		temp_str1 = NULL;
 		temp_str2 = NULL;
 	}
-	//printf("\n> We have a valid prompt : \n[%s]\n\n", prompt);
 	add_history(prompt);
 	return (prompt);
 }

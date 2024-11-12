@@ -14,5 +14,5 @@
 
 void ft_executor(void)
 {
-    printf("Hi from executor");
+
 }
