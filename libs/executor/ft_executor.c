@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:43:59 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/11 13:22:25 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:54:46 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void ft_executor(void)
 		printf("%d > %s\n", (int)list->index, (char *)list->content);
 		list = list->next;
 	}
-	t_dll_move_to(&head, 1, 5);
+	t_dll_move_to(&head, 4, 1);
 	printf("\n\nModified list\n");
 	while(head)
 	{

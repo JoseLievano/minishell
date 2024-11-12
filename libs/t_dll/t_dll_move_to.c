@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:49:00 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/11 13:21:36 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:44:47 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ static void	move_backward(t_dll **list, long from_i, long to_i)
 	t_dll	*temp;
 	t_dll	*head;
 
+	printf("\nMoving backwards\n");
 	head = t_dll_get_head(*list);
 	temp = t_dll_remove(&head, (size_t)from_i);
+	printf("\nLast node index %d list size %d\n", (int)t_dll_get_tail(head)->index, (int)t_dll_size(head));
 	t_dll_insert_a(&head, temp, (size_t)to_i);
 }
 
