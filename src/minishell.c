@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	else if (argc > 1 && *argv[1] == '2')
 		ft_lexer();
 	else if (argc > 1 && *argv[1] == '3')
-		ft_parser();
+		ft_parser(read_through_input(ft_reader()));
 	else if (argc > 1 && *argv[1] == '4')
 		ft_expander();
 	else if (argc > 1 && *argv[1] == '5')

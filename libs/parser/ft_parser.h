@@ -74,7 +74,7 @@ typedef struct command_obj
 t_cmdt	*get_test(int test_num);
 void	print_cmd_table(t_cmdt *cmd_table);
 
-void	ft_parser(void);
+t_cmdt	*ft_parser(t_dll *token_list);
 bool	valid_syntax(t_dll *token_list);
 bool	valid_redirections(t_dll *token_list);
 t_cmdt	*ft_get_cmdt(t_dll *token_list);

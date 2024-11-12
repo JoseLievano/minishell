@@ -12,19 +12,20 @@
 
 #include "ft_parser.h"
 
-void	ft_parser(void)
+t_cmdt	*ft_parser(t_dll *token_list)
 {
-	t_dll *token_list;
 	t_cmdt	*cmdt;
 
-	token_list = read_through_input(ft_reader());
-	//read_through_list(token_list);
 	if (valid_syntax(token_list))
 	{
 		cmdt = ft_get_cmdt(token_list);
 		print_cmd_table(cmdt);
+		return (cmdt);
 	}
 	else
+	{
 		printf("Invalid syntax");
+		return (NULL);
+	}
 }
 
