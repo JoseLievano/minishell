@@ -46,12 +46,20 @@ static void	move_backward(t_dll **list, long from_i, long to_i)
 {
 	t_dll	*temp;
 	t_dll	*head;
+	t_dll	*next;
 
-	printf("\nMoving backwards\n");
 	head = t_dll_get_head(*list);
 	temp = t_dll_remove(&head, (size_t)from_i);
-	printf("\nLast node index %d list size %d\n", (int)t_dll_get_tail(head)->index, (int)t_dll_size(head));
-	t_dll_insert_a(&head, temp, (size_t)to_i);
+	if (to_i == 1)
+		t_dll_insert_a(&head, temp, (size_t)to_i);
+	else
+	{
+		next = t_dll_get_node_index(head, to_i);
+		temp->next = next;
+		temp->prev = next->prev;
+		next->prev = temp;
+		temp->prev->next = temp;
+	}
 }
 
 void	t_dll_move_to(t_dll **list, long from_i, long to_i)
@@ -61,8 +69,9 @@ void	t_dll_move_to(t_dll **list, long from_i, long to_i)
 	if (from_i == to_i)
 		return ;
 	tail = t_dll_get_tail(*list);
-	if ((from_i < 0 || to_i < 0) ||
-		(from_i > tail->index || to_i > tail->index))
+	if ((from_i < 0 || to_i < 0)
+		|| (from_i > tail->index
+			|| to_i > tail->index))
 		return ;
 	if (to_i == 0)
 		move_to_head(list, from_i);
@@ -72,9 +81,8 @@ void	t_dll_move_to(t_dll **list, long from_i, long to_i)
 	{
 		if (from_i > to_i)
 			move_backward(list, from_i, to_i);
-		else if(from_i < to_i)
+		else if (from_i < to_i)
 			move_forward(list, from_i, to_i);
 	}
 	*list = t_dll_get_head(*list);
-	return ;
 }

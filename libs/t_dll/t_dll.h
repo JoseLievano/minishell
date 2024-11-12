@@ -1,18 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_dll.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:44:42 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/10 00:56:57 by jlievano         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   t_dll.h											 :+:	 :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
@@ -24,9 +12,9 @@
 
 #ifndef T_DLL_H
 # define T_DLL_H
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
 
 //Double linked list struct
 typedef struct init_t_dll

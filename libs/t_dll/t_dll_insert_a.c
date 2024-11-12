@@ -49,10 +49,10 @@ void	t_dll_insert_a(t_dll **head, t_dll *new_node, size_t index)
 		return ;
 	if (index == 0)
 		(t_dll_add_front(head, new_node));
-	else if (index == (lst_size - 1))
-		t_dll_add_back(head, new_node);
 	else if (index == 1)
 		insert_to_index_one(*head, new_node);
+	else if (index == (lst_size - 1))
+		t_dll_add_back(head, new_node);
 	else
 	{
 		element = t_dll_get_node_index(element, index);

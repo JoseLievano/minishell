@@ -29,7 +29,7 @@ t_dll	*t_dll_clone_range(t_dll *n, size_t s, size_t e, t_dll *(*c)(t_dll *n))
 	{
 		cloned_node = c(t_dll_get_node_index(head, s));
 		if (!cloned_node)
-			break;
+			break ;
 		t_dll_add_back(&new_list, cloned_node);
 		s++;
 	}

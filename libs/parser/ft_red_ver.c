@@ -25,7 +25,8 @@ static bool	valid_heredoc(t_dll *token_list)
 		{
 			if (head->prev)
 				if (((t_token *)head->prev->content)->type != TOKEN_COMMAND &&
-					((t_token *)head->prev->content)->type != TOKEN_PIPE)
+					((t_token *)head->prev->content)->type != TOKEN_PIPE &&
+					((t_token *)head->prev->content)->type != TOKEN_ARGUMENT)
 					return (false);
 			if (head->next)
 			{
