@@ -14,6 +14,8 @@
 # define FT_EXPANDER_H
 # include "../../inc/minishell.h"
 
-void	ft_expander(void);
+typedef struct minishell_obj	t_minishell;
+
+void	ft_expander(t_minishell *minishell);
 
 #endif
