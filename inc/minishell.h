@@ -6,7 +6,7 @@
 /*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 06:02:49 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/08 19:48:21 by jlievano         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:20:05 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,15 @@
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
+
+typedef struct command_table	t_cmdt;
+
+typedef struct minishell_obj
+{
+	t_cmdt	*cmdt;
+	t_dll	*envs;
+	char	*line;
+	int		last_output;
+}	t_minishell;
 
 #endif
