@@ -24,7 +24,7 @@
 
 #include "../inc/minishell.h"
 
-static t_minishell	*construct_minishell(void)
+t_minishell	*construct_minishell(void)
 {
 	t_minishell *minishell;
 
@@ -36,8 +36,9 @@ static t_minishell	*construct_minishell(void)
 	return (minishell);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	/*
 	t_minishell *minishell = construct_minishell();
 
 	while(1)
@@ -47,17 +48,38 @@ int	main(void)
 		ft_clean_cmdt(minishell->cmdt);
 		free(minishell->line);
 	}
-/*
+	*/
 	if (argc > 1 && *argv[1] == '1')
-		ft_reader();
+	{
+		char *input = ft_reader();
+		rl_clear_history();
+		free(input);
+	}
 	else if (argc > 1 && *argv[1] == '2')
-		ft_lexer();
+	{
+		char *str = ft_strdup("echo hi");
+		t_dll *tokens = read_through_input(str);
+		printf("tokens %d\n", (int)t_dll_size(tokens));
+		//read_through_list(tokens);
+		free(str);
+		//rl_clear_history();
+		free_token(tokens);
+	}
 	else if (argc > 1 && *argv[1] == '3')
-		ft_parser(read_through_input(ft_reader()));
+	{
+		char *str = ft_strdup("echo hi");
+		t_cmdt *cmdt = ft_parser(read_through_input(str));
+		free(str);
+		//rl_clear_history();
+		ft_clean_cmdt(cmdt);
+	}
 	else if (argc > 1 && *argv[1] == '4')
-		ft_expander(minishell);
+	{
+		t_minishell *minishell = construct_minishell();
+		minishell->line = ft_reader();
+		minishell->cmdt = ft_parser(read_through_input(minishell->line));
+	}
 	else if (argc > 1 && *argv[1] == '5')
 		ft_executor();
-*/
 	return (0);
 }

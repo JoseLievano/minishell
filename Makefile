@@ -6,7 +6,7 @@
 #    By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 16:36:40 by jlievano          #+#    #+#              #
-#    Updated: 2024/11/06 22:11:39 by glicciar         ###   ########.fr        #
+#    Updated: 2024/11/13 18:42:13 by jlievano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,4 +73,15 @@ fclean		:	clean
 
 re			:	fclean $(NAME)
 
-.PHONY		:	all clean fclean re bonus
+valgrind	= 	valgrind --suppressions=valgrind.supp --leak-check=full --show-leak-kinds=all
+
+val1		:
+				$(valgrind) ./minishell 1
+
+val2		:
+				$(valgrind) ./minishell 2
+
+val3		:
+				$(valgrind) ./minishell 3
+
+.PHONY		:	all clean fclean re bonus valgrind val1
