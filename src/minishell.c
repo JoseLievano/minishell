@@ -62,12 +62,6 @@ int	main(int argc, char **argv)
 		free(str);
 		//rl_clear_history();
 		free_nodes(tokens);
-		tokens = NULL;
-		while(tokens)
-		{
-			printf("\nToken\n");
-			tokens = tokens->next;
-		}
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{

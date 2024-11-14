@@ -14,7 +14,11 @@
 
 void ft_executor(void)
 {
-	t_cmdt *cmdt = ft_parser(read_through_input(ft_reader()));
-	print_cmd_table(cmdt);
+	char	*str = ft_strdup("echo hello there");
+	t_dll	*tokens = read_through_input(str);
+	t_cmdt *cmdt = ft_parser(tokens);
+	free_nodes(tokens);
+	//print_cmd_table(cmdt);
 	ft_clean_cmdt(cmdt);
+	free(str);
 }
