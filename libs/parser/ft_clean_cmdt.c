@@ -48,9 +48,14 @@ static void	clean_commands(t_dll *command)
 void	ft_clean_cmdt(t_cmdt *cmdt)
 {
 	t_cmd	*command;
+	t_pipes	*pipes;
 
 	if (cmdt->type == PIPE_SEQ)
-		t_dll_clear(((t_pipes *)cmdt->content)->cmds, &clean_commands);
+	{
+		pipes = (t_pipes *)cmdt->content;
+		t_dll_clear(pipes->cmds, &clean_commands);
+		free(pipes);
+	}
 	else if (cmdt->type == COMMAND)
 	{
 		command = (t_cmd *)cmdt->content;

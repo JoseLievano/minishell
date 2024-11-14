@@ -19,7 +19,7 @@ t_cmdt	*ft_parser(t_dll *token_list)
 	if (valid_syntax(token_list))
 	{
 		cmdt = ft_get_cmdt(token_list);
-		print_cmd_table(cmdt);
+		//print_cmd_table(cmdt);
 		return (cmdt);
 	}
 	else
