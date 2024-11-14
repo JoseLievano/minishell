@@ -59,16 +59,22 @@ int	main(int argc, char **argv)
 	{
 		char *str = ft_strdup("echo hi");
 		t_dll *tokens = read_through_input(str);
-		printf("tokens %d\n", (int)t_dll_size(tokens));
-		//read_through_list(tokens);
 		free(str);
 		//rl_clear_history();
-		free_token(tokens);
+		free_nodes(tokens);
+		tokens = NULL;
+		while(tokens)
+		{
+			printf("\nToken\n");
+			tokens = tokens->next;
+		}
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{
-		char *str = ft_strdup("echo hi");
-		t_cmdt *cmdt = ft_parser(read_through_input(str));
+		char *str = ft_strdup("echo hello there | wc -l");
+		t_dll *tokens = read_through_input(str);
+		t_cmdt *cmdt = ft_parser(tokens);
+		free_nodes(tokens);
 		free(str);
 		//rl_clear_history();
 		ft_clean_cmdt(cmdt);

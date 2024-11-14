@@ -84,4 +84,10 @@ val2		:
 val3		:
 				$(valgrind) ./minishell 3
 
+val4		:
+				$(valgrind) ./minishell 4
+
+val5		:
+				$(valgrind) ./minishell 5
+
 .PHONY		:	all clean fclean re bonus valgrind val1

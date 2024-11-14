@@ -57,7 +57,7 @@ void	ft_clean_cmdt(t_cmdt *cmdt)
 		t_dll_clear(command->arguments, &clean_args);
 		t_dll_clear(command->redirections, &clean_redirections);
 		free(command->name);
-		free(cmdt);
 		free(command);
 	}
+	free(cmdt);
 }
