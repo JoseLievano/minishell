@@ -82,8 +82,9 @@ int	main(int argc, char **argv)
 	else if (argc > 1 && *argv[1] == '4')
 	{
 		t_minishell *minishell = construct_minishell();
-		minishell->line = ft_reader();
+		minishell->line = ft_strdup("echo \"Hello $USER\"");
 		minishell->cmdt = ft_parser(read_through_input(minishell->line));
+		ft_expander(minishell);
 	}
 	else if (argc > 1 && *argv[1] == '5')
 		ft_executor();
