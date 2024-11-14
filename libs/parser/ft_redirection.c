@@ -27,16 +27,18 @@ static t_redir	*construct_empty_redirection(void)
 static t_redir	*get_single_red(t_dll *node)
 {
 	t_redir	*redirection;
+	char	*temp_holder;
 
 	redirection = construct_empty_redirection();
+	temp_holder = ((t_token *)node->next->content)->value;
 	if (((t_token *)node->content)->type == TOKEN_HEREDOC)
 	{
-		redirection->delimiter = ft_strdup(((t_token *)node->next->content)->value);
+		redirection->delimiter = ft_strdup(temp_holder);
 		redirection->type = REDIR_HEREDOC;
 	}
 	else
 	{
-		redirection->file_path = ft_strdup(((t_token *)node->next->content)->value);
+		redirection->file_path = ft_strdup(temp_holder);
 		if (((t_token *)node->content)->type == TOKEN_REDIRECTION_IN)
 			redirection->type = REDIR_INPUT;
 		else if (((t_token *)node->content)->type == TOKEN_REDIRECTION_OUT)

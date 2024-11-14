@@ -50,7 +50,7 @@ static int	quotes_closed(char *prompt)
 	return (open_quotes + inside_single_quotes);
 }
 
-static int invalid_prompt(char *prompt)
+static int	invalid_prompt(char *prompt)
 {
 	int	qoutes_status;
 	int	pipe_status;

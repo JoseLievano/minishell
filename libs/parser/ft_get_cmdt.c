@@ -12,9 +12,9 @@
 
 #include "ft_parser.h"
 
-t_cmdt  *ft_get_cmdt(t_dll *token_list)
+t_cmdt	*ft_get_cmdt(t_dll *token_list)
 {
-	t_cmdt   *cmdt;
+	t_cmdt	*cmdt;
 
 	cmdt = (t_cmdt *)malloc(sizeof(t_cmdt));
 	if (!cmdt)

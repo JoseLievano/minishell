@@ -17,10 +17,10 @@ bool	node_is_redirection(t_dll *node)
 	t_token	*token_content;
 
 	token_content = (t_token *)node->content;
-	if (token_content->type == TOKEN_REDIRECTION_IN ||
-		token_content->type == TOKEN_REDIRECTION_OUT ||
-		token_content->type == TOKEN_REDIRECTION_APPEND	||
-		token_content->type == TOKEN_HEREDOC)
+	if (token_content->type == TOKEN_REDIRECTION_IN
+		|| token_content->type == TOKEN_REDIRECTION_OUT
+		|| token_content->type == TOKEN_REDIRECTION_APPEND
+		|| token_content->type == TOKEN_HEREDOC)
 		return (true);
 	return (false);
 }

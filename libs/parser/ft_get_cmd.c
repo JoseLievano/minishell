@@ -27,10 +27,10 @@ static t_arg	*create_arg(t_token *token)
 
 static bool	token_is_redirection(t_token *token)
 {
-	if (token->type == TOKEN_REDIRECTION_IN ||
-		token->type == TOKEN_REDIRECTION_OUT ||
-		token->type == TOKEN_REDIRECTION_APPEND ||
-		token->type == TOKEN_HEREDOC)
+	if (token->type == TOKEN_REDIRECTION_IN
+		|| token->type == TOKEN_REDIRECTION_OUT
+		|| token->type == TOKEN_REDIRECTION_APPEND
+		|| token->type == TOKEN_HEREDOC)
 		return (true);
 	return (false);
 }
@@ -48,7 +48,8 @@ static t_dll	*get_arguments(t_dll *token_list)
 	while (head)
 	{
 		token_c = (t_token *)head->content;
-		if (!head->prev || !token_is_redirection((t_token *)head->prev->content))
+		if (!head->prev
+			|| !token_is_redirection((t_token *)head->prev->content))
 		{
 			if (token_c->type == TOKEN_ARGUMENT)
 				t_dll_add_back(&args, t_dll_new(create_arg(token_c)));

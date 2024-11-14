@@ -12,9 +12,11 @@
 
 #include "ft_parser.h"
 
-void print_single_arg(t_arg *arg, char *tab)
+void	print_single_arg(t_arg *arg, char *tab)
 {
-	char *type = "";
+	char	*type;
+
+	type = "";
 	if (arg->type == STRING_DOUBLE)
 		type = "STRING_DOUBLE";
 	else if (arg->type == STRING_SINGLE)
@@ -23,43 +25,32 @@ void print_single_arg(t_arg *arg, char *tab)
 		type = "FLAG";
 	else
 		type = "ARGUMENT";
-
 	printf("\n%s\t\t{", tab);
 	printf("\n%s\t\t\ttype: %s,", tab, type);
 	printf("\n%s\t\t\tvalue: %s,", tab, arg->value);
 	printf("\n%s\t\t},", tab);
 }
 
-void print_single_flag(char *flag, char *tab)
+void	print_args(t_dll *args, char *tab)
 {
-	printf("\n%s\t\t%s,", tab, flag);
-}
+	t_dll	*head;
 
-void print_flags(t_dll *flags, char *tab)
-{
-	t_dll *head = t_dll_get_head(flags);
-	while(head)
-	{
-		print_single_flag((char *)head->content, tab);
-		head = head->next;
-	}
-}
-
-void print_args(t_dll *args, char *tab)
-{
-	t_dll *head = t_dll_get_head(args);
-	while(head)
+	head = t_dll_get_head(args);
+	while (head)
 	{
 		print_single_arg((t_arg *)head->content, tab);
 		head = head->next;
 	}
 }
 
-void print_redirections(t_dll *redirections, char *tab)
+void	print_redirections(t_dll *redirections, char *tab)
 {
-	char *type;
-	t_dll *head = t_dll_get_head(redirections);
-	while(head)
+	char	*type;
+	t_dll	*head;
+	t_redir	*redir;
+
+	head = t_dll_get_head(redirections);
+	while (head)
 	{
 		if (((t_redir *)head->content)->type == REDIR_INPUT)
 			type = "REDIR_INPUT";
@@ -69,7 +60,7 @@ void print_redirections(t_dll *redirections, char *tab)
 			type = "REDIR_APPEND";
 		else
 			type = "REDIR_HEREDOC";
-		t_redir *redir = (t_redir *)head->content;
+		redir = (t_redir *)head->content;
 		printf("\n%s\t\t{", tab);
 		printf("\n%s\t\t\ttype: %s,", tab, type);
 		printf("\n%s\t\t\tdelimiter: %s,", tab, redir->delimiter);
@@ -80,33 +71,34 @@ void print_redirections(t_dll *redirections, char *tab)
 	}
 }
 
-void print_cmd(t_cmd *cmd, int indc)
+void	print_cmd(t_cmd *cmd, int indc)
 {
-	char *tab = "";
+	char	*tab;
+
+	tab = "";
 	while (indc > 0)
 	{
 		tab = ft_strjoin(tab, "\t");
 		indc--;
 	}
-	printf("\n%s{\n%s\tname: %s,",tab, tab, cmd->name);
+	printf("\n%s{\n%s\tname: %s,", tab, tab, cmd->name);
 	printf("\n%s\targuments:\n%s\t[", tab, tab);
 	print_args((t_dll *)cmd->arguments, tab);
-	printf("\n%s\t],",tab);
-	//printf("\n%s\tflags:\n%s\t[", tab, tab);
-	//print_flags((t_dll *)cmd->flags, tab);
-	//printf("\n%s\t],",tab);
+	printf("\n%s\t],", tab);
 	printf("\n%s\tredirections:\n%s\t[", tab, tab);
 	print_redirections((t_dll *)cmd->redirections, tab);
-	printf("\n%s\t],\n",tab);
+	printf("\n%s\t],\n", tab);
 	printf("\n%s},", tab);
 }
 
-void print_pipe_seq(t_pipes *pipes)
+void	print_pipe_seq(t_pipes *pipes)
 {
+	t_dll	*head;
+
 	printf("\n\t\t\t{\n\t\t\t\tcmd_count: %d,", pipes->cmd_count);
 	printf("\n\t\t\t\tcmds:\n\t\t\t\t[");
-	t_dll *head = t_dll_get_head(pipes->cmds);
-	while(head)
+	head = t_dll_get_head(pipes->cmds);
+	while (head)
 	{
 		print_cmd((t_cmd *)head->content, 4);
 		head = head->next;
@@ -116,8 +108,9 @@ void print_pipe_seq(t_pipes *pipes)
 
 void	print_cmd_table(t_cmdt *cmd_table)
 {
-	char *type;
-	char *obj_type;
+	char	*type;
+	char	*obj_type;
+
 	if (cmd_table->type == PIPE_SEQ)
 		type = "PIPE_SEQ";
 	else

@@ -16,7 +16,7 @@ static bool	valid_pipes_tokens(t_dll *token_list)
 {
 	t_dll	*head;
 	t_token	*tk;
-	t_token *ntk;
+	t_token	*ntk;
 
 	head = t_dll_get_head(token_list);
 	if (((t_token *)head->content)->type == TOKEN_PIPE)

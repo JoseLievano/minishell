@@ -25,8 +25,8 @@ void	ft_sort_redirections(t_dll *redirections)
 	while (i < len)
 	{
 		acn = t_dll_get_node_index(redirections, i);
-		if (((t_redir *)acn->content)->type == REDIR_INPUT ||
-			((t_redir *)acn->content)->type == REDIR_HEREDOC)
+		if (((t_redir *)acn->content)->type == REDIR_INPUT
+			|| ((t_redir *)acn->content)->type == REDIR_HEREDOC)
 		{
 			last_input_i++;
 			t_dll_move_to(&redirections, acn->index, last_input_i);
