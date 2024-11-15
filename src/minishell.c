@@ -65,9 +65,10 @@ int	main(int argc, char **argv)
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{
-		char *str = ft_strdup("echo hello there | wc -l");
+		char *str =  ft_reader();
 		t_dll *tokens = read_through_input(str);
 		t_cmdt *cmdt = ft_parser(tokens);
+		print_cmd_table(cmdt);
 		free_nodes(tokens);
 		free(str);
 		//rl_clear_history();

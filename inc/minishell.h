@@ -26,6 +26,12 @@
 
 typedef struct command_table	t_cmdt;
 
+typedef struct env_v_obj
+{
+	char	*name;
+	char	*value;
+}	t_envvar;
+
 typedef struct minishell_obj
 {
 	t_cmdt	*cmdt;
