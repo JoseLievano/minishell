@@ -24,23 +24,30 @@
 
 #include "../inc/minishell.h"
 
-t_minishell	*construct_minishell(void)
+static t_minishell	*construct_minishell(char **envp)
 {
 	t_minishell *minishell;
 
 	minishell = (t_minishell *)malloc(sizeof(t_minishell));
 	minishell->cmdt = NULL;
-	minishell->envs = NULL;
 	minishell->line = NULL;
 	minishell->last_output = 0;
+	minishell->envs = get_env_var_list(envp);
 	return (minishell);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
+	t_minishell *minishell = construct_minishell(envp);
+	printf("%d\n", (int)t_dll_size(minishell->envs));
+	t_dll *envs = t_dll_get_head(minishell->envs);
+	while(envs)
+	{
+		t_env *ac = (t_env *)envs->content;
+		printf("\n-----\n%s\n%s\n-------", ac->key, ac->value);
+		envs = envs->next;
+	}
 	/*
-	t_minishell *minishell = construct_minishell();
-
 	while(1)
 	{
 		minishell->line = ft_reader();
@@ -76,7 +83,7 @@ int	main(int argc, char **argv)
 	}
 	else if (argc > 1 && *argv[1] == '4')
 	{
-		t_minishell *minishell = construct_minishell();
+		t_minishell *minishell = construct_minishell(envp);
 		minishell->line = ft_strdup("echo \"Hello $USER\"");
 		minishell->cmdt = ft_parser(read_through_input(minishell->line));
 		ft_expander(minishell);

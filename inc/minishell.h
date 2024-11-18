@@ -28,9 +28,9 @@ typedef struct command_table	t_cmdt;
 
 typedef struct env_v_obj
 {
-	char	*name;
+	char	*key;
 	char	*value;
-}	t_envvar;
+}	t_env;
 
 typedef struct minishell_obj
 {
@@ -39,5 +39,7 @@ typedef struct minishell_obj
 	char	*line;
 	int		last_output;
 }	t_minishell;
+
+t_dll	*get_env_var_list(char **envp);
 
 #endif
