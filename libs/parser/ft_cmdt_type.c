@@ -52,7 +52,7 @@ static t_dll	*get_cmd_list(t_dll *token_list)
 			|| ((t_token *)head->content)->type == TOKEN_END_INPUT)
 		{
 			temp_list = t_dll_clone_range(token_list, i, j, &clone_tk_node);
-			t_dll_add_back(&cmd_list, t_dll_new(ft_get_cmd(temp_list)));
+			t_dll_add_back(&cmd_list, t_dll_new(ft_get_pipes_cmd(temp_list)));
 			clean_temp_list(temp_list);
 			temp_list = NULL;
 			i = j + 1;

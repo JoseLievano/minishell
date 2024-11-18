@@ -100,7 +100,7 @@ void	print_pipe_seq(t_pipes *pipes)
 	head = t_dll_get_head(pipes->cmds);
 	while (head)
 	{
-		print_cmd((t_cmd *)head->content, 4);
+		printf("\n\t\t\t\t\t{%s},", (char *)head->content);
 		head = head->next;
 	}
 	printf("\n\t\t\t\t]");

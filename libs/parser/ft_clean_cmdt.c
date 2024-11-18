@@ -33,7 +33,7 @@ static void	clean_args(t_dll *arg_node)
 		free(arg->value);
 	free(arg);
 }
-
+/*
 static void	clean_commands(t_dll *command)
 {
 	t_cmd	*cmd;
@@ -44,6 +44,12 @@ static void	clean_commands(t_dll *command)
 	free(cmd->name);
 	free(cmd);
 }
+*/
+static void clean_pipes(t_dll *pipe_cmd)
+{
+	if (pipe_cmd->content)
+		free(pipe_cmd->content);
+}
 
 void	ft_clean_cmdt(t_cmdt *cmdt)
 {
@@ -53,7 +59,7 @@ void	ft_clean_cmdt(t_cmdt *cmdt)
 	if (cmdt->type == PIPE_SEQ)
 	{
 		pipes = (t_pipes *)cmdt->content;
-		t_dll_clear(pipes->cmds, &clean_commands);
+		t_dll_clear(pipes->cmds, &clean_pipes);
 		free(pipes);
 	}
 	else if (cmdt->type == COMMAND)

@@ -18,7 +18,7 @@ OBJS		=	$(SRC:.c=.o)
 SRC			=	parser_to_str.c ft_parser.c ft_syntax_check.c \
 				ft_red_ver.c ft_cmdt_type.c ft_get_cmdt.c ft_get_cmd.c \
 				ft_parser_utils.c ft_redirection.c ft_clean_cmdt.c \
-				ft_sort_redirections.c
+				ft_sort_redirections.c ft_get_pipes_cmd.c
 
 all			:	$(NAME)
 
