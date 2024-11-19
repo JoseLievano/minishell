@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_find_env.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 17:49:47 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/19 17:49:47 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../ft_executor.h"
+
+static int	key_comparator(void **args, int n_args)
+{
+	t_env	*env;
+	int		result;
+	t_dll	*node;
+	char	*key;
+
+	if (n_args == 0)
+		return (0);
+	node = args[0];
+	key = args[1];
+	env = (t_env *)node->content;
+	result = ft_strncmp(env->key, key, ft_strlen(key));
+	if (result == 0)
+		return (1);
+	return (0);
+}
+
+t_dll	*ft_find_env(char *key, t_dll *env_list)
+{
+	t_dll	*found_node;
+	void	**args;
+
+	args = (void *)malloc(sizeof(void *) * 2);
+	args[0] = NULL;
+	args[1] = key;
+	found_node = t_dll_first_mtch(env_list, args, 2, &key_comparator);
+	return (found_node);
+}
+

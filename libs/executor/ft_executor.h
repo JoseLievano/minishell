@@ -18,5 +18,6 @@ typedef struct minishell_obj	t_minishell;
 
 void	ft_executor(t_minishell *minishell);
 void	ft_execute_cmd(t_minishell *minishell);
+t_dll	*ft_find_env(char *key, t_dll *env_list);
 
 #endif

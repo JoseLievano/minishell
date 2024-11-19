@@ -15,7 +15,10 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
-SRC			=	ft_executor.c ft_execute_cmd.c
+ENVS_DIR	=	envs/
+ENVS_FILES	=	ft_find_env.c
+SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \
+				ft_executor.c ft_execute_cmd.c
 
 all			:	$(NAME)
 

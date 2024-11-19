@@ -46,10 +46,17 @@ void	ft_execute_cmd(t_minishell *minishell)
 
 	//print_cmd_table(minishell->cmdt);
 	args = get_args_to_execute((t_cmd *)minishell->cmdt->content);
+	printf("\n[");
 	while (*args)
 	{
-		printf("\n{%s},", *args);
+		printf("%s,", *args);
 		args++;
 	}
+	printf("%s]\n", *args);
 	printf("\n");
+
+//	char *path = ft_strdup("PATH");
+	t_dll *path_node = ft_find_env("PATH", minishell->envs);
+	//printf("\naft find env\n");
+	printf("\nPath value: \n%s\n", ((t_env *)path_node->content)->value);
 }

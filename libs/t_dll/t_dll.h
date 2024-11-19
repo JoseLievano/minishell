@@ -51,4 +51,5 @@ void	t_dll_for_each(t_dll *node, void (*iterator)(t_dll *node));
 t_dll	*t_dll_clone_range(t_dll *n, size_t s, size_t e, t_dll *(*c)(t_dll *n));
 t_dll	*t_dll_clone(t_dll *n, t_dll *(*clone)(t_dll *n));
 void	t_dll_move_to(t_dll **list, long from_i, long to_i);
+t_dll	*t_dll_first_mtch(t_dll *l, void **a, int n, int (*c)(void **a, int n));
 #endif

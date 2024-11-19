@@ -49,7 +49,7 @@ static t_dll	*get_env_node(char *str)
 	first_equals_index = get_equals_index(str);
 	key_length = first_equals_index - 1;
 	value_length = ft_strlen(str) - first_equals_index;
-	key = ft_substr(str, 0, key_length);
+	key = ft_substr(str, 0, key_length + 1);
 	value = ft_substr(str, first_equals_index + 1, value_length);
 	return (t_dll_new(get_env_obj(key, value)));
 }
