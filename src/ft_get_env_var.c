@@ -17,7 +17,7 @@ static size_t	get_equals_index(char *str)
 	size_t	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '=')
 			break ;
@@ -45,15 +45,13 @@ static t_dll	*get_env_node(char *str)
 	size_t	value_length;
 	char	*key;
 	char	*value;
-	t_dll	*env_node;
 
 	first_equals_index = get_equals_index(str);
 	key_length = first_equals_index - 1;
 	value_length = ft_strlen(str) - first_equals_index;
 	key = ft_substr(str, 0, key_length);
 	value = ft_substr(str, first_equals_index + 1, value_length);
-	env_node = t_dll_new(get_env_obj(key, value));
-	return (env_node);
+	return (t_dll_new(get_env_obj(key, value)));
 }
 
 t_dll	*get_env_var_list(char **envp)
@@ -61,7 +59,7 @@ t_dll	*get_env_var_list(char **envp)
 	t_dll	*env_list;
 
 	env_list = NULL;
-	while(*envp)
+	while (*envp)
 	{
 		t_dll_add_back(&env_list, get_env_node(*envp));
 		envp++;

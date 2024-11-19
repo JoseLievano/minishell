@@ -38,6 +38,7 @@ static t_minishell	*construct_minishell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
+	/*
 	t_minishell *minishell = construct_minishell(envp);
 	printf("%d\n", (int)t_dll_size(minishell->envs));
 	t_dll *envs = t_dll_get_head(minishell->envs);
@@ -47,7 +48,7 @@ int	main(int argc, char **argv, char **envp)
 		printf("\n-----\n%s\n%s\n-------", ac->key, ac->value);
 		envs = envs->next;
 	}
-	/*
+
 	while(1)
 	{
 		minishell->line = ft_reader();
@@ -89,6 +90,11 @@ int	main(int argc, char **argv, char **envp)
 		ft_expander(minishell);
 	}
 	else if (argc > 1 && *argv[1] == '5')
-		ft_executor();
+	{
+		t_minishell *shell = construct_minishell(envp);
+		shell->line = ft_reader();
+		shell->cmdt = ft_parser(read_through_input(shell->line));
+		ft_executor(shell);
+	}
 	return (0);
 }

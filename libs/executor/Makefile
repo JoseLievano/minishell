@@ -15,7 +15,7 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
-SRC			=	ft_executor.c
+SRC			=	ft_executor.c ft_execute_cmd.c
 
 all			:	$(NAME)
 

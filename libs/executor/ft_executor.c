@@ -12,13 +12,13 @@
 
 #include "ft_executor.h"
 
-void ft_executor(void)
+void ft_executor(t_minishell *minishell)
 {
-	char	*str = ft_strdup("echo hello there");
-	t_dll	*tokens = read_through_input(str);
-	t_cmdt *cmdt = ft_parser(tokens);
-	free_nodes(tokens);
-	//print_cmd_table(cmdt);
-	ft_clean_cmdt(cmdt);
-	free(str);
+	t_cmdt	*cmdt;
+
+	cmdt = minishell->cmdt;
+	if (cmdt->type == COMMAND)
+		ft_execute_cmd(minishell);
+	else
+		return ;
 }

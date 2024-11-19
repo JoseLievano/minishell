@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_executor.h                                      :+:      :+:    :+:   */
+/*   ft_execute_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 19:44:08 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/08 19:49:35 by jlievano         ###   ########.fr       */
+/*   Created: 2024/11/19 14:33:07 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/19 14:33:08 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_EXECUTOR_H
-# define FT_EXECUTOR_H
-# include "../../inc/minishell.h"
+#include "ft_executor.h"
 
-typedef struct minishell_obj	t_minishell;
+void	ft_execute_cmd(t_minishell *minishell)
+{
+	t_cmdt	*cmdt;
 
-void	ft_executor(t_minishell *minishell);
-void	ft_execute_cmd(t_minishell *minishell);
-
-#endif
+	cmdt = minishell->cmdt;
+	printf("\nCMD: %s | envs: %d\n", ((t_cmd *)cmdt->content)->name, (int)t_dll_size(minishell->envs));
+}
