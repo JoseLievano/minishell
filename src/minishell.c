@@ -92,9 +92,19 @@ int	main(int argc, char **argv, char **envp)
 	else if (argc > 1 && *argv[1] == '5')
 	{
 		t_minishell *shell = construct_minishell(envp);
-		shell->line = ft_reader();
-		shell->cmdt = ft_parser(read_through_input(shell->line));
-		ft_executor(shell);
+		t_dll		*token_list;
+
+		token_list = NULL;
+		while (1)
+		{
+			shell->line = ft_reader();
+			token_list = read_through_input(shell->line);
+			shell->cmdt = ft_parser(token_list);
+			ft_executor(shell);
+			ft_clean_cmdt(shell->cmdt);
+			free(shell->line);
+			free_nodes(token_list);
+		}
 	}
 	return (0);
 }
