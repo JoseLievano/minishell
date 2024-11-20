@@ -25,17 +25,14 @@ char	*ft_strjoin3(char *str1, char *str2, char *str3)
 
 static char	*find_valid_path(char **dirs, char *cmd)
 {
-	//char	*complete_path;
 	char	*temp;
 
 	temp = NULL;
-	//complete_path = NULL;
 	while (*dirs)
 	{
 		temp = ft_strjoin3(*dirs, "/", cmd);
-		printf("\nChecking: [%s]", temp);
 		if (access(temp, F_OK | X_OK) == 0)
-			printf("\nfound in %s\n", temp);
+			return (temp);
 		free(temp);
 		dirs++;
 	}
@@ -47,7 +44,6 @@ char	*ft_find_cmd_path(char *cmd, t_dll *envs)
 	char	**paths;
 	t_dll	*path_node;
 
-	printf("\nft_find_cmd_path cmd : %s", cmd);
 	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
@@ -55,20 +51,6 @@ char	*ft_find_cmd_path(char *cmd, t_dll *envs)
 		return (NULL);
 	}
 	path_node = ft_find_env("PATH", envs);
-	//printf("\nPath value: \n%s\n\n\n", ((t_env *) path_node->content)->value);
 	paths = ft_split(((t_env *)path_node->content)->value, ':');
-	char *valid_path = find_valid_path(paths, cmd);
-	if (valid_path)
-		printf("path valid");
-	else
-		printf("path not valid");
-	/*
-	printf("\ngot paths");
-	while (*paths)
-	{
-		printf("\n%s", *paths);
-		paths++;
-	}
-	*/
-	return (((t_env *)path_node->content)->key);
+	return (find_valid_path(paths, cmd));
 }

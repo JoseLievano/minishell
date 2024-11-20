@@ -40,6 +40,17 @@ static char	**get_args_to_execute(t_cmd *cmd)
 	return (args);
 }
 
+void	ft_print_envs(t_dll *env_list)
+{
+	char **envs = ft_envs_to_array(env_list);
+	while(*envs)
+	{
+		printf("\n%s", *envs);
+		free(*envs);
+		envs++;
+	}
+}
+
 void	ft_execute_cmd(t_minishell *minishell)
 {
 	char	**args;
@@ -55,5 +66,7 @@ void	ft_execute_cmd(t_minishell *minishell)
 	}
 	printf("%s]\n", *args);
 	printf("\n");
-	ft_find_cmd_path(cmd->name, minishell->envs);
+	char *cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
+	printf("\ncmd path: %s\n", cmd_path);
+	print_envs(minishell->envs);
 }
