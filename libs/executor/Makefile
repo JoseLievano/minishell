@@ -16,7 +16,7 @@ RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
 ENVS_DIR	=	envs/
-ENVS_FILES	=	ft_find_env.c
+ENVS_FILES	=	ft_find_env.c ft_find_cmd_path.c
 SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \
 				ft_executor.c ft_execute_cmd.c
 
