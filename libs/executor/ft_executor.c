@@ -18,7 +18,10 @@ void ft_executor(t_minishell *minishell)
 
 	cmdt = minishell->cmdt;
 	if (cmdt->type == COMMAND)
-		ft_execute_cmd(minishell);
+	{
+		minishell->last_output = ft_execute_cmd(minishell);
+		printf("\n exec result %d \n", minishell->last_output);
+	}
 	else
 		return ;
 }

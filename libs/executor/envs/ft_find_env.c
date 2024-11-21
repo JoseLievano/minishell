@@ -30,6 +30,17 @@ static int	key_comparator(void **args, int n_args)
 	return (0);
 }
 
+void	ft_print_envs(t_dll *env_list)
+{
+	char **envs = ft_envs_to_array(env_list);
+	while(*envs)
+	{
+		printf("\n%s", *envs);
+		free(*envs);
+		envs++;
+	}
+}
+
 t_dll	*ft_find_env(char *key, t_dll *env_list)
 {
 	t_dll	*found_node;

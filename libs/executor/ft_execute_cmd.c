@@ -40,33 +40,34 @@ static char	**get_args_to_execute(t_cmd *cmd)
 	return (args);
 }
 
-void	ft_print_envs(t_dll *env_list)
-{
-	char **envs = ft_envs_to_array(env_list);
-	while(*envs)
-	{
-		printf("\n%s", *envs);
-		free(*envs);
-		envs++;
-	}
-}
-
-void	ft_execute_cmd(t_minishell *minishell)
+int	ft_execute_cmd(t_minishell *minishell)
 {
 	char	**args;
+	char	**envs;
+	char	*cmd_path;
+	pid_t	pid;
 	t_cmd	*cmd;
 
 	cmd = (t_cmd *)minishell->cmdt->content;
+	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
 	args = get_args_to_execute(cmd);
-	printf("\n[");
-	while (*args)
+	envs = ft_envs_to_array(minishell->envs);
+	pid = fork();
+	if (pid == 0)
 	{
-		printf("%s,", *args);
-		args++;
+		if (execve(cmd_path, args, envs) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
 	}
-	printf("%s]\n", *args);
-	printf("\n");
-	char *cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
-	printf("\ncmd path: %s\n", cmd_path);
-	print_envs(minishell->envs);
+	else
+	{
+		int status;
+		waitpid(pid, &status, 0);
+		printf("\nout status: %d", WEXITSTATUS(status));
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
+	}
+	return (0);
 }

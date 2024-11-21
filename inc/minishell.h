@@ -20,6 +20,7 @@
 # include "../libs/parser/ft_parser.h"
 # include "../libs/expander/ft_expander.h"
 # include "../libs/executor/ft_executor.h"
+# include <sys/wait.h>
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
