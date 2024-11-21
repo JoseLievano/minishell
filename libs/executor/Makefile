@@ -17,7 +17,10 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 OBJS		=	$(SRC:.c=.o)
 ENVS_DIR	=	envs/
 ENVS_FILES	=	ft_find_env.c ft_find_cmd_path.c ft_envs_to_array.c
+REDIR_DIR	=	redirections/
+REDIR_FILES	=	ft_append.c ft_heredoc.c ft_input.c ft_output.c
 SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \
+				$(addprefix $(REDIR_DIR), $(REDIR_FILES)) \
 				ft_executor.c ft_execute_cmd.c
 
 all			:	$(NAME)
