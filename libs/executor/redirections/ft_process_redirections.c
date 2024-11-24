@@ -43,6 +43,8 @@ bool	ft_process_redirections(t_minishell *minishell)
 		if (temp->type != REDIR_HEREDOC)
 			if (!get_process_result(temp, minishell))
 				errors++;
+		if (errno == EACCES || errno == EROFS)
+			break ;
 		rdr = rdr->next;
 	}
 	if (errors > 0)

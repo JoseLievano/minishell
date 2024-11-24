@@ -20,11 +20,14 @@ void ft_executor(t_minishell *minishell)
 	if (cmdt->type == COMMAND)
 	{
 		if (ft_process_redirections(minishell))
+		{
 			printf("\nRedirections setted");
+			minishell->last_output = ft_execute_cmd(minishell);
+		}
 		else
-			printf("\nRedirections errors\n");
-		minishell->last_output = ft_execute_cmd(minishell);
+			perror("¯\\(°_o)/¯ ERROR");
 		printf("\n exec result %d \n", minishell->last_output);
+		printf("\n----------\n");
 	}
 	else
 		return ;

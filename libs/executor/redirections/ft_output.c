@@ -20,8 +20,7 @@ bool	ft_process_output(t_redir *input, t_minishell *minishell)
 	input->fd = open(f_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (input->fd == -1)
 	{
-		perror("¯\\(°_o)/¯ ERROR");
-		minishell->last_output = errno;
+		minishell->last_output = 1;
 		return (false);
 	}
 	return (true);
