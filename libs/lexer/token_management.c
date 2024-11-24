@@ -23,6 +23,11 @@ void	token_type(int token_kind, t_token *token, t_dll **list)
 {
 	static int	flag = 0;
 
+	if (token_kind == 42)
+	{
+		flag = 0;
+		return ;
+	}
 	if (token_kind >= 2 && token_kind <= 5)
 		flag += 1;
 

@@ -78,6 +78,7 @@ t_dll	*read_through_input(char *input)
 		string += word_counter;
 	}
 	token_type(0, allocate_token(), &list);
+	token_type(42, allocate_token(), &list);	
 	return (list);
 }
 
