@@ -65,11 +65,18 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '2')
 	{
-		char *str = ft_strdup("echo hi");
-		t_dll *tokens = read_through_input(str);
-		free(str);
+		//char *str = ft_strdup("echo hi");
+		t_dll *tokens =  NULL;
+		while(1)
+		{
+			tokens = read_through_input(ft_reader());
+			read_through_list(tokens);
+			free_nodes(tokens);
+			tokens = NULL;
+			printf("\n----------\n");
+		}
+		//free(str);
 		//rl_clear_history();
-		free_nodes(tokens);
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{
