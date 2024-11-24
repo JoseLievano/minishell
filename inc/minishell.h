@@ -41,10 +41,11 @@ typedef struct minishell_obj
 	t_cmdt	*cmdt;
 	t_dll	*envs;
 	char	*line;
-	char	*shell_directory;
+	char	*shell_path;
 	int		last_output;
 }	t_minishell;
 
 t_dll	*get_env_var_list(char **envp);
+void	ft_set_shell_path(t_minishell *minishell);
 
 #endif
