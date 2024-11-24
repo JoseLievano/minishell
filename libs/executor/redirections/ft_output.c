@@ -12,3 +12,17 @@
 
 #include "../ft_executor.h"
 
+bool	ft_process_output(t_redir *input, t_minishell *minishell)
+{
+	char	*f_path;
+
+	f_path = input->file_path;
+	input->fd = open(f_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (input->fd == -1)
+	{
+		perror("¯\\(°_o)/¯ ERROR");
+		minishell->last_output = errno;
+		return (false);
+	}
+	return (true);
+}

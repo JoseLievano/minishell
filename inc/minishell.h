@@ -24,6 +24,9 @@
 # include <readline/history.h>
 # include <stdio.h>
 # include <readline/readline.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <errno.h>
 
 typedef struct command_table	t_cmdt;
 
