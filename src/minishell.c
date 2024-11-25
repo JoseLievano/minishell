@@ -91,10 +91,18 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '4')
 	{
-		t_minishell *minishell = construct_minishell(envp);
-		minishell->line = ft_strdup("echo \"Hello $USER\"");
-		minishell->cmdt = ft_parser(read_through_input(minishell->line));
-		ft_expander(minishell);
+//		minishell->line = ft_strdup("echo \"Hello $USER\"");
+//		minishell->cmdt = ft_parser(read_through_input(minishell->line));
+		t_minishell *shell = construct_minishell(envp);
+		t_dll		*token_list;
+		token_list = NULL;
+		shell->line = ft_reader();
+		token_list = read_through_input(shell->line);
+		shell->cmdt = ft_parser(token_list);
+		ft_expander(shell);
+		ft_clean_cmdt(shell->cmdt);
+		free(shell->line);
+		free_nodes(token_list);
 	}
 	else if (argc > 1 && *argv[1] == '5')
 	{
