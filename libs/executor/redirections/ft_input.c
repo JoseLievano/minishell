@@ -12,7 +12,16 @@
 
 #include "../ft_executor.h"
 
-void	ft_process_input(t_redir *input)
+bool	ft_process_input(t_redir *input, t_minishell *minishell)
 {
-	printf("%s", input->file_path);
+	char	*f_path;
+
+	f_path = input->file_path;
+	input->fd = open(f_path, O_RDONLY);
+	if (input->fd == -1)
+	{
+		minishell->last_output = 1;
+		return (false);
+	}
+	return (true);
 }

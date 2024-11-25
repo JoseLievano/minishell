@@ -33,6 +33,7 @@ static t_minishell	*construct_minishell(char **envp)
 	minishell->line = NULL;
 	minishell->last_output = 0;
 	minishell->envs = get_env_var_list(envp);
+	ft_set_shell_path(minishell);
 	return (minishell);
 }
 

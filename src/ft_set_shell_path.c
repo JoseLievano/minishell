@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_append.c                                        :+:      :+:    :+:   */
+/*   ft_set_shell_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 20:01:21 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/21 20:01:22 by jlievano         ###   ########.fr       */
+/*   Created: 2024/11/25 00:04:34 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/25 00:04:36 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_executor.h"
+#include "../inc/minishell.h"
 
-bool	ft_process_append(t_redir *redirection, t_minishell *minishell)
+void	ft_set_shell_path(t_minishell *minishell)
 {
-	char	*f_path;
+	char	*shell_path;
+	t_dll	*pwd;
 
-	f_path = redirection->file_path;
-	redirection->fd = open(f_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (redirection->fd == -1)
-	{
-		minishell->last_output = 1;
-		return (false);
-	}
-	return (true);
+	pwd= ft_find_env("PWD", minishell->envs);
+	shell_path = ft_strjoin(((t_env *)pwd->content)->value, "/minishell");
+	minishell->shell_path = shell_path;
 }
