@@ -86,5 +86,6 @@ bool	node_is_redirection(t_dll *node);
 void	ft_clean_cmdt(t_cmdt *cmdt);
 void	ft_sort_redirections(t_dll *redirections);
 char	*ft_get_pipes_cmd(t_dll *node);
+void	ft_cmd_btwn_redir(t_dll *token_list);
 
 #endif

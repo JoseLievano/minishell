@@ -70,10 +70,11 @@ static bool	valid_prev_token(t_dll *token)
 {
 	t_token	*prev_tk;
 
+	prev_tk = NULL;
 	if (token->prev)
 		prev_tk = (t_token *)token->prev->content;
 	else
-		return (false);
+		return (true);
 	if (prev_tk->type == TOKEN_COMMAND
 		|| prev_tk->type == TOKEN_PIPE
 		|| prev_tk->type == TOKEN_ARGUMENT

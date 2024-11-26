@@ -37,6 +37,8 @@ static bool	valid_pipes_tokens(t_dll *token_list)
 
 bool	valid_syntax(t_dll *token_list)
 {
+	ft_cmd_btwn_redir(token_list);
+	read_through_list(token_list);
 	if (!valid_pipes_tokens(token_list))
 		return (false);
 	if (!valid_redirections(token_list))
