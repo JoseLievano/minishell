@@ -17,7 +17,6 @@ void ft_executor(t_minishell *minishell)
 	t_cmdt	*cmdt;
 
 	cmdt = minishell->cmdt;
-	printf("\nshell path: %s\n", minishell->shell_path);
 	if (cmdt->type == COMMAND)
 	{
 		if (ft_process_redirections(minishell))

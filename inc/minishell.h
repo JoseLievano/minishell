@@ -42,6 +42,7 @@ typedef struct minishell_obj
 	t_dll	*envs;
 	char	*line;
 	char	*shell_path;
+	char	*shell_dir;
 	int		last_output;
 }	t_minishell;
 

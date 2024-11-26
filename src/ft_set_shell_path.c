@@ -20,4 +20,5 @@ void	ft_set_shell_path(t_minishell *minishell)
 	pwd= ft_find_env("PWD", minishell->envs);
 	shell_path = ft_strjoin(((t_env *)pwd->content)->value, "/minishell");
 	minishell->shell_path = shell_path;
+	minishell->shell_dir = ft_strdup(((t_env *)pwd->content)->value);
 }

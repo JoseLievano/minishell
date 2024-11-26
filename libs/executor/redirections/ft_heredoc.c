@@ -12,3 +12,9 @@
 
 #include "../ft_executor.h"
 
+
+
+bool	ft_process_heredoc(t_redir *redirection, t_minishell *minishell)
+{
+
+}
