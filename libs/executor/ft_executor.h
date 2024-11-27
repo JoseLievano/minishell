@@ -27,6 +27,7 @@ int		ft_execute_cmd(t_minishell *minishell);
 bool	ft_process_input(t_redir *redirection, t_minishell *minishell);
 bool	ft_process_output(t_redir *redirection, t_minishell *minishell);
 bool	ft_process_append(t_redir *redirection, t_minishell *minishell);
+bool	ft_process_heredoc(t_redir *redirection, t_minishell *minishell);
 bool	ft_process_redirections(t_minishell *minishell);
 
 #endif

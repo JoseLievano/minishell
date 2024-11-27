@@ -27,7 +27,8 @@ static void	check_next_arg_node(t_dll *redir_node)
 		return ;
 	if (((t_token *)nxt->content)->type == TOKEN_ARGUMENT)
 	{
-		if (((t_token *)aft_nxt->content)->type == TOKEN_ARGUMENT)
+		if (((t_token *)aft_nxt->content)->type == TOKEN_ARGUMENT
+			||((t_token *)aft_nxt->content)->type == TOKEN_FLAG)
 			((t_token *)aft_nxt->content)->type = TOKEN_COMMAND;
 	}
 }

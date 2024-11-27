@@ -84,11 +84,13 @@ int	main(int argc, char **argv, char **envp)
 		char *str =  ft_reader();
 		t_dll *tokens = read_through_input(str);
 		t_cmdt *cmdt = ft_parser(tokens);
-		print_cmd_table(cmdt);
+		if (cmdt)
+			print_cmd_table(cmdt);
 		free_nodes(tokens);
 		free(str);
 		//rl_clear_history();
-		ft_clean_cmdt(cmdt);
+		if (cmdt)
+			ft_clean_cmdt(cmdt);
 	}
 	else if (argc > 1 && *argv[1] == '4')
 	{
@@ -116,8 +118,11 @@ int	main(int argc, char **argv, char **envp)
 			shell->line = ft_reader();
 			token_list = read_through_input(shell->line);
 			shell->cmdt = ft_parser(token_list);
-			ft_executor(shell);
-			ft_clean_cmdt(shell->cmdt);
+			if (shell->cmdt)
+			{
+				ft_executor(shell);
+				ft_clean_cmdt(shell->cmdt);
+			}
 			free(shell->line);
 			free_nodes(token_list);
 		}

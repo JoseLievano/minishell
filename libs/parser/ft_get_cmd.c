@@ -35,13 +35,13 @@ static bool	token_is_redirection(t_token *token)
 	return (false);
 }
 
-static t_dll	*get_arguments(t_dll *token_list)
+static t_dll	*get_arguments(t_dll *token_list, int cmd_index)
 {
 	t_dll	*head;
 	t_dll	*args;
 	t_token	*token_c;
 
-	head = t_dll_get_head(token_list);
+	head = t_dll_get_node_index(token_list, cmd_index);
 	args = NULL;
 	if (((t_token *)head->content)->type != TOKEN_COMMAND)
 		return (NULL);
@@ -61,20 +61,41 @@ static t_dll	*get_arguments(t_dll *token_list)
 	return (args);
 }
 
+static bool	set_cmd_name(t_cmd *cmd, t_dll *token_list, int *cmd_index)
+{
+	t_dll	*head;
+	t_token	*token;
+
+	head = t_dll_get_head(token_list);
+	token = NULL;
+	while (head)
+	{
+		token = (t_token *)head->content;
+		if (token->type == TOKEN_COMMAND)
+		{
+			cmd->name = ft_strdup(token->value);
+			*cmd_index = (int)head->index;
+			return (true);
+		}
+		head = head->next;
+	}
+	return (false);
+}
+
 t_cmd	*ft_get_cmd(t_dll *token_list)
 {
 	t_cmd	*cmd;
 	t_dll	*head;
+	int		cmd_index;
 
+	cmd_index = -1;
 	head = t_dll_get_head(token_list);
 	cmd = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	if (((t_token *)head->content)->type == TOKEN_COMMAND)
-		cmd->name = ft_strdup(((t_token *)head->content)->value);
-	else
+	if (!set_cmd_name(cmd, token_list, &cmd_index))
 		cmd->name = NULL;
-	cmd->arguments = get_arguments(head);
+	cmd->arguments = get_arguments(head, cmd_index);
 	cmd->redirections = get_redirections(head);
 	ft_sort_redirections(cmd->redirections);
 	return (cmd);

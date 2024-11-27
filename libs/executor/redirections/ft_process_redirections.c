@@ -23,6 +23,8 @@ static bool	get_process_result(t_redir *redirection, t_minishell *minishell)
 		result = ft_process_append(redirection, minishell);
 	else if (redirection->type == REDIR_INPUT)
 		result = ft_process_input(redirection, minishell);
+	else if (redirection->type == REDIR_HEREDOC)
+		result = ft_process_heredoc(redirection, minishell);
 	return (result);
 }
 
@@ -40,9 +42,8 @@ bool	ft_process_redirections(t_minishell *minishell)
 	while (rdr)
 	{
 		temp = (t_redir *)rdr->content;
-		if (temp->type != REDIR_HEREDOC)
-			if (!get_process_result(temp, minishell))
-				errors++;
+		if (!get_process_result(temp, minishell))
+			errors++;
 		if (errno == EACCES || errno == EROFS)
 			break ;
 		rdr = rdr->next;

@@ -12,12 +12,16 @@
 
 #include "ft_parser.h"
 
+/*
 static bool	valid_heredoc(t_dll *token_list)
 {
 	t_dll	*head;
 	t_token	*token;
 
+	read_through_list(token_list);
 	head = t_dll_get_head(token_list);
+	if (!head)
+		printf("\n head missing");
 	while (head)
 	{
 		token = (t_token *)head->content;
@@ -40,31 +44,25 @@ static bool	valid_heredoc(t_dll *token_list)
 	}
 	return (true);
 }
+*/
 
 static bool	argument_aft_redirection(t_dll *token_list)
 {
 	t_dll	*head;
-	t_token	*tk;
-	t_token	*ntk;
 
 	head = t_dll_get_head(token_list);
 	while (head)
 	{
-		tk = (t_token *)head->content;
-		if (head->next)
+		if (ft_is_redir_node(head))
 		{
-			ntk = (t_token *)head->next->content;
-			if ((tk->type == TOKEN_REDIRECTION_IN
-					|| tk->type == TOKEN_REDIRECTION_OUT
-					|| tk->type == TOKEN_REDIRECTION_APPEND
-					|| tk->type == TOKEN_HEREDOC)
-				&& ntk->type != TOKEN_ARGUMENT)
+			if (((t_token *)head->next->content)->type != TOKEN_ARGUMENT)
 				return (false);
 		}
 		head = head->next;
 	}
 	return (true);
 }
+
 
 static bool	valid_prev_token(t_dll *token)
 {
@@ -91,6 +89,7 @@ static bool	argument_bfr_redirection(t_dll *token_list)
 	head = t_dll_get_head(token_list);
 	while (head)
 	{
+		printf("\n%d", (int)head->index);
 		tk = (t_token *)head->content;
 		if (tk->type == TOKEN_REDIRECTION_IN
 			|| tk->type == TOKEN_REDIRECTION_APPEND
@@ -104,9 +103,15 @@ static bool	argument_bfr_redirection(t_dll *token_list)
 	return (true);
 }
 
+
 bool	valid_redirections(t_dll *token_list)
 {
-	return (argument_aft_redirection(token_list)
-		&& valid_heredoc(token_list)
-		&& argument_bfr_redirection(token_list));
+	if (!argument_aft_redirection(token_list))
+		return (false);
+	if (!argument_bfr_redirection(token_list))
+		return (false);
+	//printf("\n\n\nTo check heredoc redirections");
+//	if (!valid_heredoc(token_list))
+//		return (false);
+	return (true);
 }
