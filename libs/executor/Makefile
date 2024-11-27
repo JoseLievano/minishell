@@ -19,7 +19,7 @@ ENVS_DIR	=	envs/
 ENVS_FILES	=	ft_find_env.c ft_find_cmd_path.c ft_envs_to_array.c
 REDIR_DIR	=	redirections/
 REDIR_FILES	=	ft_append.c ft_heredoc.c ft_input.c ft_output.c \
-				ft_process_redirections.c
+				ft_process_redirections.c ft_executable_redirections.c
 ERR_DIR		=	error/
 ERR_FILES	=	ft_execute_error.c
 SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \

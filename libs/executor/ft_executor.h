@@ -17,6 +17,14 @@
 typedef struct minishell_obj	t_minishell;
 typedef struct redirection_obj	t_redir;
 
+typedef enum modify_redirection
+{
+	MOD_IN,
+	MOD_OUT,
+	MOD_BOTH,
+	MOD_NONE
+}	t_mod_red;
+
 void	ft_executor(t_minishell *minishell);
 t_dll	*ft_find_env(char *key, t_dll *env_list);
 char	**ft_envs_to_array(t_dll *env_list);

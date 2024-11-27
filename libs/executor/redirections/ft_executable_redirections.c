@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_executable_redirections.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/27 13:50:32 by jlievano          #+#    #+#             */
+/*   Updated: 2024/11/27 13:50:32 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../ft_executor.h"
+
+static bool	is_input_redir_node(t_dll *node)
+{
+	t_redir	*redir;
+
+	redir = (t_redir *)node->content;
+	if (redir->type == REDIR_HEREDOC || redir->type == REDIR_INPUT)
+		return (true);
+	return (false);
+}
+
+static bool	is_output_redir_node(t_dll *node)
+{
+	t_redir	*redir;
+
+	redir = (t_redir *)node->content;
+	if (redir->type == REDIR_APPEND || redir->type == REDIR_OUTPUT)
+		return (true);
+	return (false);
+}
+
+static int	get_exec_input_redirection(t_minishell *minishell)
+{
+	t_dll	*redir_node;
+
+	redir_node = ((t_cmd *)minishell->cmdt->content)->redirections;
+	while (redir_node)
+	{
+		if (!is_input_redir_node(redir_node))
+			return (-1);
+		if (redir_node->next)
+		{
+			if (is_output_redir_node(redir_node->next))
+				return (((t_redir *)redir_node->content)->fd);
+		}
+		redir_node = redir_node->next;
+	}
+	return (-1);
+}
+
+static int	get_exec_out_redirection(t_minishell *minishell)
+{
+	t_dll	*r_tail;
+
+	r_tail = t_dll_get_tail(((t_cmd *)minishell->cmdt->content)->redirections);
+	if (is_output_redir_node(r_tail))
+		return (((t_redir *)r_tail->content)->fd);
+	return (-1);
+}
+
+int	ft_process_exec_redirections(t_minishell *minishell)
+{
+	int	new_fd_in;
+	int	new_fd_out;
+
+	new_fd_in = get_exec_input_redirection(minishell);
+	new_fd_out = get_exec_out_redirection(minishell);
+	if (new_fd_in != -1)
+	{
+		if (dup2(new_fd_in, minishell->default_stdin))
+			minishell->last_output = errno;
+	}
+	if (new_fd_out != -1)
+	{
+		if (dup2(new_fd_out, minishell->default_stdout))
+			minishell->last_output = errno;
+	}
+	if (new_fd_in != -1 && new_fd_out != -1)
+		return (MOD_BOTH);
+	if (new_fd_in != -1)
+		return (MOD_IN);
+	if (new_fd_out != -1)
+		return (MOD_OUT);
+	return (MOD_NONE);
+}
+

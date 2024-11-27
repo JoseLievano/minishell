@@ -43,6 +43,8 @@ typedef struct minishell_obj
 	char	*line;
 	char	*shell_path;
 	char	*shell_dir;
+	int		default_stdin;
+	int		default_stdout;
 	int		last_output;
 }	t_minishell;
 
