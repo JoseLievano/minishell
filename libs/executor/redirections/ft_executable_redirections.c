@@ -63,26 +63,24 @@ static int	get_exec_out_redirection(t_minishell *minishell)
 
 int	ft_process_exec_redirections(t_minishell *minishell)
 {
-	int	new_fd_in;
-	int	new_fd_out;
 
-	new_fd_in = get_exec_input_redirection(minishell);
-	new_fd_out = get_exec_out_redirection(minishell);
-	if (new_fd_in != -1)
+	minishell->new_stdin = get_exec_input_redirection(minishell);
+	minishell->new_stdout = get_exec_out_redirection(minishell);
+	if (minishell->new_stdin != -1)
 	{
-		if (dup2(new_fd_in, minishell->default_stdin))
-			minishell->last_output = errno;
+		if (dup2(minishell->new_stdin, STDIN_FILENO) == -1)
+			return (MOD_DUP_ERROR);
 	}
-	if (new_fd_out != -1)
+	if (minishell->new_stdout != -1)
 	{
-		if (dup2(new_fd_out, minishell->default_stdout))
-			minishell->last_output = errno;
+		if (dup2(minishell->new_stdout, STDOUT_FILENO) == -1)
+			return (MOD_DUP_ERROR);
 	}
-	if (new_fd_in != -1 && new_fd_out != -1)
+	if (minishell->new_stdin != -1 && minishell->new_stdout != -1)
 		return (MOD_BOTH);
-	if (new_fd_in != -1)
+	if (minishell->new_stdin != -1)
 		return (MOD_IN);
-	if (new_fd_out != -1)
+	if (minishell->new_stdout != -1)
 		return (MOD_OUT);
 	return (MOD_NONE);
 }

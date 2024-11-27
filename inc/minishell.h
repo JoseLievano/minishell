@@ -43,9 +43,11 @@ typedef struct minishell_obj
 	char	*line;
 	char	*shell_path;
 	char	*shell_dir;
-	int		default_stdin;
-	int		default_stdout;
+	int		new_stdin;
+	int		new_stdout;
 	int		last_output;
+	int		default_stdout;
+	int		default_stdin;
 }	t_minishell;
 
 t_dll	*get_env_var_list(char **envp);

@@ -22,7 +22,8 @@ typedef enum modify_redirection
 	MOD_IN,
 	MOD_OUT,
 	MOD_BOTH,
-	MOD_NONE
+	MOD_NONE,
+	MOD_DUP_ERROR
 }	t_mod_red;
 
 void	ft_executor(t_minishell *minishell);

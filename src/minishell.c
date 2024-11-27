@@ -34,6 +34,8 @@ static t_minishell	*construct_minishell(char **envp)
 	minishell->last_output = 0;
 	minishell->envs = get_env_var_list(envp);
 	ft_set_shell_path(minishell);
+	minishell->new_stdin = -1;
+	minishell->new_stdout = -1;
 	minishell->default_stdin = dup(STDIN_FILENO);
 	minishell->default_stdout = dup(STDOUT_FILENO);
 	return (minishell);

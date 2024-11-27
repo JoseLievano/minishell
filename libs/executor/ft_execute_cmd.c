@@ -40,6 +40,22 @@ static char	**get_args_to_execute(t_cmd *cmd)
 	return (args);
 }
 
+static void	close_redirections(t_minishell *minishell)
+{
+	if (minishell->new_stdin != -1)
+	{
+		dup2(minishell->default_stdin, STDIN_FILENO);
+		close(minishell->new_stdin);
+		minishell->default_stdin = -1;
+	}
+	if (minishell->new_stdout != -1)
+	{
+		dup2(minishell->default_stdout, STDOUT_FILENO);
+		close(minishell->new_stdout);
+		minishell->default_stdout = -1;
+	}
+}
+
 int	ft_execute_cmd(t_minishell *minishell)
 {
 	char	**args;
@@ -69,5 +85,6 @@ int	ft_execute_cmd(t_minishell *minishell)
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}
+	close_redirections(minishell);
 	return (0);
 }
