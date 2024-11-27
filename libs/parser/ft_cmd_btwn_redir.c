@@ -33,6 +33,17 @@ static void	check_next_arg_node(t_dll *redir_node)
 	}
 }
 
+static bool	cmd_exist(t_dll *tk_node)
+{
+	while (tk_node)
+	{
+		if (((t_token *)tk_node->content)->type == TOKEN_COMMAND)
+			return (true);
+		tk_node = tk_node->next;
+	}
+	return (false);
+}
+
 void	ft_cmd_btwn_redir(t_dll *token_list)
 {
 	t_dll	*head;
@@ -50,6 +61,8 @@ void	ft_cmd_btwn_redir(t_dll *token_list)
 		{
 			check_next_arg_node(head);
 		}
+		if (cmd_exist(head))
+			break ;
 		head = head->next;
 	}
 }
