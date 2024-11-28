@@ -64,35 +64,69 @@ static void	close_redirections(t_minishell *minishell)
 	}
 }
 
-int	ft_execute_cmd(t_minishell *minishell)
+static void	check_valid_args(char **args, char **envs, char *cmd_path)
+{
+	if (args && envs && cmd_path)
+		return ;
+	if (args)
+		ft_free_char_array(args);
+	if (envs)
+		ft_free_char_array(envs);
+	if (cmd_path)
+		free(cmd_path);
+	perror("Non valid args : ");
+	exit(EXIT_FAILURE);
+}
+
+static void	execute_child_process(t_minishell *minishell)
 {
 	char	**args;
 	char	**envs;
 	char	*cmd_path;
-	pid_t	pid;
 	t_cmd	*cmd;
 
 	cmd = (t_cmd *)minishell->cmdt->content;
 	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
 	args = get_args_to_execute(cmd);
 	envs = ft_envs_to_array(minishell->envs);
+	check_valid_args(args, envs, cmd_path);
+	if (ft_process_exec_redirections(minishell) == MOD_DUP_ERROR)
+	{
+		perror("dup2");
+		exit(EXIT_FAILURE);
+	}
+	if (execve(cmd_path, args, envs) == -1)
+	{
+		perror("execve");
+		exit(EXIT_FAILURE);
+	}
+	ft_free_char_array(envs);
+	ft_free_char_array(args);
+	free(cmd_path);
+}
+
+int	ft_execute_cmd(t_minishell *minishell)
+{
+	pid_t	pid;
+	int status;
+
 	pid = fork();
+	minishell->new_stdin = -1;
+	minishell->new_stdout = -1;
 	if (pid == 0)
 	{
-		if (execve(cmd_path, args, envs) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+		execute_child_process(minishell);
 	}
 	else
 	{
-		int status;
-		waitpid(pid, &status, 0);
-		printf("\nout status: %d", WEXITSTATUS(status));
+		if (waitpid(pid, &status, 0) == -1)
+		{
+			perror("waitpid");
+			return (-1);
+		}
+		close_redirections(minishell);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}
-	close_redirections(minishell);
 	return (0);
 }

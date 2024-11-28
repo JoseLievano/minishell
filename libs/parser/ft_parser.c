@@ -18,10 +18,8 @@ t_cmdt	*ft_parser(t_dll *token_list)
 
 	if (valid_syntax(token_list))
 	{
-		printf("\nvalid syntax");
 		cmdt = ft_get_cmdt(token_list);
 		return (cmdt);
 	}
-	printf("\nInvalid syntax\n");
 	return (NULL);
 }

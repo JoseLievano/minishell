@@ -89,7 +89,6 @@ static bool	argument_bfr_redirection(t_dll *token_list)
 	head = t_dll_get_head(token_list);
 	while (head)
 	{
-		printf("\n%d", (int)head->index);
 		tk = (t_token *)head->content;
 		if (tk->type == TOKEN_REDIRECTION_IN
 			|| tk->type == TOKEN_REDIRECTION_APPEND

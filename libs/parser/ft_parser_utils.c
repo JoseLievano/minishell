@@ -12,6 +12,20 @@
 
 #include "ft_parser.h"
 
+void	ft_free_char_array(char **array) {
+	int	i;
+
+	i = 0;
+	if (!array)
+		return;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
 bool	node_is_redirection(t_dll *node)
 {
 	t_token	*token_content;
