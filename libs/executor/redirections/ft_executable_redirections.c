@@ -47,6 +47,11 @@ int	get_exec_input_redirection(t_minishell *minishell)
 			if (is_output_redir_node(redir_node->next))
 				return (((t_redir *)redir_node->content)->fd);
 		}
+		else if (redir_node->next == NULL)
+		{
+			if (is_input_redir_node(redir_node))
+				return (((t_redir *)redir_node->content)->fd);
+		}
 		redir_node = redir_node->next;
 	}
 	return (-1);

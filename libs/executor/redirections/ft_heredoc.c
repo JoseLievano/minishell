@@ -85,7 +85,7 @@ bool	ft_process_heredoc(t_redir *redirection, t_minishell *minishell)
 		minishell->last_output = 1;
 		return (false);
 	}
-	redirection->fd = open(heredoc_file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	redirection->fd = open(heredoc_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (redirection->fd == -1)
 	{
 		minishell->last_output = 1;
@@ -93,8 +93,9 @@ bool	ft_process_heredoc(t_redir *redirection, t_minishell *minishell)
 		return (false);
 	}
 	write_on_heredoc(redirection);
-//	unlink(heredoc_file);
-	//free(heredoc_file);
+	close(redirection->fd);
+	redirection->fd = open(heredoc_file, O_RDONLY);
 	redirection->file_path = heredoc_file;
+	unlink(redirection->file_path);
 	return (true);
 }
