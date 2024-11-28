@@ -50,6 +50,24 @@ static int	quotes_closed(char *prompt)
 	return (open_quotes + inside_single_quotes);
 }
 
+static bool	empty_prompt(char *prompt)
+{
+	int		i;
+	char	c;
+
+	if (ft_strlen(prompt) == 0)
+		return (true);
+	i = 0;
+	while (prompt[i])
+	{
+		c = prompt[i];
+		if (!(c >= 8 && c <= 13) && c != 32)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 static int	invalid_prompt(char *prompt)
 {
 	int	qoutes_status;
@@ -57,6 +75,8 @@ static int	invalid_prompt(char *prompt)
 
 	qoutes_status = quotes_closed(prompt);
 	pipe_status = not_pipe_ending(prompt);
+	if (empty_prompt(prompt))
+		return (1);
 	return (qoutes_status + pipe_status);
 }
 

@@ -23,8 +23,6 @@ void ft_executor(t_minishell *minishell)
 			minishell->last_output = ft_execute_cmd(minishell);
 		else
 			perror("¯\\(°_o)/¯ ERROR");
-		printf("\n----------");
-		printf("Exec result [%d]\n", minishell->last_output);
 	}
 	else
 		return ;
