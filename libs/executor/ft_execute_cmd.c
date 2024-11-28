@@ -42,17 +42,25 @@ static char	**get_args_to_execute(t_cmd *cmd)
 
 static void	close_redirections(t_minishell *minishell)
 {
+	t_dll	*redir;
+
+	redir = ((t_cmd *)minishell->cmdt->content)->redirections;
+	if (t_dll_size(redir) == 0)
+		return ;
 	if (minishell->new_stdin != -1)
 	{
 		dup2(minishell->default_stdin, STDIN_FILENO);
-		close(minishell->new_stdin);
 		minishell->default_stdin = -1;
 	}
 	if (minishell->new_stdout != -1)
 	{
 		dup2(minishell->default_stdout, STDOUT_FILENO);
-		close(minishell->new_stdout);
 		minishell->default_stdout = -1;
+	}
+	while (redir)
+	{
+		close(((t_redir *)redir->content)->fd);
+		redir = redir->next;
 	}
 }
 
