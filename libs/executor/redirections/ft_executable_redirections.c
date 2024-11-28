@@ -32,11 +32,12 @@ static bool	is_output_redir_node(t_dll *node)
 	return (false);
 }
 
-static int	get_exec_input_redirection(t_minishell *minishell)
+int	get_exec_input_redirection(t_minishell *minishell)
 {
 	t_dll	*redir_node;
 
 	redir_node = ((t_cmd *)minishell->cmdt->content)->redirections;
+	redir_node = t_dll_get_head(redir_node);
 	while (redir_node)
 	{
 		if (!is_input_redir_node(redir_node))
@@ -51,7 +52,7 @@ static int	get_exec_input_redirection(t_minishell *minishell)
 	return (-1);
 }
 
-static int	get_exec_out_redirection(t_minishell *minishell)
+int	get_exec_out_redirection(t_minishell *minishell)
 {
 	t_dll	*r_tail;
 
@@ -69,13 +70,11 @@ int	ft_process_exec_redirections(t_minishell *minishell)
 	minishell->new_stdout = get_exec_out_redirection(minishell);
 	if (minishell->new_stdin != -1)
 	{
-		printf("new stdin %d", minishell->new_stdin);
 		if (dup2(minishell->new_stdin, STDIN_FILENO) == -1)
 			return (MOD_DUP_ERROR);
 	}
 	if (minishell->new_stdout != -1)
 	{
-		printf("new stdout %d", minishell->new_stdout);
 		if (dup2(minishell->new_stdout, STDOUT_FILENO) == -1)
 			return (MOD_DUP_ERROR);
 	}

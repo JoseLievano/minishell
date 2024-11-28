@@ -39,5 +39,7 @@ bool	ft_process_append(t_redir *redirection, t_minishell *minishell);
 bool	ft_process_heredoc(t_redir *redirection, t_minishell *minishell);
 bool	ft_process_redirections(t_minishell *minishell);
 int		ft_process_exec_redirections(t_minishell *minishell);
+int		get_exec_input_redirection(t_minishell *minishell);
+int		get_exec_out_redirection(t_minishell *minishell);
 
 #endif
