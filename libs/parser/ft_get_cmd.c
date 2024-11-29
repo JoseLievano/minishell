@@ -41,7 +41,10 @@ static t_dll	*get_arguments(t_dll *token_list, int cmd_index)
 	t_dll	*args;
 	t_token	*token_c;
 
-	head = t_dll_get_node_index(token_list, cmd_index);
+	if (cmd_index == -1)
+		head = t_dll_get_head(token_list);
+	else
+		head = t_dll_get_node_index(token_list, cmd_index);
 	args = NULL;
 	if (((t_token *)head->content)->type != TOKEN_COMMAND)
 		return (NULL);

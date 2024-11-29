@@ -77,10 +77,7 @@ static void	set_pipe_seq(t_cmdt *cmdt, t_dll *token_list)
 void	ft_set_cmdt_type(t_cmdt *cmdt, t_dll *token_list)
 {
 	if (has_pipes(token_list))
-	{
-		printf("\nhas pipes\n");
 		set_pipe_seq(cmdt, token_list);
-	}
 	else
 	{
 		cmdt->type = COMMAND;
