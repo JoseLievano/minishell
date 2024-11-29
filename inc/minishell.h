@@ -48,6 +48,7 @@ typedef struct minishell_obj
 	int		last_output;
 	int		default_stdout;
 	int		default_stdin;
+	bool	interactive_mode;
 }	t_minishell;
 
 t_dll	*get_env_var_list(char **envp);

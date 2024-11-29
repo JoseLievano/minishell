@@ -22,14 +22,14 @@ static char	**get_args_to_execute(t_cmd *cmd)
 
 	i = 0;
 	j = 0;
-	args_node= t_dll_get_head(cmd->arguments);
+	args_node = t_dll_get_head(cmd->arguments);
 	len = t_dll_size(args_node) + 2;
 	args = (char **)malloc(sizeof(char *) * len);
 	args[i] = ft_strdup(cmd->name);
 	i++;
 	while (i < len)
 	{
-		args_node= t_dll_get_node_index(args_node, j);
+		args_node = t_dll_get_node_index(args_node, j);
 		if (!args_node)
 			break ;
 		args[i] = ft_strdup(((t_arg *)args_node->content)->value);
@@ -108,7 +108,7 @@ static void	execute_child_process(t_minishell *minishell)
 int	ft_execute_cmd(t_minishell *minishell)
 {
 	pid_t	pid;
-	int status;
+	int		status;
 
 	pid = fork();
 	if (pid == 0)

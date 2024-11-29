@@ -12,7 +12,7 @@
 
 #include "ft_executor.h"
 
-void ft_executor(t_minishell *minishell)
+void	ft_executor(t_minishell *minishell)
 {
 	t_cmdt	*cmdt;
 

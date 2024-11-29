@@ -38,6 +38,7 @@ static t_minishell	*construct_minishell(char **envp)
 	minishell->new_stdout = -1;
 	minishell->default_stdin = dup(STDIN_FILENO);
 	minishell->default_stdout = dup(STDOUT_FILENO);
+	minishell->interactive_mode = true;
 	return (minishell);
 }
 
