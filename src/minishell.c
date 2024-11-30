@@ -24,7 +24,7 @@
 
 #include "../inc/minishell.h"
 
-static t_minishell	*construct_minishell(char **envp)
+t_minishell	*construct_minishell(char **envp)
 {
 	t_minishell *minishell;
 
@@ -120,7 +120,9 @@ int	main(int argc, char **argv, char **envp)
 		token_list = NULL;
 		while (1)
 		{
+			shell->interactive_mode = true;
 			shell->line = ft_reader();
+			shell->interactive_mode = false;
 			token_list = read_through_input(shell->line);
 			shell->cmdt = ft_parser(token_list);
 			if (shell->cmdt)

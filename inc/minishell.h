@@ -53,5 +53,6 @@ typedef struct minishell_obj
 
 t_dll	*get_env_var_list(char **envp);
 void	ft_set_shell_path(t_minishell *minishell);
+t_minishell	*construct_minishell(char **envp);
 
 #endif

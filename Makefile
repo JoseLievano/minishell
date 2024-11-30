@@ -24,7 +24,7 @@ FT_EXPANDER =	libs/expander/ft_expander.a
 FT_EXECUTOR	=	libs/executor/ft_executor.a
 OBJS		=	$(SRC:.c=.o)
 SRC_DIR		=	src/
-SRC_FILES	=	minishell.c ft_get_env_var.c ft_set_shell_path.c
+SRC_FILES	=	minishell.c ft_get_env_var.c ft_set_shell_path.c ft_execution_mode.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 all			:	$(NAME)
