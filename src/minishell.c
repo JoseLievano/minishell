@@ -3,18 +3,6 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jlievano <jlievano@student.42luxembourg.>  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 19:07:15 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/08 19:49:14 by jlievano         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
 /*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:52:43 by jlievano          #+#    #+#             */
@@ -115,6 +103,12 @@ int	main(int argc, char **argv, char **envp)
 	else if (argc > 1 && *argv[1] == '5')
 	{
 		t_minishell *shell = construct_minishell(envp);
+		ft_parse_args(shell, argc, argv);
+		if (shell->interactive_mode)
+			ft_interactive_shell(shell);
+		else
+			ft_noninteractive_shell(shell);
+		/*
 		t_dll		*token_list;
 
 		token_list = NULL;
@@ -133,6 +127,7 @@ int	main(int argc, char **argv, char **envp)
 			free(shell->line);
 			free_nodes(token_list);
 		}
+		*/
 	}
 	return (0);
 }

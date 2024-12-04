@@ -51,8 +51,11 @@ typedef struct minishell_obj
 	bool	interactive_mode;
 }	t_minishell;
 
-t_dll	*get_env_var_list(char **envp);
-void	ft_set_shell_path(t_minishell *minishell);
+t_dll		*get_env_var_list(char **envp);
+void		ft_set_shell_path(t_minishell *minishell);
 t_minishell	*construct_minishell(char **envp);
+void		ft_noninteractive_shell(t_minishell *minishell);
+void		ft_parse_args(t_minishell *minishell, int argc, char **argv);
+void		ft_interactive_shell(t_minishell *minishell);
 
 #endif
