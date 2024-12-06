@@ -18,6 +18,7 @@ void	ft_noninteractive_shell(t_minishell *minishell)
 
 	token_list = read_through_input(minishell->line);
 	minishell->cmdt = ft_parser(token_list);
+	ft_expander(minishell);
 	if (minishell->cmdt)
 	{
 		ft_executor(minishell);

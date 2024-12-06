@@ -26,6 +26,33 @@ typedef enum modify_redirection
 	MOD_DUP_ERROR
 }	t_mod_red;
 
+typedef enum pipe_position
+{
+	PIPE_START,
+	PIPE_MIDDLE,
+	PIPE_END,
+	PIPE_UNDEFINED
+}	t_pipe_position;
+
+typedef struct pipe_obj
+{
+	char			*cmd;
+	char			**args;
+	pid_t			pid;
+	t_pipe_position	position;
+	int				def_stdin;
+	int				def_stdout;
+	int				new_stdin;
+	int				new_stdout;
+	int				execve_result;
+}	t_piped_cmd;
+
+typedef struct pipe_holder
+{
+	int		pipes_count;
+	t_dll	*pipes_cmd;
+}	t_piph;
+
 void	ft_executor(t_minishell *minishell);
 t_dll	*ft_find_env(char *key, t_dll *env_list);
 char	**ft_envs_to_array(t_dll *env_list);
@@ -41,5 +68,7 @@ bool	ft_process_redirections(t_minishell *minishell);
 int		ft_process_exec_redirections(t_minishell *minishell);
 int		get_exec_input_redirection(t_minishell *minishell);
 int		get_exec_out_redirection(t_minishell *minishell);
+t_piph	*ft_pipe_holder_constructor(t_minishell *minishell);
+void	ft_setup_piped_cmd_position(t_dll *piped_cmd);
 
 #endif

@@ -108,26 +108,6 @@ int	main(int argc, char **argv, char **envp)
 			ft_interactive_shell(shell);
 		else
 			ft_noninteractive_shell(shell);
-		/*
-		t_dll		*token_list;
-
-		token_list = NULL;
-		while (1)
-		{
-			shell->interactive_mode = true;
-			shell->line = ft_reader();
-			shell->interactive_mode = false;
-			token_list = read_through_input(shell->line);
-			shell->cmdt = ft_parser(token_list);
-			if (shell->cmdt)
-			{
-				ft_executor(shell);
-				ft_clean_cmdt(shell->cmdt);
-			}
-			free(shell->line);
-			free_nodes(token_list);
-		}
-		*/
 	}
 	return (0);
 }

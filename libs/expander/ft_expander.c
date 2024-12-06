@@ -184,25 +184,25 @@ void	run_through_arguments(t_cmd *command_table, t_dll *envs,
 	char	*tmp_arg;
 
 	tmp_arg = command_table->name;
-	printf("\nCommand name: %s", command_table->name);
+//	printf("\nCommand name: %s", command_table->name);
 	command_table->name = expanding(command_table->name, envs, last_output);
-	printf("\nExpanded Command name: %s", command_table->name);
+//	printf("\nExpanded Command name: %s", command_table->name);
 	free(tmp_arg);
 	tmp = command_table->arguments;
 	while ((t_dll *)tmp)
 	{
 		if (((t_arg *)tmp->content)->value)
 		{
-			printf("\nArgument: %s", ((t_arg *)tmp->content)->value);
+//			printf("\nArgument: %s", ((t_arg *)tmp->content)->value);
 			tmp_arg = ((t_arg *)tmp->content)->value;
 			((t_arg *)tmp->content)->value = quotes_breakdown_n_expantion(((t_arg *)tmp->content)->value,
 					envs, last_output);
 			free(tmp_arg);
-			printf("\nExpanded Argument: %s", ((t_arg *)tmp->content)->value);
+//			printf("\nExpanded Argument: %s", ((t_arg *)tmp->content)->value);
 		}
 		tmp = tmp->next;
 	}
-	printf("\n");
+//	printf("\n");
 }
 
 void	ft_expander(t_minishell *minishell)
