@@ -21,7 +21,8 @@ REDIR_DIR	=	redirections/
 REDIR_FILES	=	ft_append.c ft_heredoc.c ft_input.c ft_output.c \
 				ft_process_redirections.c ft_executable_redirections.c
 PIPE_DIR	=	pipes/
-PIPE_FILES	=	ft_pipes_config.c ft_setup_piped_cmd_position.c
+PIPE_FILES	=	ft_pipes_config.c ft_setup_piped_cmd_position.c \
+				ft_setup_pipes_fds.c
 ERR_DIR		=	error/
 ERR_FILES	=	ft_execute_error.c
 SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \
