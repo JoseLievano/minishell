@@ -185,7 +185,8 @@ void	run_through_arguments(t_cmd *command_table, t_dll *envs,
 
 	tmp_arg = command_table->name;
 //	printf("\nCommand name: %s", command_table->name);
-	command_table->name = expanding(command_table->name, envs, last_output);
+	command_table->name = quotes_breakdown_n_expantion(command_table->name,
+			envs, last_output);
 //	printf("\nExpanded Command name: %s", command_table->name);
 	free(tmp_arg);
 	tmp = command_table->arguments;
