@@ -30,6 +30,8 @@
 
 typedef struct command_table	t_cmdt;
 
+typedef struct pipe_holder	t_piph;
+
 typedef struct env_v_obj
 {
 	char	*key;
@@ -40,6 +42,7 @@ typedef struct minishell_obj
 {
 	t_cmdt	*cmdt;
 	t_dll	*envs;
+	t_piph	*pipe_holder;
 	char	*line;
 	char	*shell_path;
 	char	*shell_dir;

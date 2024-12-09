@@ -77,22 +77,23 @@ static void	setup_args(t_dll *list, char *shell_path)
 	}
 }
 
-t_piph	*ft_pipe_holder_constructor(t_minishell *minishell)
+bool	ft_pipe_holder_constructor(t_minishell *minishell)
 {
 	t_piph		*pipe_holder;
 	t_pipes		*pipes_cmd;
 
 	pipe_holder = (t_piph *)malloc(sizeof(pipe_holder));
 	if (!pipe_holder)
-		return (NULL);
+		return (false);
 	if (minishell->cmdt->type == PIPE_SEQ)
 		pipes_cmd = (t_pipes *) minishell->cmdt->content;
 	else
-		return (NULL);
+		return (false);
 	pipe_holder->pipes_count = pipes_cmd->cmd_count - 1;
 	pipe_holder->pipes_cmd = NULL;
 	set_pipes_list(pipe_holder, pipes_cmd);
 	setup_args(pipe_holder->pipes_cmd, minishell->shell_path);
 	ft_setup_pipes_fds(pipe_holder);
-	return (pipe_holder);
+	minishell->pipe_holder = pipe_holder;
+	return (true);
 }

@@ -96,6 +96,7 @@ int	main(int argc, char **argv, char **envp)
 		token_list = read_through_input(shell->line);
 		shell->cmdt = ft_parser(token_list);
 		ft_expander(shell);
+		print_cmd_table(shell->cmdt);
 		ft_clean_cmdt(shell->cmdt);
 		free(shell->line);
 		free_nodes(token_list);
