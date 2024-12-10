@@ -71,5 +71,6 @@ int		get_exec_out_redirection(t_minishell *minishell);
 bool	ft_pipe_holder_constructor(t_minishell *minishell);
 void	ft_setup_piped_cmd_position(t_dll *piped_cmd);
 bool	ft_setup_pipes_fds(t_piph *holder);
+int		ft_execute_pipes(t_minishell *minishell);
 
 #endif

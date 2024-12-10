@@ -22,9 +22,6 @@ static bool	set_pipe_in_fd(t_dll *piped_node, int fd)
 	if (pipe_cmd->position == PIPE_START)
 		return (true);
 	pipe_cmd->new_stdin = fd;
-	if (dup2(pipe_cmd->new_stdin, STDIN_FILENO) == -1)
-		return (false);
-	close(pipe_cmd->new_stdin);
 	return (true);
 }
 
@@ -38,9 +35,6 @@ static bool	set_pipe_out_fd(t_dll *piped_node, int fd)
 	if (pipe_cmd->position == PIPE_END)
 		return (true);
 	pipe_cmd->new_stdout = fd;
-	if (dup2(pipe_cmd->new_stdout, STDOUT_FILENO) == -1)
-		return (false);
-	close(pipe_cmd->new_stdout);
 	return (true);
 }
 

@@ -19,6 +19,7 @@
 # include "../libs/lexer/ft_lexer.h"
 # include "../libs/parser/ft_parser.h"
 # include "../libs/expander/ft_expander.h"
+# include "../libs/builtins/ft_built_ins.h"
 # include "../libs/executor/ft_executor.h"
 # include <sys/wait.h>
 # include <readline/history.h>

@@ -22,6 +22,7 @@ FT_LEXER	=	libs/lexer/ft_lexer.a
 FT_PARSER	=	libs/parser/ft_parser.a
 FT_EXPANDER =	libs/expander/ft_expander.a
 FT_EXECUTOR	=	libs/executor/ft_executor.a
+FT_BUILTINS	=	libs/builtins/ft_built_ins.a
 OBJS		=	$(SRC:.c=.o)
 SRC_DIR		=	src/
 SRC_FILES	=	minishell.c ft_get_env_var.c ft_set_shell_path.c \
@@ -31,8 +32,8 @@ SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 all			:	$(NAME)
 
-$(NAME)		:	$(OBJS) $(FT_EXECUTOR) $(FT_EXPANDER) $(FT_PARSER) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_EXECUTOR) $(FT_EXPANDER) $(FT_PARSER) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT) $(LDFLAGS)
+$(NAME)		:	$(OBJS) $(FT_EXECUTOR) $(FT_BUILTINS) $(FT_EXPANDER) $(FT_PARSER) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_EXECUTOR) $(FT_BUILTINS) $(FT_EXPANDER) $(FT_PARSER) $(FT_LEXER) $(FT_READER) $(T_DLL) $(LIBFT) $(LDFLAGS)
 
 $(T_DLL)	:
 				$(MAKE) -C libs/t_dll/
@@ -52,6 +53,9 @@ $(FT_PARSER) :
 $(FT_EXPANDER) :
 				$(MAKE) -C libs/expander/
 
+$(FT_BUILTINS)	:
+				$(MAKE) -C libs/builtins
+
 $(FT_EXECUTOR)	:
 				$(MAKE) -C libs/executor/
 
@@ -64,6 +68,7 @@ clean		:
 				@make -C libs/parser clean
 				@make -C libs/expander clean
 				@make -C libs/executor clean
+				@make -C libs/builtins clean
 
 fclean		:	clean
 				$(RM) $(NAME)
@@ -74,6 +79,7 @@ fclean		:	clean
 				@make -C libs/parser fclean
 				@make -C libs/expander fclean
 				@make -C libs/executor fclean
+				@make -C libs/builtins fclean
 
 re			:	fclean $(NAME)
 

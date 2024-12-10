@@ -24,6 +24,12 @@ void	ft_executor(t_minishell *minishell)
 		else
 			perror("¯\\(°_o)/¯ ERROR");
 	}
+	else if (cmdt->type == PIPE_SEQ)
+	{
+		minishell->last_output = ft_execute_pipes(minishell);
+		if (minishell->last_output != 0)
+			perror("¯\\(°_o)/¯ ERROR");
+	}
 	else
 		return ;
 }

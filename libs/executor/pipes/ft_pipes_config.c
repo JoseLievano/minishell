@@ -93,7 +93,7 @@ bool	ft_pipe_holder_constructor(t_minishell *minishell)
 	pipe_holder->pipes_cmd = NULL;
 	set_pipes_list(pipe_holder, pipes_cmd);
 	setup_args(pipe_holder->pipes_cmd, minishell->shell_path);
-	ft_setup_pipes_fds(pipe_holder);
+	ft_setup_piped_cmd_position(pipe_holder->pipes_cmd);
 	minishell->pipe_holder = pipe_holder;
 	return (true);
 }
