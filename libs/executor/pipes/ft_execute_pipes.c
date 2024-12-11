@@ -12,26 +12,12 @@
 
 #include "../ft_executor.h"
 
-static void	close_pipes(t_dll *pipe_head)
+void	close_pipes(t_piped_cmd *current)
 {
-	t_dll		*head;
-	t_piped_cmd	*current;
-
-	current = NULL;
-	head = t_dll_get_head(pipe_head);
-	while (head)
-	{
-		current = (t_piped_cmd *)head->content;
-		if (current->new_stdin != -1)
-			close(current->new_stdin);
-		if (current->new_stdout != -1)
-			close(current->new_stdout);
-		dup2(current->def_stdin, STDIN_FILENO);
-		dup2(current->def_stdout, STDOUT_FILENO);
-		close(current->def_stdin);
-		close(current->def_stdout);
-		head = head->next;
-	}
+	if (current->new_stdin != -1)
+		close(current->new_stdin);
+	if (current->new_stdout != -1)
+		close(current->new_stdout);
 }
 
 static void	wait_for_pipes(t_dll *pipe_head)
@@ -55,6 +41,7 @@ static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs)
 
 	if (pipe_cmd->pid == 0)
 	{
+
 		if (pipe_cmd->new_stdin != -1)
 		{
 			dup2(pipe_cmd->new_stdin, STDIN_FILENO);
@@ -71,27 +58,7 @@ static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs)
 			exit(EXIT_FAILURE);
 		}
 	}
-	/*
-	if (pipe_cmd->pid == 0)
-	{
-		if (pipe_cmd->position == PIPE_START)
-			ft_setup_first_cmd(pipe_cmd);
-		else if (pipe_cmd->position == PIPE_MIDDLE)
-			ft_setup_middle_cmd(pipe_cmd);
-		else if (pipe_cmd->position == PIPE_END)
-			ft_setup_last_cmd(pipe_cmd);
-		else
-		{
-			pipe_cmd->execve_result = -1;
-			return ;
-		}
-		if (execve(pipe_cmd->args[0], pipe_cmd->args, envs) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
-	}
-	*/
+	close_pipes(pipe_cmd);
 }
 
 static bool execute_pipeline(t_dll *pipe_head, char **envs)
@@ -107,7 +74,6 @@ static bool execute_pipeline(t_dll *pipe_head, char **envs)
 		head = head->next;
 	}
 	wait_for_pipes(pipe_head);
-	close_pipes(pipe_head);
 	return (true);
 }
 

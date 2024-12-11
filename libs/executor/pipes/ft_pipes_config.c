@@ -21,8 +21,8 @@ static t_piped_cmd	*init_pipe(char *cmd)
 	to_return_pipe->pid = -1;
 	to_return_pipe->position = PIPE_UNDEFINED;
 	to_return_pipe->cmd = ft_strdup(cmd);
-	to_return_pipe->def_stdin = dup(STDIN_FILENO);
-	to_return_pipe->def_stdout = dup(STDOUT_FILENO);
+	to_return_pipe->def_stdin =  -1;
+	to_return_pipe->def_stdout =  -1;
 	to_return_pipe->new_stdin = -1;
 	to_return_pipe->new_stdout = -1;
 	to_return_pipe->execve_result = 0;
@@ -51,11 +51,12 @@ static char	**get_current_args(char *shell_path, char *cmd)
 {
 	char	**args;
 
-	args = (char **)malloc(sizeof(char *) * 4);
+	args = (char **)malloc(sizeof(char *) * 5);
 	args[0] = ft_strdup(shell_path);
-	args[1] = ft_strdup("5 -c");
-	args[2] = ft_strdup(cmd);
-	args[3] = NULL;
+	args[1] = ft_strdup("5");
+	args[2] = ft_strdup("-c");
+	args[3] = ft_strdup(cmd);
+	args[4] = NULL;
 	return (args);
 }
 
