@@ -12,76 +12,121 @@
 
 #include "../ft_executor.h"
 
+static void	close_pipes(t_dll *pipe_head)
+{
+	t_dll		*head;
+	t_piped_cmd	*current;
+
+	current = NULL;
+	head = t_dll_get_head(pipe_head);
+	while (head)
+	{
+		current = (t_piped_cmd *)head->content;
+		if (current->new_stdin != -1)
+			close(current->new_stdin);
+		if (current->new_stdout != -1)
+			close(current->new_stdout);
+		dup2(current->def_stdin, STDIN_FILENO);
+		dup2(current->def_stdout, STDOUT_FILENO);
+		close(current->def_stdin);
+		close(current->def_stdout);
+		head = head->next;
+	}
+}
+
+static void	wait_for_pipes(t_dll *pipe_head)
+{
+	t_dll		*head;
+	t_piped_cmd	*current;
+
+	head = t_dll_get_head(pipe_head);
+	current = NULL;
+	while (head)
+	{
+		current = (t_piped_cmd *)head->content;
+		waitpid(current->pid, NULL, 0);
+		head = head->next;
+	}
+}
+
+static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs)
+{
+	pipe_cmd->pid = fork();
+
+	if (pipe_cmd->pid == 0)
+	{
+		if (pipe_cmd->new_stdin != -1)
+		{
+			dup2(pipe_cmd->new_stdin, STDIN_FILENO);
+			close(pipe_cmd->new_stdin);
+		}
+		if (pipe_cmd->new_stdout != -1)
+		{
+			dup2(pipe_cmd->new_stdout, STDOUT_FILENO);
+			close(pipe_cmd->new_stdout);
+		}
+		if (execve(pipe_cmd->args[0], pipe_cmd->args, envs) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
+	}
+	/*
+	if (pipe_cmd->pid == 0)
+	{
+		if (pipe_cmd->position == PIPE_START)
+			ft_setup_first_cmd(pipe_cmd);
+		else if (pipe_cmd->position == PIPE_MIDDLE)
+			ft_setup_middle_cmd(pipe_cmd);
+		else if (pipe_cmd->position == PIPE_END)
+			ft_setup_last_cmd(pipe_cmd);
+		else
+		{
+			pipe_cmd->execve_result = -1;
+			return ;
+		}
+		if (execve(pipe_cmd->args[0], pipe_cmd->args, envs) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
+	}
+	*/
+}
+
+static bool execute_pipeline(t_dll *pipe_head, char **envs)
+{
+	t_dll	*head;
+
+	head = t_dll_get_head(pipe_head);
+	if (!head)
+		return (false);
+	while (head)
+	{
+		exec_pipe((t_piped_cmd *)head->content, envs);
+		head = head->next;
+	}
+	wait_for_pipes(pipe_head);
+	close_pipes(pipe_head);
+	return (true);
+}
+
 int	ft_execute_pipes(t_minishell *minishell)
 {
-	if (!ft_pipe_holder_constructor(minishell))
+	t_dll	*piped_cmd_list;
+	char	**envs;
+
+	ft_pipe_holder_constructor(minishell);
+	if (!minishell->pipe_holder)
 		return (1);
-	else
-		return (0);
+	ft_setup_pipes_fds(minishell->pipe_holder);
+	piped_cmd_list = t_dll_get_head(minishell->pipe_holder->pipes_cmd);
+	envs = ft_envs_to_array(minishell->envs);
+	if (!execute_pipeline(piped_cmd_list, envs))
+	{
+		ft_free_char_array(envs);
+		return (1);
+	}
+	ft_free_char_array(envs);
+	return (0);
 }
-
-/*
-static void close_pipes(int pipe_fds[2])
-{
-    close(pipe_fds[0]);
-    close(pipe_fds[1]);
-}
-
-static void execute_command(t_piped_cmd *cmd, t_minishell *minishell)
-{
-    if (execve(cmd->args[0], cmd->args, ft_envs_to_array(minishell->envs)) == -1)
-    {
-        perror("execve");
-        exit(EXIT_FAILURE);
-    }
-}
-
-int ft_execute_pipes(t_minishell *minishell)
-{
-    t_dll *current;
-    int pipe_fds[2];
-    int prev_fd = -1;
-    pid_t pid;
-
-    current = t_dll_get_head(minishell->pipe_holder->pipes_cmd);
-    while (current)
-    {
-        t_piped_cmd *cmd = (t_piped_cmd *)current->content;
-        if (current->next && pipe(pipe_fds) == -1)
-            return (1);
-
-        if ((pid = fork()) == -1)
-            return (1);
-
-        if (pid == 0)
-        {
-            if (prev_fd != -1)
-            {
-                dup2(prev_fd, STDIN_FILENO);
-                close(prev_fd);
-            }
-            if (current->next)
-            {
-                dup2(pipe_fds[1], STDOUT_FILENO);
-                close_pipes(pipe_fds);
-            }
-            execute_command(cmd, minishell);
-        }
-        else
-        {
-            if (prev_fd != -1)
-                close(prev_fd);
-            if (current->next)
-            {
-                close(pipe_fds[1]);
-                prev_fd = pipe_fds[0];
-            }
-            else
-                close(pipe_fds[0]);
-            current = current->next;
-        }
-    }
-    while (wait(NULL) > 0);
-    return (0);
-}
-*/
