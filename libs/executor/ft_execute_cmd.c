@@ -90,8 +90,8 @@ static void	execute_child_process(t_minishell *minishell)
 	args = get_args_to_execute(cmd);
 	envs = ft_envs_to_array(minishell->envs);
 	/*
-	 *if (ft_is_built_in(cmd, args, envs))
-	 *	return ;
+	 if (ft_is_built_in(cmd, args, minishell))
+		return ;
 	 */
 	check_valid_args(args, envs, cmd_path);
 	if (ft_process_exec_redirections(minishell) == MOD_DUP_ERROR)
