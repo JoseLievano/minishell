@@ -4,7 +4,7 @@
 
 typedef struct minishell_obj	t_minishell;
 
-void	ft_built_ins(char	**args);
+void	ft_echo(char	**args);
 bool    ft_is_built_in(char *cmd, char **args, t_minishell *minishell);
 
 #endif

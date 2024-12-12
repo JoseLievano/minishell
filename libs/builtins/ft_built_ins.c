@@ -1,10 +1,12 @@
 #include "ft_built_ins.h"
 
-bool is_built_int(char *cmd);
-
-void	ft_built_ins(char	**args)
+bool	ft_is_built_in(char *cmd, char **args, t_minishell *minishell)
 {
-	printf("hello from builts ins");
-	printf("%s", args[0]);
-	return ;
+	(void)minishell;
+	if (ft_strncmp(cmd, "echo", ft_strlen(cmd)) == 0)
+	{
+		ft_echo(args);
+		return (true);
+	}
+	return (false);
 }
