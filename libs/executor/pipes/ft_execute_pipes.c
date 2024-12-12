@@ -12,6 +12,21 @@
 
 #include "../ft_executor.h"
 
+void close_pipes(t_piped_cmd *current)
+{
+	// Close both ends of the pipe if they exist
+	if (current->new_stdin != -1)
+	{
+		close(current->new_stdin);
+		current->new_stdin = -1;
+	}
+	if (current->new_stdout != -1)
+	{
+		close(current->new_stdout);
+		current->new_stdout = -1;
+	}
+}
+/*
 void	close_pipes(t_piped_cmd *current)
 {
 	if (current->new_stdin != -1)
@@ -19,7 +34,6 @@ void	close_pipes(t_piped_cmd *current)
 	if (current->new_stdout != -1)
 		close(current->new_stdout);
 }
-
 static void	wait_for_pipes(t_dll *pipe_head)
 {
 	t_dll		*head;
@@ -34,6 +48,7 @@ static void	wait_for_pipes(t_dll *pipe_head)
 		head = head->next;
 	}
 }
+*/
 
 static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs)
 {
@@ -58,9 +73,48 @@ static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs)
 			exit(EXIT_FAILURE);
 		}
 	}
+	else if (pipe_cmd->pid < 0)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
 	close_pipes(pipe_cmd);
 }
 
+static bool execute_pipeline(t_dll *pipe_head, char **envs)
+{
+	t_dll *head;
+	int status;
+	t_piped_cmd *current;
+
+	head = t_dll_get_head(pipe_head);
+	if (!head)
+		return (false);
+
+	// Execute all commands in the pipeline
+	while (head)
+	{
+		exec_pipe((t_piped_cmd *)head->content, envs);
+		head = head->next;
+	}
+
+	// Wait for all processes to finish
+	head = t_dll_get_head(pipe_head);
+	while (head)
+	{
+		current = (t_piped_cmd *)head->content;
+		waitpid(current->pid, &status, 0);
+
+		// Check if the process exited normally
+		if (WIFEXITED(status))
+			current->execve_result = WEXITSTATUS(status);
+
+		head = head->next;
+	}
+	return (true);
+}
+
+/*
 static bool execute_pipeline(t_dll *pipe_head, char **envs)
 {
 	t_dll	*head;
@@ -76,7 +130,7 @@ static bool execute_pipeline(t_dll *pipe_head, char **envs)
 	wait_for_pipes(pipe_head);
 	return (true);
 }
-
+*/
 int	ft_execute_pipes(t_minishell *minishell)
 {
 	t_dll	*piped_cmd_list;
