@@ -76,5 +76,8 @@ void	ft_setup_first_cmd(t_piped_cmd *pipe_cmd);
 void	ft_setup_middle_cmd(t_piped_cmd *pipe_cmd);
 void	ft_setup_last_cmd(t_piped_cmd *pipe_cmd);
 void	debug_pipes(t_piph *holder);
+void	ft_free_child_arrays(char **args, char **envs, char *cmd_path);
+void	close_redirections(t_minishell *minishell);
+int	pid_execution(t_minishell *shell, char **args, char **envs, char *cmd_path);
 
 #endif

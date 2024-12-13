@@ -40,7 +40,7 @@ static char	**get_args_to_execute(t_cmd *cmd)
 	return (args);
 }
 
-static void	close_redirections(t_minishell *minishell)
+void	close_redirections(t_minishell *minishell)
 {
 	t_dll	*redir;
 
@@ -64,70 +64,61 @@ static void	close_redirections(t_minishell *minishell)
 	}
 }
 
-static void	check_valid_args(char **args, char **envs, char *cmd_path)
+static bool	check_valid_args(char **args, char **envs, char *cmd_path)
 {
 	if (args && envs && cmd_path)
-		return ;
-	if (args)
-		ft_free_char_array(args);
-	if (envs)
-		ft_free_char_array(envs);
-	if (cmd_path)
-		free(cmd_path);
-	perror("Non valid args : ");
-	exit(EXIT_FAILURE);
+		return (true);
+	ft_free_child_arrays(args, envs, cmd_path);
+	return (false);
 }
-
-static void	execute_child_process(t_minishell *minishell)
+/*
+static int	execute_child_process(t_minishell *minishell)
 {
-	char	**args;
-	char	**envs;
-	char	*cmd_path;
-	t_cmd	*cmd;
 
-	cmd = (t_cmd *)minishell->cmdt->content;
-	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
-	args = get_args_to_execute(cmd);
-	envs = ft_envs_to_array(minishell->envs);
+
 	if (ft_is_built_in(cmd->name, args, minishell))
-		return ;
+		return (0);
 	check_valid_args(args, envs, cmd_path);
 	if (ft_process_exec_redirections(minishell) == MOD_DUP_ERROR)
 	{
 		perror("dup2");
 		exit(EXIT_FAILURE);
 	}
-	if (execve(cmd_path, args, envs) == -1)
+	write(1, "BEFORE", 6);
+	result = execve(cmd_path, args, envs);
+	write(1, "AFTER", 5);
+	if (result == -1)
 	{
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}
-	ft_free_char_array(envs);
-	ft_free_char_array(args);
-	free(cmd_path);
+	ft_free_child_arrays(args, envs, cmd_path);
+	return (result);
 }
-
+*/
 int	ft_execute_cmd(t_minishell *minishell)
 {
-	pid_t	pid;
-	int		status;
+	char	**args;
+	char	**envs;
+	char	*cmd_path;
+	t_cmd	*cmd;
+	int		result;
 
-	pid = fork();
-	//pid = 0;
-	if (pid == 0)
+	cmd = (t_cmd *)minishell->cmdt->content;
+	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
+	args = get_args_to_execute(cmd);
+	envs = ft_envs_to_array(minishell->envs);
+	if (!cmd_path)
 	{
-		execute_child_process(minishell);
+		printf("%s : Command not found\n", cmd->name);
+		ft_free_child_arrays(args, envs, cmd_path);
+		return (127);
 	}
-	else
-	{
-		if (waitpid(pid, &status, 0) == -1)
-		{
-			perror("waitpid");
-			return (-1);
-		}
-		close_redirections(minishell);
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
-	}
-	return (0);
+	if (!check_valid_args(args, envs, cmd_path))
+		return (500);
+	if (ft_is_built_in(cmd->name, args, minishell))
+		return (0);
+	result = pid_execution(minishell, args, envs, cmd_path);
+	ft_free_child_arrays(args, envs, cmd_path);
+	return (result);
 }

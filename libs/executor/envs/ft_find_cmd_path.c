@@ -43,7 +43,9 @@ char	*ft_find_cmd_path(char *cmd, t_dll *envs)
 {
 	char	**paths;
 	t_dll	*path_node;
+	char	*path;
 
+	path = NULL;
 	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, X_OK) == 0)
@@ -52,5 +54,7 @@ char	*ft_find_cmd_path(char *cmd, t_dll *envs)
 	}
 	path_node = ft_find_env("PATH", envs);
 	paths = ft_split(((t_env *)path_node->content)->value, ':');
-	return (find_valid_path(paths, cmd));
+	path = find_valid_path(paths, cmd);
+	ft_free_char_array(paths);
+	return (path);
 }
