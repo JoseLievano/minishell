@@ -113,7 +113,7 @@ int	ft_execute_cmd(t_minishell *minishell)
 	int		status;
 
 	pid = fork();
-	// pid = 0;
+	//pid = 0;
 	if (pid == 0)
 	{
 		execute_child_process(minishell);
