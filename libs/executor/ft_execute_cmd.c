@@ -108,6 +108,11 @@ int	ft_execute_cmd(t_minishell *minishell)
 	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
 	args = get_args_to_execute(cmd);
 	envs = ft_envs_to_array(minishell->envs);
+	if (ft_is_built_in(cmd->name, args, minishell))
+	{
+		ft_free_child_arrays(args, envs, cmd_path);
+		return (0);
+	}
 	if (!cmd_path)
 	{
 		printf("%s : Command not found\n", cmd->name);
@@ -116,8 +121,6 @@ int	ft_execute_cmd(t_minishell *minishell)
 	}
 	if (!check_valid_args(args, envs, cmd_path))
 		return (500);
-	if (ft_is_built_in(cmd->name, args, minishell))
-		return (0);
 	result = pid_execution(minishell, args, envs, cmd_path);
 	ft_free_child_arrays(args, envs, cmd_path);
 	return (result);
