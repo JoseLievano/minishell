@@ -7,7 +7,8 @@ void	print_env(t_dll *envs)
 	while (envs)
 	{
 		env = envs->content;
-		printf("%s=%s\n", env->key, env->value);
+		if (env->value)
+			printf("%s=%s\n", env->key, env->value);
 		envs = envs->next;
 	}
 }

@@ -4,31 +4,18 @@ bool	ft_is_built_in(char *cmd, char **args, t_minishell *minishell)
 {
 	(void)minishell;
 	if (ft_strncmp(cmd, "echo", ft_strlen(cmd)) == 0)
-	{
-		ft_echo(args);
-		return (true);
-	}
+		return (ft_echo(args), true);
 	if (ft_strncmp(cmd, "cd", ft_strlen(cmd)) == 0)
-	{
-		ft_cd(args, minishell);
-		return (true);
-	}
+		return (ft_cd(args, minishell), true);
 	if (ft_strncmp(cmd, "pwd", ft_strlen(cmd)) == 0)
-	{
-		ft_pwd(minishell);
-		return (true);
-	}
+		return (ft_pwd(minishell), true);
 	if (ft_strncmp(cmd, "export", ft_strlen(cmd)) == 0)
-	{
-		ft_export(args, minishell);
-		return (true);
-	}
+		return (ft_export(args, minishell), true);
 	if (ft_strncmp(cmd, "env", ft_strlen(cmd)) == 0)
-	{
-		print_env(minishell->envs);
-		return (true);
-	}
+		return (print_env(minishell->envs), true);
+	if (ft_strncmp(cmd, "unset", ft_strlen(cmd)) == 0)
+		return (ft_unset(args, minishell), true);
+	if (ft_strncmp(cmd, "exit", ft_strlen(cmd)) == 0)
+		return (ft_exit(args, minishell), true);
 	return (false);
 }
-
-

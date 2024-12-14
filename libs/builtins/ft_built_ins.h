@@ -20,5 +20,7 @@ bool							check_valid_env_var(char *str);
 char							*strndup(const char *s, size_t n);
 void							sort_ascii(char **list, int size);
 char							**create_aux_list(t_dll *envs, int size);
-void                            print_env(t_dll *envs);
+void							print_env(t_dll *envs);
+void							ft_unset(char **args, t_minishell *minishell);
+void							ft_exit(char **args, t_minishell *minishell);
 #endif
