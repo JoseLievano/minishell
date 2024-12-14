@@ -4,7 +4,7 @@ CC		=	gcc
 RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror -g
 OBJS	=	$(SRC:.c=.o)
-SRC		=	ft_built_ins.c ft_echo.c ft_cd.c
+SRC		=	ft_built_ins.c ft_echo.c ft_cd.c ft_export.c ft_export_utils.c ft_pwd.c ft_env.c
 
 all		:	$(NAME)
 

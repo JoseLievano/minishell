@@ -15,7 +15,7 @@ void	set_env_var(t_minishell *minishell, const char *key, const char *value)
 		return ;
 	envs = minishell->envs;
 	ft_strlcpy(new_var_value, value, ft_strlen(value) + 1);
-	while (envs->next)
+	while (envs)
 	{
 		env = envs->content;
 		if (ft_strncmp(env->key, key, key_len) == 0)
