@@ -12,8 +12,7 @@
 
 #include "ft_lexer.h"
 
-
-int is_closed_quote(char *string)//goated
+int	is_closed_quote(char *string) // goated
 {
 	int i;
 	int j;
@@ -23,35 +22,22 @@ int is_closed_quote(char *string)//goated
 	j = 0;
 	counter = 0;
 	if (string[counter] == 34)
-		i++;	
-	if(string[counter] == 39)
+		i++;
+	if (string[counter] == 39)
 		j++;
 	counter++;
-	while (((is_whitespace(string[counter]) == false) && is_valid_operator(&string[counter]) == 0) || ((i % 2 != 0) || (j % 2 != 0)))
+	while (((is_whitespace(string[counter]) == false)
+			&& is_valid_operator(&string[counter]) == 0) || ((i % 2 != 0) || (j
+				% 2 != 0)))
 	{
-		if (string[counter] ==34 && (j % 2 == 0))
-			i++;	
-		if(string[counter] ==39 && (i % 2 == 0))
+		if (string[counter] == 34 && (j % 2 == 0))
+			i++;
+		if (string[counter] == 39 && (i % 2 == 0))
 			j++;
 		counter++;
 	}
 	return (counter);
 }
-/*//MAY BE USEFUL
-** int is_word(char *string, int stop)
-** {
-** 	static int i;
-** 	static int j;
-** 
-** 	if(j == stop)
-** 		return (i);
-** 	if (token_smr(string) != 7 && token_smr(string) != 8)
-** 		i++;
-** 	j++;
-** 	is_word(string + 1, stop);
-** 	return (i);
-** }
-*/
 
 t_dll	*read_through_input(char *input)
 {
@@ -63,7 +49,7 @@ t_dll	*read_through_input(char *input)
 	string = input;
 	word_counter = 0;
 	list = NULL;
-	while (*string != '\0') 
+	while (*string != '\0')
 	{
 		if (is_whitespace(*string))
 		{
@@ -78,18 +64,19 @@ t_dll	*read_through_input(char *input)
 		string += word_counter;
 	}
 	token_type(0, allocate_token(), &list);
-	token_type(42, allocate_token(), &list);	
+	token_type(42, NULL, &list);
 	return (list);
 }
 
 void	ft_lexer(void)
 {
 	t_dll	*list;
-	char *input;
+	char	*input;
+
 	printf("Lexer function:\n\n");
 	input = ft_reader();
 	list = read_through_input(input);
 	free(input);
 	read_through_list(list);
-	//free_nodes(list);
+	// free_nodes(list);
 }
