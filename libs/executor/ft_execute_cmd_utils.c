@@ -21,12 +21,7 @@ static void exec_child(t_minishell *shell, char **args, char **envs, char *cmd)
 	}
 	if (execve(cmd, args, envs) == -1)
 	{
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		perror("execve");
+		perror("Command error");
 		exit(EXIT_FAILURE);
 	}
 }

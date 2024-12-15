@@ -53,6 +53,8 @@ char	*ft_find_cmd_path(char *cmd, t_dll *envs)
 		return (NULL);
 	}
 	path_node = ft_find_env("PATH", envs);
+	if (!path_node)
+		return (ft_strdup(cmd));
 	paths = ft_split(((t_env *)path_node->content)->value, ':');
 	path = find_valid_path(paths, cmd);
 	ft_free_char_array(paths);

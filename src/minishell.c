@@ -32,25 +32,6 @@ t_minishell	*construct_minishell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	/*
-	t_minishell *minishell = construct_minishell(envp);
-	printf("%d\n", (int)t_dll_size(minishell->envs));
-	t_dll *envs = t_dll_get_head(minishell->envs);
-	while(envs)
-	{
-		t_env *ac = (t_env *)envs->content;
-		printf("\n-----\n%s\n%s\n-------", ac->key, ac->value);
-		envs = envs->next;
-	}
-
-	while(1)
-	{
-		minishell->line = ft_reader();
-		minishell->cmdt = ft_parser(read_through_input(minishell->line));
-		ft_clean_cmdt(minishell->cmdt);
-		free(minishell->line);
-	}
-	*/
 	if (argc > 1 && *argv[1] == '1')
 	{
 		char *input = ft_reader();
@@ -59,26 +40,23 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '2')
 	{
-		//char *str = ft_strdup("echo hi");
+		char *str = ft_strdup("echo hello");
 		t_dll *tokens =  NULL;
-		while(1)
-		{
-			tokens = read_through_input(ft_reader());
-			read_through_list(tokens);
-			free_nodes(tokens);
-			tokens = NULL;
-			printf("\n----------\n");
-		}
-		//free(str);
+		tokens = read_through_input(str);
+		//read_through_list(tokens);
+		free_nodes(tokens);
+		tokens = NULL;
+		printf("\n----------\n");
+		free(str);
 		//rl_clear_history();
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{
-		char *str =  ft_reader();
+		char *str =  ft_strdup("echo hello there");
 		t_dll *tokens = read_through_input(str);
 		t_cmdt *cmdt = ft_parser(tokens);
-		if (cmdt)
-			print_cmd_table(cmdt);
+		//if (cmdt)
+		//	print_cmd_table(cmdt);
 		free_nodes(tokens);
 		free(str);
 		//rl_clear_history();

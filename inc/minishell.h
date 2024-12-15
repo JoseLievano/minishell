@@ -61,5 +61,6 @@ t_minishell	*construct_minishell(char **envp);
 void		ft_noninteractive_shell(t_minishell *minishell);
 void		ft_parse_args(t_minishell *minishell, int argc, char **argv);
 void		ft_interactive_shell(t_minishell *minishell);
+void		ft_clean_non_interactive_shell(t_minishell *minishell);
 
 #endif

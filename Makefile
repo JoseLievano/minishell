@@ -27,7 +27,7 @@ OBJS		=	$(SRC:.c=.o)
 SRC_DIR		=	src/
 SRC_FILES	=	minishell.c ft_get_env_var.c ft_set_shell_path.c \
 				ft_execution_mode.c ft_parse_args.c ft_noninteractive_shell.c \
-				ft_interactive_shell.c
+				ft_interactive_shell.c ft_clean_noninteractive_shell.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 all			:	$(NAME)

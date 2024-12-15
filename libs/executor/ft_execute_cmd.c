@@ -71,31 +71,7 @@ static bool	check_valid_args(char **args, char **envs, char *cmd_path)
 	ft_free_child_arrays(args, envs, cmd_path);
 	return (false);
 }
-/*
-static int	execute_child_process(t_minishell *minishell)
-{
 
-
-	if (ft_is_built_in(cmd->name, args, minishell))
-		return (0);
-	check_valid_args(args, envs, cmd_path);
-	if (ft_process_exec_redirections(minishell) == MOD_DUP_ERROR)
-	{
-		perror("dup2");
-		exit(EXIT_FAILURE);
-	}
-	write(1, "BEFORE", 6);
-	result = execve(cmd_path, args, envs);
-	write(1, "AFTER", 5);
-	if (result == -1)
-	{
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
-	ft_free_child_arrays(args, envs, cmd_path);
-	return (result);
-}
-*/
 int	ft_execute_cmd(t_minishell *minishell)
 {
 	char	**args;
