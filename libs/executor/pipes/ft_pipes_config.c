@@ -83,7 +83,7 @@ bool	ft_pipe_holder_constructor(t_minishell *minishell)
 	t_piph		*pipe_holder;
 	t_pipes		*pipes_cmd;
 
-	pipe_holder = (t_piph *)malloc(sizeof(pipe_holder));
+	pipe_holder = (t_piph *)malloc(sizeof(t_piph));
 	if (!pipe_holder)
 		return (false);
 	if (minishell->cmdt->type == PIPE_SEQ)
