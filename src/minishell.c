@@ -62,8 +62,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '4')
 	{
-//		minishell->line = ft_strdup("echo \"Hello $USER\"");
-//		minishell->cmdt = ft_parser(read_through_input(minishell->line));
 		t_minishell *shell = construct_minishell(envp);
 		t_dll		*token_list;
 		token_list = NULL;

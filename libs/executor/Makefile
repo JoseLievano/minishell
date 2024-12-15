@@ -27,7 +27,7 @@ PIPE_FILES	=	ft_pipes_config.c ft_setup_piped_cmd_position.c \
 ERR_DIR		=	error/
 ERR_FILES	=	ft_execute_error.c
 CLN_DIR		=	cleaner/
-CLN_FILES	=	ft_clean_execution.c
+CLN_FILES	=	ft_clean_execution.c ft_clean_pipe_holder.c
 SRC			=	$(addprefix $(ENVS_DIR), $(ENVS_FILES)) \
 				$(addprefix $(REDIR_DIR), $(REDIR_FILES)) \
 				$(addprefix $(ERR_DIR), $(ERR_FILES)) \
