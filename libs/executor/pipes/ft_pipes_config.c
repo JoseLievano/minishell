@@ -21,8 +21,8 @@ static t_piped_cmd	*init_pipe(char *cmd)
 	to_return_pipe->pid = -1;
 	to_return_pipe->position = PIPE_UNDEFINED;
 	to_return_pipe->cmd = ft_strdup(cmd);
-	to_return_pipe->def_stdin =  -1;
-	to_return_pipe->def_stdout =  -1;
+	to_return_pipe->def_stdin = -1;
+	to_return_pipe->def_stdout = -1;
 	to_return_pipe->new_stdin = -1;
 	to_return_pipe->new_stdout = -1;
 	to_return_pipe->execve_result = 0;

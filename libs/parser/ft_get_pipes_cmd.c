@@ -23,7 +23,7 @@ static size_t	get_cmd_len(t_dll *tk_list)
 	i = 0;
 	len_list = t_dll_size(head);
 	counter = 0;
-	while(i < (len_list -1))
+	while (i < (len_list -1))
 	{
 		head = t_dll_get_node_index(head, i);
 		counter += (ft_strlen(((t_token *)head->content)->value) + 1);
@@ -43,7 +43,7 @@ static void	put_value_in_cmd(char *ft_cmd, size_t *i, t_dll *node)
 	value = ((t_token *)node->content)->value;
 	j = 0;
 	tk_value_len = ft_strlen(value);
-	while(j < tk_value_len)
+	while (j < tk_value_len)
 	{
 		ft_cmd[*i] = value[j];
 		j++;
@@ -71,5 +71,5 @@ char	*ft_get_pipes_cmd(t_dll *tk_list)
 		node_i++;
 	}
 	ft_cmd[i - 1] = '\0';
-	return ft_cmd;
+	return (ft_cmd);
 }

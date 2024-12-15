@@ -12,7 +12,7 @@
 
 #include "../ft_executor.h"
 
-static char *get_current_name(int i, char *shell_dir)
+static char	*get_current_name(int i, char *shell_dir)
 {
 	char	*name;
 	char	*number;
@@ -59,7 +59,7 @@ static void	write_on_heredoc(t_redir *redirection)
 	char	*del;
 
 	line = NULL;
-	del= redirection->delimiter;
+	del = redirection->delimiter;
 	while (true)
 	{
 		line = readline("> ");

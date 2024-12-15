@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pipes_debug.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/15 23:04:56 by jlievano          #+#    #+#             */
+/*   Updated: 2024/12/15 23:04:57 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../ft_executor.h"
 
-static void print_args(char **args)
+static void	print_args(char **args)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (*args)
@@ -38,7 +50,7 @@ static void	print_pipe(t_dll *pipe)
 	printf("\n---------------\n");
 }
 
-void debug_pipes(t_piph *holder)
+void	debug_pipes(t_piph *holder)
 {
 	t_dll	*pipes;
 

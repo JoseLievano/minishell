@@ -12,11 +12,12 @@
 
 #include "../ft_executor.h"
 
-static void close_all_pipes(t_dll *pipe_head)
+static void	close_all_pipes(t_dll *pipe_head)
 {
-	t_dll *head = t_dll_get_head(pipe_head);
-	t_piped_cmd *cmd;
+	t_dll		*head;
+	t_piped_cmd	*cmd;
 
+	head = t_dll_get_head(pipe_head);
 	while (head)
 	{
 		cmd = (t_piped_cmd *)head->content;
@@ -34,11 +35,12 @@ static void close_all_pipes(t_dll *pipe_head)
 	}
 }
 
-static void close_unused_pipes(t_dll *pipe_head, t_piped_cmd *current_cmd)
+static void	close_unused_pipes(t_dll *pipe_head, t_piped_cmd *current_cmd)
 {
-	t_dll *head = t_dll_get_head(pipe_head);
-	t_piped_cmd *cmd;
+	t_dll		*head;
+	t_piped_cmd	*cmd;
 
+	head = t_dll_get_head(pipe_head);
 	while (head)
 	{
 		cmd = (t_piped_cmd *)head->content;
@@ -53,22 +55,12 @@ static void close_unused_pipes(t_dll *pipe_head, t_piped_cmd *current_cmd)
 	}
 }
 
-static void exec_pipe(t_piped_cmd *pipe_cmd, char **envs, t_dll *pipe_head)
+static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs, t_dll *pipe_head)
 {
 	pipe_cmd->pid = fork();
-
 	if (pipe_cmd->pid == 0)
 	{
-		if (pipe_cmd->new_stdin != -1)
-		{
-			dup2(pipe_cmd->new_stdin, STDIN_FILENO);
-			close(pipe_cmd->new_stdin);
-		}
-		if (pipe_cmd->new_stdout != -1)
-		{
-			dup2(pipe_cmd->new_stdout, STDOUT_FILENO);
-			close(pipe_cmd->new_stdout);
-		}
+		ft_pid_pipe_fds(pipe_cmd);
 		close_unused_pipes(pipe_head, pipe_cmd);
 		if (execve(pipe_cmd->args[0], pipe_cmd->args, envs) == -1)
 		{
@@ -81,17 +73,14 @@ static void exec_pipe(t_piped_cmd *pipe_cmd, char **envs, t_dll *pipe_head)
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	if (pipe_cmd->new_stdin != -1)
-		close(pipe_cmd->new_stdin);
-	if (pipe_cmd->new_stdout != -1)
-		close(pipe_cmd->new_stdout);
+	ft_close_pipe_cmd_fds(pipe_cmd);
 }
 
-static bool execute_pipeline(t_dll *pipe_head, char **envs)
+static bool	execute_pipeline(t_dll *pipe_head, char **envs)
 {
-	t_dll *head;
-	int status;
-	t_piped_cmd *current;
+	t_dll		*head;
+	int			status;
+	t_piped_cmd	*current;
 
 	head = t_dll_get_head(pipe_head);
 	if (!head)
@@ -106,10 +95,8 @@ static bool execute_pipeline(t_dll *pipe_head, char **envs)
 	{
 		current = (t_piped_cmd *)head->content;
 		waitpid(current->pid, &status, 0);
-
 		if (WIFEXITED(status))
 			current->execve_result = WEXITSTATUS(status);
-
 		head = head->next;
 	}
 	close_all_pipes(pipe_head);

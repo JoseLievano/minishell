@@ -80,5 +80,7 @@ void	ft_free_child_arrays(char **args, char **envs, char *cmd_path);
 void	close_redirections(t_minishell *minishell);
 int		pid_execution(t_minishell *shll, char **args, char **envs, char *c_pth);
 void	ft_clean_pipe_holder(t_minishell *minishell);
+void	ft_close_pipe_cmd_fds(t_piped_cmd *pipe_cmd);
+void	ft_pid_pipe_fds(t_piped_cmd *pipe_cmd);
 
 #endif

@@ -14,7 +14,7 @@
 
 bool	ft_is_redir_node(t_dll *node)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = (t_token *)node->content;
 	if (token->type == TOKEN_REDIRECTION_IN)

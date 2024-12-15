@@ -12,12 +12,13 @@
 
 #include "ft_parser.h"
 
-void	ft_free_char_array(char **array) {
+void	ft_free_char_array(char **array)
+{
 	int	i;
 
 	i = 0;
 	if (!array)
-		return;
+		return ;
 	while (array[i] != NULL)
 	{
 		free(array[i]);

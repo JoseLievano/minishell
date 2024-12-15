@@ -21,4 +21,3 @@ void	ft_free_child_arrays(char **args, char **envs, char *cmd_path)
 	if (cmd_path)
 		free(cmd_path);
 }
-

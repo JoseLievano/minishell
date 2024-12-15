@@ -70,7 +70,7 @@ int	get_exec_out_redirection(t_minishell *minishell)
 int	ft_process_exec_redirections(t_minishell *minishell)
 {
 	if (t_dll_size(((t_cmd *)minishell->cmdt->content)->redirections) == 0)
-		return MOD_NONE;
+		return (MOD_NONE);
 	minishell->new_stdin = get_exec_input_redirection(minishell);
 	minishell->new_stdout = get_exec_out_redirection(minishell);
 	if (minishell->new_stdin != -1)
@@ -91,4 +91,3 @@ int	ft_process_exec_redirections(t_minishell *minishell)
 		return (MOD_OUT);
 	return (MOD_NONE);
 }
-

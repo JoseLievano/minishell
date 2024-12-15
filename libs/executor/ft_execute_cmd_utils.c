@@ -12,7 +12,7 @@
 
 #include "ft_executor.h"
 
-static void exec_child(t_minishell *shell, char **args, char **envs, char *cmd)
+static void	exec_child(t_minishell *shell, char **args, char **envs, char *cmd)
 {
 	if (ft_process_exec_redirections(shell) == MOD_DUP_ERROR)
 	{

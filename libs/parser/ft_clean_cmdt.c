@@ -33,19 +33,8 @@ static void	clean_args(t_dll *arg_node)
 		free(arg->value);
 	free(arg);
 }
-/*
-static void	clean_commands(t_dll *command)
-{
-	t_cmd	*cmd;
 
-	cmd = (t_cmd *)command->content;
-	t_dll_clear(cmd->arguments, &clean_args);
-	t_dll_clear(cmd->redirections, &clean_redirections);
-	free(cmd->name);
-	free(cmd);
-}
-*/
-static void clean_pipes(t_dll *pipe_cmd)
+static void	clean_pipes(t_dll *pipe_cmd)
 {
 	if (pipe_cmd->content)
 		free(pipe_cmd->content);
