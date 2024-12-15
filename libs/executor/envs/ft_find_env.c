@@ -52,5 +52,6 @@ t_dll	*ft_find_env(char *key, t_dll *env_list)
 	args[0] = NULL;
 	args[1] = key;
 	found_node = t_dll_first_mtch(env_list, args, 2, &key_comparator);
+	free(args);
 	return (found_node);
 }

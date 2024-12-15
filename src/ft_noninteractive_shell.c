@@ -20,10 +20,7 @@ void	ft_noninteractive_shell(t_minishell *minishell)
 	minishell->cmdt = ft_parser(token_list);
 	ft_expander(minishell);
 	if (minishell->cmdt)
-	{
 		ft_executor(minishell);
-		ft_clean_cmdt(minishell->cmdt);
-	}
-	free(minishell->line);
 	free_nodes(token_list);
+	ft_clean_minishell(minishell);
 }

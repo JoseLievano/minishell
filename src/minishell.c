@@ -19,6 +19,7 @@ t_minishell	*construct_minishell(char **envp)
 	minishell = (t_minishell *)malloc(sizeof(t_minishell));
 	minishell->cmdt = NULL;
 	minishell->line = NULL;
+	minishell->pipe_holder = NULL;
 	minishell->last_output = 0;
 	minishell->envs = get_env_var_list(envp);
 	ft_set_shell_path(minishell);
