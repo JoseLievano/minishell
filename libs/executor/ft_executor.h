@@ -13,8 +13,10 @@
 #ifndef FT_EXECUTOR_H
 # define FT_EXECUTOR_H
 # include "../../inc/minishell.h"
+# include <signal.h>
 
 typedef struct minishell_obj	t_minishell;
+
 typedef struct redirection_obj	t_redir;
 
 typedef enum modify_redirection

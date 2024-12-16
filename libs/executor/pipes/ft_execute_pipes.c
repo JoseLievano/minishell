@@ -60,6 +60,7 @@ static void	exec_pipe(t_piped_cmd *pipe_cmd, char **envs, t_dll *pipe_head)
 	pipe_cmd->pid = fork();
 	if (pipe_cmd->pid == 0)
 	{
+		ft_setup_child_signals();
 		ft_pid_pipe_fds(pipe_cmd);
 		close_unused_pipes(pipe_head, pipe_cmd);
 		if (execve(pipe_cmd->args[0], pipe_cmd->args, envs) == -1)
@@ -90,13 +91,16 @@ static bool	execute_pipeline(t_dll *pipe_head, char **envs)
 		exec_pipe((t_piped_cmd *)head->content, envs, pipe_head);
 		head = head->next;
 	}
+	ft_setup_parent_signals();
 	head = t_dll_get_head(pipe_head);
 	while (head)
 	{
 		current = (t_piped_cmd *)head->content;
 		waitpid(current->pid, &status, 0);
-		if (WIFEXITED(status))
-			current->execve_result = WEXITSTATUS(status);
+		//if (WIFEXITED(status))
+		//	current->execve_result = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			g_signal_received = WTERMSIG(status);
 		head = head->next;
 	}
 	close_all_pipes(pipe_head);

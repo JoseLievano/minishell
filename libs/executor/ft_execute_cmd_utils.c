@@ -34,9 +34,13 @@ int	pid_execution(t_minishell *shell, char **args, char **envs, char *cmd_path)
 	status = 0;
 	pid = fork();
 	if (pid == 0)
+	{
+		ft_setup_child_signals();
 		exec_child(shell, args, envs, cmd_path);
+	}
 	else
 	{
+		ft_setup_parent_signals();
 		if (waitpid(pid, &status, 0) == -1)
 		{
 			perror("waitpid");
@@ -45,6 +49,8 @@ int	pid_execution(t_minishell *shell, char **args, char **envs, char *cmd_path)
 		close_redirections(shell);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
+		if (WIFSIGNALED(status))
+			return (128 + WTERMSIG(status));
 	}
 	return (-100);
 }

@@ -29,6 +29,8 @@
 # include <unistd.h>
 # include <errno.h>
 
+extern volatile sig_atomic_t	g_signal_received;
+
 typedef struct command_table	t_cmdt;
 
 typedef struct pipe_holder	t_piph;
@@ -63,5 +65,8 @@ void		ft_parse_args(t_minishell *minishell, int argc, char **argv);
 void		ft_interactive_shell(t_minishell *minishell);
 void		ft_clean_minishell(t_minishell *minishell);
 void		ft_partial_clean_minishell(t_minishell *minishell);
+void		ft_setup_interactive_signals(void);
+void		ft_setup_child_signals(void);
+void		ft_setup_parent_signals(void);
 
 #endif
