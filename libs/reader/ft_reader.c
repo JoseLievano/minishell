@@ -52,16 +52,14 @@ static int	quotes_closed(char *prompt)
 
 static bool	empty_prompt(char *prompt)
 {
-	int		i;
-	char	c;
+	int	i;
 
-	if (ft_strlen(prompt) == 0)
+	if (!prompt || ft_strlen(prompt) == 0)
 		return (true);
 	i = 0;
 	while (prompt[i])
 	{
-		c = prompt[i];
-		if (!(c >= 8 && c <= 13) && c != 32)
+		if (!is_whitespace(prompt[i]))
 			return (false);
 		i++;
 	}

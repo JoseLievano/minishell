@@ -12,30 +12,44 @@
 
 #include "../inc/minishell.h"
 
-void	ft_interactive_shell(t_minishell *minishell)
+void    ft_interactive_shell(t_minishell *minishell)
 {
-	t_dll	*token_list;
+    char    *input;
+    t_dll   *token_list;
+    int     exit_status;
 
-	token_list = NULL;
-	ft_setup_interactive_signals();
-	while (1)
-	{
-		minishell->interactive_mode = true;
-		minishell->line = ft_reader();
-		minishell->interactive_mode = false;
-		token_list = read_through_input(minishell->line);
-		minishell->cmdt = ft_parser(token_list);
-		ft_expander(minishell);
-		if (minishell->cmdt)
-		{
-			ft_executor(minishell);
-			if (g_signal_received == SIGINT)
-			{
-				minishell->last_output = 130;
-				g_signal_received = 0;
-			}
-		}
-		free_nodes(token_list);
-		ft_partial_clean_minishell(minishell);
-	}
+    ft_setup_interactive_signals();
+    while (1)
+    {
+        input = ft_reader();
+        if (!input) // Ctrl-D case
+        {
+            exit_status = minishell->last_output; // Store the status before cleanup
+            printf("exit\n");
+            rl_clear_history();
+            ft_clean_minishell(minishell);
+            exit(exit_status); // Use stored status instead of accessing freed memory
+        }
+        if (*input)
+        {
+            add_history(input);
+            token_list = read_through_input(input);
+            if (token_list)
+            {
+                minishell->line = input;
+                minishell->cmdt = ft_parser(token_list);
+                if (minishell->cmdt)
+                {
+                    ft_expander(minishell);
+                    ft_executor(minishell);
+                }
+                ft_partial_clean_minishell(minishell);
+                free_nodes(token_list);
+            }
+            else
+                free(input);
+        }
+        else
+            free(input);
+    }
 }

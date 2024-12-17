@@ -97,8 +97,6 @@ static bool	execute_pipeline(t_dll *pipe_head, char **envs)
 	{
 		current = (t_piped_cmd *)head->content;
 		waitpid(current->pid, &status, 0);
-		//if (WIFEXITED(status))
-		//	current->execve_result = WEXITSTATUS(status);
 		if (WIFSIGNALED(status))
 			g_signal_received = WTERMSIG(status);
 		head = head->next;
@@ -124,5 +122,7 @@ int	ft_execute_pipes(t_minishell *minishell)
 		return (1);
 	}
 	ft_free_char_array(envs);
+	if (minishell->interactive_mode)
+		ft_setup_interactive_signals();
 	return (0);
 }

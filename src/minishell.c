@@ -41,7 +41,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '2')
 	{
-		char *str = ft_strdup("echo hello");
+		char *str = ft_reader();
 		t_dll *tokens =  NULL;
 		tokens = read_through_input(str);
 		//read_through_list(tokens);
@@ -53,7 +53,8 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else if (argc > 1 && *argv[1] == '3')
 	{
-		char *str =  ft_strdup("echo hello there | wc -l");
+		char *str =  ft_reader();
+		printf("\nsetting tokens");
 		t_dll *tokens = read_through_input(str);
 		t_cmdt *cmdt = ft_parser(tokens);
 		free_nodes(tokens);
@@ -67,6 +68,7 @@ int	main(int argc, char **argv, char **envp)
 		t_dll		*token_list;
 		token_list = NULL;
 		shell->line = ft_reader();
+		printf("\nsetting tokens");
 		token_list = read_through_input(shell->line);
 		shell->cmdt = ft_parser(token_list);
 		ft_expander(shell);

@@ -99,5 +99,7 @@ int	ft_execute_cmd(t_minishell *minishell)
 		return (500);
 	result = pid_execution(minishell, args, envs, cmd_path);
 	ft_free_child_arrays(args, envs, cmd_path);
+	if (minishell->interactive_mode)
+		ft_setup_interactive_signals();
 	return (result);
 }
