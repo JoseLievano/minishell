@@ -68,5 +68,6 @@ void		ft_partial_clean_minishell(t_minishell *minishell);
 void		ft_setup_interactive_signals(void);
 void		ft_setup_child_signals(void);
 void		ft_setup_parent_signals(void);
+bool		ft_check_eof(char *input);
 
 #endif
