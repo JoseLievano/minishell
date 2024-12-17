@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/17 01:38:23 by jlievano          #+#    #+#             */
+/*   Updated: 2024/12/17 01:38:25 by jlievano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_built_ins.h"
 
-void    ft_exit(char **args, t_minishell *minishell)
+void	ft_exit(char **args, t_minishell *minishell)
 {
 	int		exit_status;
 	bool	should_exit;
