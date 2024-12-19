@@ -57,20 +57,24 @@ static void	write_on_heredoc(t_redir *redirection)
 {
 	char	*line;
 	char	*del;
+	bool	flag;
 
 	line = NULL;
 	del = redirection->delimiter;
+	flag = false;
 	while (true)
 	{
 		line = readline("> ");
 		if (!line || (ft_strlen(del) == ft_strlen(line)))
-			if (ft_strncmp(line, del, ft_strlen(del)) == 0)
-			{
-				free(line);
-				break ;
-			}
+			flag = true;
+		if (ft_strncmp(line, del, ft_strlen(del)) == 0 && flag)
+		{
+			free(line);
+			break ;
+		}
 		write(redirection->fd, line, ft_strlen(line));
 		write(redirection->fd, "\n", 1);
+		flag = false;
 		free(line);
 	}
 }

@@ -53,10 +53,9 @@ static char	**get_current_args(char *shell_path, char *cmd)
 
 	args = (char **)malloc(sizeof(char *) * 5);
 	args[0] = ft_strdup(shell_path);
-	args[1] = ft_strdup("5");
-	args[2] = ft_strdup("-c");
-	args[3] = ft_strdup(cmd);
-	args[4] = NULL;
+	args[1] = ft_strdup("-c");
+	args[2] = ft_strdup(cmd);
+	args[3] = NULL;
 	return (args);
 }
 

@@ -33,7 +33,7 @@ extern volatile sig_atomic_t	g_signal_received;
 
 typedef struct command_table	t_cmdt;
 
-typedef struct pipe_holder	t_piph;
+typedef struct pipe_holder		t_piph;
 
 typedef struct env_v_obj
 {

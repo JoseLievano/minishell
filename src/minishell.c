@@ -14,7 +14,7 @@
 
 t_minishell	*construct_minishell(char **envp)
 {
-	t_minishell *minishell;
+	t_minishell	*minishell;
 
 	minishell = (t_minishell *)malloc(sizeof(t_minishell));
 	minishell->cmdt = NULL;
@@ -33,58 +33,13 @@ t_minishell	*construct_minishell(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc > 1 && *argv[1] == '1')
-	{
-		char *input = ft_reader();
-		rl_clear_history();
-		free(input);
-	}
-	else if (argc > 1 && *argv[1] == '2')
-	{
-		char *str = ft_reader();
-		t_dll *tokens =  NULL;
-		tokens = read_through_input(str);
-		//read_through_list(tokens);
-		free_nodes(tokens);
-		tokens = NULL;
-		printf("\n----------\n");
-		free(str);
-		//rl_clear_history();
-	}
-	else if (argc > 1 && *argv[1] == '3')
-	{
-		char *str =  ft_reader();
-		printf("\nsetting tokens");
-		t_dll *tokens = read_through_input(str);
-		t_cmdt *cmdt = ft_parser(tokens);
-		free_nodes(tokens);
-		free(str);
-		if (cmdt)
-			ft_clean_cmdt(cmdt);
-	}
-	else if (argc > 1 && *argv[1] == '4')
-	{
-		t_minishell *shell = construct_minishell(envp);
-		t_dll		*token_list;
-		token_list = NULL;
-		shell->line = ft_reader();
-		printf("\nsetting tokens");
-		token_list = read_through_input(shell->line);
-		shell->cmdt = ft_parser(token_list);
-		ft_expander(shell);
-		print_cmd_table(shell->cmdt);
-		ft_clean_cmdt(shell->cmdt);
-		free(shell->line);
-		free_nodes(token_list);
-	}
-	else if (argc > 1 && *argv[1] == '5')
-	{
-		t_minishell *shell = construct_minishell(envp);
-		ft_parse_args(shell, argc, argv);
-		if (shell->interactive_mode)
-			ft_interactive_shell(shell);
-		else
-			ft_noninteractive_shell(shell);
-	}
+	t_minishell	*shell;
+
+	shell = construct_minishell(envp);
+	ft_parse_args(shell, argc, argv);
+	if (shell->interactive_mode)
+		ft_interactive_shell(shell);
+	else
+		ft_noninteractive_shell(shell);
 	return (0);
 }

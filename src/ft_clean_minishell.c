@@ -32,52 +32,51 @@ static void	clean_and_null(char *str)
 	str = NULL;
 }
 
-void ft_clean_minishell(t_minishell *minishell)
+void	ft_clean_minishell(t_minishell *minishell)
 {
-    if (!minishell)
-        return;
-
-    if (minishell->cmdt)
-    {
-        ft_clean_cmdt(minishell->cmdt);
-        minishell->cmdt = NULL;
-    }
-    if (minishell->pipe_holder)
-    {
-        ft_clean_pipe_holder(minishell);
-        minishell->pipe_holder = NULL;
-    }
-    if (minishell->envs)
-    {
-        t_dll_clear(minishell->envs, &clean_shell_envs);
-        minishell->envs = NULL;
-    }
-    if (minishell->line)
-    	clean_and_null(minishell->line);
-    if (minishell->shell_path)
-    	clean_and_null(minishell->shell_path);
-    if (minishell->shell_dir)
-    	clean_and_null(minishell->shell_dir);
-    free(minishell);
+	if (!minishell)
+		return ;
+	if (minishell->cmdt)
+	{
+		ft_clean_cmdt(minishell->cmdt);
+		minishell->cmdt = NULL;
+	}
+	if (minishell->pipe_holder)
+	{
+		ft_clean_pipe_holder(minishell);
+		minishell->pipe_holder = NULL;
+	}
+	if (minishell->envs)
+	{
+		t_dll_clear(minishell->envs, &clean_shell_envs);
+		minishell->envs = NULL;
+	}
+	if (minishell->line)
+		clean_and_null(minishell->line);
+	if (minishell->shell_path)
+		clean_and_null(minishell->shell_path);
+	if (minishell->shell_dir)
+		clean_and_null(minishell->shell_dir);
+	free(minishell);
 }
 
-void ft_partial_clean_minishell(t_minishell *minishell)
+void	ft_partial_clean_minishell(t_minishell *minishell)
 {
-    if (!minishell)
-        return;
-    if (minishell->cmdt)
-    {
-        ft_clean_cmdt(minishell->cmdt);
-        minishell->cmdt = NULL;
-    }
-    if (minishell->pipe_holder)
-    {
-        ft_clean_pipe_holder(minishell);
-        minishell->pipe_holder = NULL;
-    }
-    if (minishell->line)
-    {
-        free(minishell->line);
-        minishell->line = NULL;
-    }
+	if (!minishell)
+		return ;
+	if (minishell->cmdt)
+	{
+		ft_clean_cmdt(minishell->cmdt);
+		minishell->cmdt = NULL;
+	}
+	if (minishell->pipe_holder)
+	{
+		ft_clean_pipe_holder(minishell);
+		minishell->pipe_holder = NULL;
+	}
+	if (minishell->line)
+	{
+		free(minishell->line);
+		minishell->line = NULL;
+	}
 }

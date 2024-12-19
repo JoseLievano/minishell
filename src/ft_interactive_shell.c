@@ -15,13 +15,13 @@
 bool	ft_check_eof(char *input)
 {
 	if (!input)
-		return true;
+		return (true);
 	return (false);
 }
 
-static void exit_interactive_shell(t_minishell *minishell)
+static void	exit_interactive_shell(t_minishell *minishell)
 {
-	int		exit_status;
+	int	exit_status;
 
 	exit_status = minishell->last_output;
 	printf("exit\n");
@@ -30,34 +30,39 @@ static void exit_interactive_shell(t_minishell *minishell)
 	exit(exit_status);
 }
 
-void    ft_interactive_shell(t_minishell *minishell)
+static void	process(t_minishell *minishell, char *input, t_dll *token_list)
 {
-    char    *input;
-    t_dll   *token_list;
+	minishell->line = input;
+	minishell->cmdt = ft_parser(token_list);
+	if (minishell->cmdt)
+	{
+		ft_expander(minishell);
+		ft_executor(minishell);
+	}
+	ft_partial_clean_minishell(minishell);
+	free_nodes(token_list);
+}
 
-    ft_setup_interactive_signals();
+void	ft_interactive_shell(t_minishell *minishell)
+{
+	char	*input;
+	t_dll	*token_list;
+
+	ft_setup_interactive_signals();
 	token_list = NULL;
-    while (1)
-    {
-        input = ft_reader();
-        if (!input) // Ctrl-D case
-        	break ;
-    	else
+	while (1)
+	{
+		input = ft_reader();
+		if (!input)
+			break ;
+		else
 			token_list = read_through_input(input);
-        if (token_list)
-        {
-            minishell->line = input;
-            minishell->cmdt = ft_parser(token_list);
-            if (minishell->cmdt)
-            {
-                ft_expander(minishell);
-                ft_executor(minishell);
-            }
-            ft_partial_clean_minishell(minishell);
-            free_nodes(token_list);
-        }
-        else
-            free(input);
-    }
+		if (token_list)
+		{
+			process(minishell, input, token_list);
+		}
+		else
+			free(input);
+	}
 	exit_interactive_shell(minishell);
 }

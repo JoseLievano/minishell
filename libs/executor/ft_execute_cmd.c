@@ -72,13 +72,23 @@ static bool	check_valid_args(char **args, char **envs, char *cmd_path)
 	return (false);
 }
 
+static int	ex(t_minishell *minishell, char **args, char **envs, char *cmd_path)
+{
+	int		result;
+
+	result = pid_execution(minishell, args, envs, cmd_path);
+	ft_free_child_arrays(args, envs, cmd_path);
+	if (minishell->interactive_mode)
+		ft_setup_interactive_signals();
+	return (result);
+}
+
 int	ft_execute_cmd(t_minishell *minishell)
 {
 	char	**args;
 	char	**envs;
 	char	*cmd_path;
 	t_cmd	*cmd;
-	int		result;
 
 	cmd = (t_cmd *)minishell->cmdt->content;
 	cmd_path = ft_find_cmd_path(cmd->name, minishell->envs);
@@ -97,9 +107,5 @@ int	ft_execute_cmd(t_minishell *minishell)
 	}
 	if (!check_valid_args(args, envs, cmd_path))
 		return (500);
-	result = pid_execution(minishell, args, envs, cmd_path);
-	ft_free_child_arrays(args, envs, cmd_path);
-	if (minishell->interactive_mode)
-		ft_setup_interactive_signals();
-	return (result);
+	return (ex(minishell, args, envs, cmd_path));
 }
