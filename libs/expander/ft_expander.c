@@ -17,15 +17,13 @@ char	*ft_strjoin_char(char *str, char c)
 	return (new_str);
 }
 
-void	run_through_arguments(t_cmd *command_table, t_dll *envs,
-		int last_output)
+void	run_through_arguments(t_cmd *command_table, t_minishell *minishell)
 {
 	t_dll	*tmp;
 	char	*tmp_arg;
 
 	tmp_arg = command_table->name;
-	command_table->name = quotes_breakdown_n_expantion(command_table->name,
-			envs, last_output);
+	command_table->name = breakdown(command_table->name, minishell);
 	free(tmp_arg);
 	tmp = command_table->arguments;
 	while ((t_dll *)tmp)
@@ -33,8 +31,7 @@ void	run_through_arguments(t_cmd *command_table, t_dll *envs,
 		if (((t_arg *)tmp->content)->value)
 		{
 			tmp_arg = ((t_arg *)tmp->content)->value;
-			((t_arg *)tmp->content)->value = quotes_breakdown_n_expantion(((t_arg *)tmp->content)->value,
-					envs, last_output);
+			((t_arg *)tmp->content)->value = breakdown(tmp_arg, minishell);
 			free(tmp_arg);
 		}
 		tmp = tmp->next;
@@ -48,6 +45,5 @@ void	ft_expander(t_minishell *minishell)
 	command_table = minishell->cmdt;
 	if (command_table->type == PIPE_SEQ)
 		return ;
-	run_through_arguments(command_table->content, minishell->envs,
-		minishell->last_output);
+	run_through_arguments(command_table->content, minishell);
 }

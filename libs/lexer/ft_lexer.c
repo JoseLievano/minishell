@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabri <gabri@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 22:56:40 by jlievano          #+#    #+#             */
-/*   Updated: 2024/11/04 17:20:10 by glicciar         ###   ########.fr       */
+/*   Updated: 2024/12/19 03:14:55 by gabri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-int	is_closed_quote(char *string) // goated
+int	is_closed_quote(char *string)
 {
-	int i;
-	int j;
-	int counter;
+	int	i;
+	int	j;
+	int	counter;
 
 	i = 0;
 	j = 0;
@@ -54,7 +54,7 @@ t_dll	*read_through_input(char *input)
 		if (is_whitespace(*string))
 		{
 			string++;
-			continue ; // jumps all whitespaces
+			continue ;
 		}
 		current_token = allocate_token();
 		token_type(is_valid_operator(string) + token_smr(string), current_token,
@@ -78,5 +78,4 @@ void	ft_lexer(void)
 	list = read_through_input(input);
 	free(input);
 	read_through_list(list);
-	// free_nodes(list);
 }

@@ -40,6 +40,15 @@ char	*strndup(const char *s, size_t n)
 	return (new);
 }
 
+char	*join_n_free(char *s1, char *s2)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(s1, s2);
+	free(s1);
+	return (tmp);
+}
+
 char	**create_aux_list(t_dll *envs, int size)
 {
 	char	**aux_list;
@@ -58,8 +67,8 @@ char	**create_aux_list(t_dll *envs, int size)
 		else
 		{
 			aux_list[i] = ft_strjoin(env->key, "=\"");
-			aux_list[i] = ft_strjoin(aux_list[i], env->value);
-			aux_list[i] = ft_strjoin(aux_list[i], "\"");
+			aux_list[i] = join_n_free(aux_list[i], env->value);
+			aux_list[i] = join_n_free(aux_list[i], "\"");
 		}
 		envs = envs->next;
 		i++;

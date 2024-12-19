@@ -6,6 +6,7 @@ void	free_env(t_env *env)
 	free(env->value);
 	free(env);
 }
+
 void	ft_dll_remove(t_dll **dll, t_dll *node)
 {
 	t_dll	*tmp;

@@ -3,20 +3,20 @@
 void	read_through_list(t_dll *list)
 {
 	t_dll	*tmp;
+	char	*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
+			"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC", "TOKEN_REDIRECTION_IN",
+			"TOKEN_REDIRECTION_OUT", "TOKEN_FLAG", "TOKEN_ARGUMENT",
+			"TOKEN_COMMAND"};
 
 	tmp = list;
-	char		*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
-				"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC",
-				"TOKEN_REDIRECTION_IN", "TOKEN_REDIRECTION_OUT", "TOKEN_FLAG",
-				"TOKEN_ARGUMENT",
-				"TOKEN_COMMAND"};
-while (tmp)
+	while (tmp)
 	{
 		printf("Token type: %s\n", tokens[((t_token *)tmp->content)->type]);
 		printf("Token value: %s\n-\n", ((t_token *)tmp->content)->value);
 		tmp = tmp->next;
 	}
 }
+
 bool	is_whitespace(char c)
 {
 	if (c == 32 || c == 9 || c == 10 || c == 11 || c == 12 || c == 13
@@ -36,11 +36,11 @@ void	is_quote(char *string, int *i)
 t_token_type	token_smr(char *string)
 {
 	if (string[0] == 45)
-		return (6); // flag TOKEN
+		return (6);
 	else if (string[0] > 32 && string[0] < 127
 		&& is_valid_operator(string) == 0)
 	{
-		return (7); // command or argument TOKEN
+		return (7);
 	}
 	else
 		return (0);
@@ -48,17 +48,16 @@ t_token_type	token_smr(char *string)
 
 t_token_type	is_valid_operator(char *string)
 {
-	// return a number that represents the type of token
 	if (string[0] == 124)
-		return (1); // pipe TOKEN
+		return (1);
 	else if (string[0] == 62 && string[1] == 62)
-		return (2); // output redirection append TOKEN
+		return (2);
 	else if (string[0] == 60 && string[1] == 60)
-		return (3); // input HEREDOC TOKEN
+		return (3);
 	else if (string[0] == 60)
-		return (4); // input redirection TOKEN
+		return (4);
 	else if (string[0] == 62)
-		return (5); // output redirection TOKEN
+		return (5);
 	else
 		return (0);
 }
