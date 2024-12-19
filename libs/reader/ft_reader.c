@@ -78,34 +78,29 @@ static int	invalid_prompt(char *prompt)
 	return (qoutes_status + pipe_status);
 }
 
-char    *ft_reader(void)
+char	*ft_reader(void)
 {
-    char    *prompt;
-    char    *temp_str1;
-    char    *temp_str2;
+	char	*prompt;
+	char	*temp_str1;
+	char	*temp_str2;
 
 	prompt = NULL;
-    temp_str1 = NULL;
-    temp_str2 = NULL;
-    prompt = readline("minishell>$ ");
-    if (ft_check_eof(prompt))
-        return (NULL);
-    while (invalid_prompt(prompt))
-    {
-        temp_str1 = readline("minishell>$ ");
-        if (ft_check_eof(temp_str1))
-        {
-            free(prompt);
-            return (NULL);
-        }
-        temp_str2 = prompt;
-        prompt = ft_strjoin(prompt, temp_str1);
-        free(temp_str1);
-        free(temp_str2);
-        temp_str1 = NULL;
-        temp_str2 = NULL;
-    }
-    if (prompt)
-        add_history(prompt);
-    return (prompt);
+	temp_str1 = NULL;
+	temp_str2 = NULL;
+	prompt = readline("minishell>$ ");
+	if (ft_check_eof(prompt))
+		return (NULL);
+	while (invalid_prompt(prompt))
+	{
+		temp_str1 = readline("minishell>$ ");
+		if (ft_check_eof(temp_str1))
+		{
+			free(prompt);
+			return (NULL);
+		}
+		set_prompt(prompt, temp_str1, temp_str2);
+	}
+	if (prompt)
+		add_history(prompt);
+	return (prompt);
 }

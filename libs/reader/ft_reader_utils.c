@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reader.h                                        :+:      :+:    :+:   */
+/*   ft_reader_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glicciar <glicciar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jlievano <jlievano@student.42luxembourg.l  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 01:28:59 by jlievano          #+#    #+#             */
-/*   Updated: 2024/10/28 15:26:22 by glicciar         ###   ########.fr       */
+/*   Created: 2024/12/19 23:43:16 by jlievano          #+#    #+#             */
+/*   Updated: 2024/12/19 23:43:17 by jlievano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_READER_H
-# define FT_READER_H
-# include "../../inc/minishell.h"
+#include "ft_reader.h"
 
-char	*ft_reader(void);
-void	set_prompt(char *prompt, char *temp_str1, char *temp_str2);
-
-#endif
+void	set_prompt(char *prompt, char *temp_str1, char *temp_str2)
+{
+	temp_str2 = prompt;
+	prompt = ft_strjoin(prompt, temp_str1);
+	free(temp_str1);
+	free(temp_str2);
+	temp_str1 = NULL;
+	temp_str2 = NULL;
+}
