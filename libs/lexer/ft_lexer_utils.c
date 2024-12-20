@@ -1,13 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lexer_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gabri <gabri@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 22:56:40 by gabri             #+#    #+#             */
+/*   Updated: 2024/12/19 03:14:55 by gabri            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_lexer.h"
 
 void	read_through_list(t_dll *list)
 {
 	t_dll	*tmp;
-	char	*tokens[] = {"TOKEN_END_INPUT", "TOKEN_PIPE",
-			"TOKEN_REDIRECTION_APPEND", "TOKEN_HEREDOC", "TOKEN_REDIRECTION_IN",
-			"TOKEN_REDIRECTION_OUT", "TOKEN_FLAG", "TOKEN_ARGUMENT",
-			"TOKEN_COMMAND"};
+	char	*tokens[9];
 
+	tokens[0] = "TOKEN_END_INPUT";
+	tokens[1] = "TOKEN_PIPE";
+	tokens[2] = "TOKEN_REDIRECTION_APPEND";
+	tokens[3] = "TOKEN_HEREDOC";
+	tokens[4] = "TOKEN_REDIRECTION_IN";
+	tokens[5] = "TOKEN_REDIRECTION_OUT";
+	tokens[6] = "TOKEN_FLAG";
+	tokens[7] = "TOKEN_ARGUMENT";
+	tokens[8] = "TOKEN_COMMAND";
 	tmp = list;
 	while (tmp)
 	{

@@ -15,6 +15,7 @@
 # include "../../inc/minishell.h"
 
 char	*ft_reader(void);
-void	set_prompt(char *prompt, char *temp_str1, char *temp_str2);
+char	*set_prompt(char *current_prompt, char *new_input);
+void	handle_eof(char *prompt, char *new_input);
 
 #endif

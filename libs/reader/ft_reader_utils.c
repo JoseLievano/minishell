@@ -12,12 +12,22 @@
 
 #include "ft_reader.h"
 
-void	set_prompt(char *prompt, char *temp_str1, char *temp_str2)
+char	*set_prompt(char *current_prompt, char *new_input)
 {
-	temp_str2 = prompt;
-	prompt = ft_strjoin(prompt, temp_str1);
-	free(temp_str1);
-	free(temp_str2);
-	temp_str1 = NULL;
-	temp_str2 = NULL;
+	char	*new_prompt;
+
+	if (!new_input)
+		return (NULL);
+	new_prompt = ft_strjoin(current_prompt, new_input);
+	free(current_prompt);
+	free(new_input);
+	return (new_prompt);
+}
+
+void	handle_eof(char *prompt, char *new_input)
+{
+	if (new_input)
+		free(new_input);
+	if (prompt)
+		free(prompt);
 }
