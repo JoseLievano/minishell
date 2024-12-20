@@ -24,6 +24,8 @@ static int	key_comparator(void **args, int n_args)
 	node = args[0];
 	key = args[1];
 	env = (t_env *)node->content;
+	if (ft_strlen(env->key) != ft_strlen(key))
+		return (0);
 	result = ft_strncmp(env->key, key, ft_strlen(key));
 	if (result == 0)
 		return (1);
