@@ -54,6 +54,19 @@ static t_dll	*get_env_node(char *str)
 	return (t_dll_new(get_env_obj(key, value)));
 }
 
+static void	add_oldwpd(t_dll *env_list)
+{
+	t_dll	*old_wpd;
+	char	*key;
+	char	*value;
+
+	env_list = t_dll_get_head(env_list);
+	key = ft_strdup("OLDPWD");
+	value = ft_strdup(" ");
+	old_wpd = t_dll_new(get_env_obj(key, value));
+	t_dll_add_back(&env_list, old_wpd);
+}
+
 t_dll	*get_env_var_list(char **envp)
 {
 	t_dll	*env_list;
@@ -64,5 +77,6 @@ t_dll	*get_env_var_list(char **envp)
 		t_dll_add_back(&env_list, get_env_node(*envp));
 		envp++;
 	}
+	add_oldwpd(env_list);
 	return (env_list);
 }

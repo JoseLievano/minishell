@@ -28,6 +28,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <errno.h>
+# include <limits.h>
 
 extern volatile sig_atomic_t	g_signal_received;
 

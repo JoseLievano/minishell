@@ -43,14 +43,19 @@ void	set_env_var(t_minishell *minishell, const char *key, const char *value)
 
 void	change_directory(const char *path, t_minishell *minishell, char *og_pwd)
 {
-	printf("\nOLDPWD: [%s]", og_pwd);
-	printf("\nPWD: [%s]\n", path);
+	char	current_path[PATH_MAX];
+
 	if (chdir(path) == -1)
 		printf("cd: %s: No such file or directory\n", path);
 	else
 	{
+		if (getcwd(current_path, PATH_MAX) == NULL)
+		{
+			perror("cd: error getting current directory");
+			return ;
+		}
 		set_env_var(minishell, "OLDPWD", og_pwd);
-		set_env_var(minishell, "PWD", path);
+		set_env_var(minishell, "PWD", current_path);
 	}
 }
 
@@ -60,9 +65,8 @@ void	ft_cd(char **args, t_minishell *minishell)
 	char	*path;
 	t_dll	*envs;
 	t_env	*env;
-
 	envs = ft_find_env("PWD", minishell->envs);
-	env = envs->content;
+		env = envs->content;
 	og_pwd = ft_strdup(env->value);
 	if (!args[1])
 	{
@@ -76,6 +80,6 @@ void	ft_cd(char **args, t_minishell *minishell)
 	{
 		path = args[1];
 		change_directory(path, minishell, og_pwd);
-	}
+}
 	free(og_pwd);
 }
