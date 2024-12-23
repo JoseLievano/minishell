@@ -19,7 +19,7 @@ static void	handle_signal(int signum)
 	g_signal_received = signum;
 	if (signum == SIGINT)
 	{
-		write(STDOUT_FILENO, "\n", 1);
+		write(STDERR_FILENO, "\n", 1);
 		if (isatty(STDIN_FILENO))
 		{
 			rl_on_new_line();
@@ -43,6 +43,11 @@ void	ft_setup_interactive_signals(void)
 
 void	ft_setup_child_signals(void)
 {
+	struct sigaction	sa;
+
+	sa.sa_handler = SIG_DFL;
+	sa.sa_flags = 0;
+	sigemptyset(&sa.sa_mask);
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGPIPE, SIG_DFL);
