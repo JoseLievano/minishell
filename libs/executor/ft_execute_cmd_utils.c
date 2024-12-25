@@ -26,36 +26,49 @@ static void	exec_child(t_minishell *shell, char **args, char **envs, char *cmd)
 	}
 }
 
+static int	handle_parent_process(pid_t pid)
+{
+	int	status;
+
+	status = 0;
+	signal(SIGINT, SIG_IGN);
+	if (waitpid(pid, &status, 0) == -1)
+	{
+		perror("waitpid");
+		return (-1);
+	}
+	ft_setup_interactive_signals();
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+			write(STDERR_FILENO, "\n", 1);
+		return (128 + WTERMSIG(status));
+	}
+	return (-100);
+}
+
+static void	handle_child_process(t_minishell *shell, char **args,
+	char **envs, char *cmd_path)
+{
+	ft_setup_child_signals();
+	exec_child(shell, args, envs, cmd_path);
+}
+
 int	pid_execution(t_minishell *shell, char **args, char **envs, char *cmd_path)
 {
 	pid_t	pid;
 	int		status;
 
-	status = 0;
 	pid = fork();
 	if (pid == 0)
-	{
-		ft_setup_child_signals();
-		exec_child(shell, args, envs, cmd_path);
-	}
+		handle_child_process(shell, args, envs, cmd_path);
 	else
 	{
-		signal(SIGINT, SIG_IGN);
-		if (waitpid(pid, &status, 0) == -1)
-		{
-			perror("waitpid");
-			return (-1);
-		}
-		ft_setup_interactive_signals();
+		status = handle_parent_process(pid);
 		close_redirections(shell);
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
-		if (WIFSIGNALED(status))
-		{
-			if (WTERMSIG(status) == SIGINT)
-				write(STDERR_FILENO, "\n", 1);
-			return (128 + WTERMSIG(status));
-		}
+		return (status);
 	}
 	return (-100);
 }

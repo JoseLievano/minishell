@@ -65,8 +65,9 @@ void	ft_cd(char **args, t_minishell *minishell)
 	char	*path;
 	t_dll	*envs;
 	t_env	*env;
+
 	envs = ft_find_env("PWD", minishell->envs);
-		env = envs->content;
+	env = envs->content;
 	og_pwd = ft_strdup(env->value);
 	if (!args[1])
 	{
@@ -80,6 +81,6 @@ void	ft_cd(char **args, t_minishell *minishell)
 	{
 		path = args[1];
 		change_directory(path, minishell, og_pwd);
-}
+	}
 	free(og_pwd);
 }
